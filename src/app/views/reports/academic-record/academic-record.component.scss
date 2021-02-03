@@ -1,0 +1,162 @@
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css');
+
+* {
+  direction: ltr;
+  text-align: left;
+}
+
+// h2 ,.h2 {
+//   margin-top: 0;
+//   margin-bottom: .5rem;
+//   font-weight: 500;
+//   line-height: 1.2;
+//   color: #212529;
+//   font-size: 2rem;
+// }
+
+.b_table {
+  width: 100%;
+  margin-bottom: 2rem;
+  color: #212529;
+  border-collapse: collapse;
+  line-height: 1.5;
+  font-size: 1rem;
+  box-sizing: border-box;
+
+  thead {
+    color: #212529;
+    vertical-align: middle;
+    border-color: inherit;
+
+    th {
+      vertical-align: bottom;
+      border-bottom: 2px solid #dee2e6;
+      font-weight: bold;
+    }
+  }
+
+  tbody {
+    vertical-align: middle;
+    border-color: inherit;
+  }
+
+  & td,
+  & th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+}
+
+.thead_dark th {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #454d55;
+}
+
+.report_page {
+  margin-right: auto;
+  margin-left: auto;
+  height: 100%;
+  width: 100%;
+  padding-left: 0.7em;
+  padding-right: 0.7em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.table_container{
+  margin-right: auto;
+  margin-left: auto;
+  height: 100%;
+  width: 100%;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+@media print {
+  .report_page {
+    margin-right: auto;
+    margin-left: auto;
+    height: 100%;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .table_container{
+    margin-right: auto;
+    margin-left: auto;
+    height: 100%;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .b_table {
+    width: 100%;
+    margin-bottom: 2rem;
+    color: #212529;
+    border-collapse: collapse;
+    line-height: 1.5;
+    font-size: 0.75rem;
+    box-sizing: border-box;
+  }
+
+  thead {
+    color: #212529;
+    vertical-align: middle;
+    border-color: inherit;
+  }
+
+  thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: bold;
+
+  }
+
+  tbody {
+    vertical-align: middle;
+    border-color: inherit;
+  }
+
+  .b_table td,
+  .b_table th {
+    width: auto;
+    padding: auto;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+
+
+  .thead_dark th {
+    color: #fff;
+    background-color: #343a40;
+    border-color: #454d55;
+    -webkit-print-color-adjust: exact;
+  }
+
+  h2 ,h2 {
+    margin-top: 0;
+    margin-bottom: .5rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #212529;
+    font-size: 1.7rem;
+  }
+}

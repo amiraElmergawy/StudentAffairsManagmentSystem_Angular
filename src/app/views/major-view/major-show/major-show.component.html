@@ -1,0 +1,105 @@
+<h1>عرض تفاصيل التخصص</h1>
+<div *ngIf="data" class="container">
+
+  <div class="show_class">
+    <div class="show_cont">
+    <div class="one_block">
+      <div class="small_block">
+        اسم التخصص بالعربية
+        <span class="inline">
+          {{data.arName}}
+        </span>
+      </div>
+      <div class="small_block">
+        اسم التخصص بالانجليزية
+        <span class="inline english_direction">
+          {{data.enName}}
+        </span>
+      </div>
+    </div>
+    <div class="one_block" *ngIf="data.certArName || data.certEnName">
+      <div class="small_block">
+        اسم الشهادة بالعربية
+        <span class="inline">
+          {{data.certArName}}
+        </span>
+      </div>
+      <div class="small_block">
+        اسم الشهادة بالانجليزية
+        <span class="inline  english_direction">
+          {{data.certEnName}}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="show_cont">
+    <div class="one_block">
+      <div class="small_block">
+        نوع التخصص
+        <span class="inline">
+          {{data.type | majorType}}
+        </span>
+      </div>
+      <div class="small_block" *ngIf="data.desc">
+        وصف التخصص
+        <span class="inline">
+          {{data.desc}}
+        </span>
+      </div>
+      <div class="small_block">
+        القسم التابع له هذا التخصص
+        <span class="inline">
+          {{data.department.arName}}
+        </span>
+      </div>
+    </div>
+    
+    <div class="one_block">
+      <div class="small_block">
+        عدد الساعات المطلوبة للتخرج
+        <span class="inline">
+          {{data.hoursToGraduate}}
+        </span>
+      </div>
+      <div class="small_block">
+        عدد الساعات المسموحة للرسوب
+        <span class="inline">
+          {{data.failHoursAllowed}}
+        </span>
+      </div>
+      <div class="small_block">
+        الحد الادني للنجاح
+        <span class="inline">
+          {{data.failGpa}}
+        </span>
+      </div>
+    </div>
+  </div>
+    
+      
+      <!--   <div class="small_block">
+                <div *ngIf="data.division">
+                      الشعبة التابع لها هذا التخصص 
+                </div>
+                <span  class="inline">
+                <div *ngIf="data.division">
+                    {{data.division.name}} 
+               </div>
+            </span>
+            </div>
+            </div> -->
+
+
+
+    
+  
+  <div
+    *ngIf="authorizedList['majors.destroy'] || authorizedList['majors.update'] || authorizedList['major.unlinkDepartment'] || authorizedList['major.unlinkDivision'] || authorizedList['majors.update-programs'] || authorizedList['majors.get-programs']">
+    <button [routerLink]="['/update-major/', majorId]" class="btn">
+      تحديث
+    </button>
+  </div>
+  <br>
+  <a class="btn" [routerLink]="[ '/link-program-with-major/', majorId ]" *ngIf="authorizedList['majors.update-programs'] || authorizedList['majors.get-programs']">البرامج الحالية داخل التخصص</a>
+</div>
+</div>

@@ -1,0 +1,23 @@
+<div class="full_page">
+  <div class="form_container">
+    <div class="custom_form">
+      <div class="form_header_container">
+        <h2 class="form_header">اضافة درجة لمقرر <br>{{registredCourse?.course?.enCode}}</h2>
+      </div>
+      <div class="form_section degree_section">
+        <div class="form_row">
+          <label class="form_element" for="degree_number">الدرجة</label>
+          <div class="form_element">
+            <input class="text_input" type="number" [(ngModel)]="degree">
+          </div>
+        </div>
+
+        <div class="form_row form_element col_span_2">
+          <button class="btn btn_update" (click)="checkDegreeValidation()" *ngIf="authorizedList['course-registrations.degree']">حفظ
+            الدرجة</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,957 @@
+<div class="full_page">
+
+  <div class="form_container">
+    <div class="custom_form">
+
+      <div class="form_header_container">
+        <h2 class="form_header">تحديث بيانات الطالب</h2>
+      </div>
+
+      <div class="form_section major_btn_section">
+        <div class="form_row">
+          <div class="form_element flex_center_center">
+            <button class="btn btn_delete" (click)="delete()" *ngIf="authorizedList['students.destroy']"> مسح</button>
+          </div>
+        </div>
+      </div>
+
+
+      <ng-form [formGroup]="studentForm" *ngIf="authorizedList['students.update']">
+
+
+        <div id="basic_info" class="form_section student_section">
+
+          <div class="form_section_header student_section_header">
+            البيانات الأساسية
+          </div>
+
+          <div class="form_row">
+            <label for="student_photo" class="form_element">
+              اختر الصورة
+            </label>
+
+            <div class="form_element student_photo_input">
+              <div class="student_image" *ngIf="imageURL">
+                <img class="image_in_table" src="{{ imageURL }}" alt="{{ fileData?.name }}">
+              </div>
+              <input class="file_btn" id="student_photo" type="file" name="image" (change)="fileProgress($event)"
+                accept="image/*">
+              <span *ngIf="imageValidator == false" class="warning">
+                ادخل ملف صحيح (صورة)
+              </span>
+
+              <div *ngIf="imageURL== null && fileData == null" class="requierd">
+                هذا الحقل مطلوب
+              </div>
+            </div>
+          </div>
+
+          <div class="form_row">
+
+            <div class="form_element form_row_header">الإسم العربي</div>
+
+            <label class="form_element" for="arFirstName">الأول</label>
+            <div class="form_element">
+              <input class="text_input" id="arFirstName" name="arFirstName" type="text" formControlName="arFirstName">
+              <span *ngIf="
+                !studentForm.get('arFirstName').valid &&
+                studentForm.get('arFirstName').touched">
+                <span *ngIf="studentForm.get('arFirstName').errors['minlength']" class="warning">يجب كتابة 2 احرف علي
+                  الاقل
+                </span>
+                <span *ngIf="studentForm.get('arFirstName').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="studentForm.get('arFirstName').errors['pattern']" class="warning">
+                  لا يسمح بادخال علامات او احرف غير العربية
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="arSecondName">الثاني</label>
+            <div class="form_element">
+              <input class="text_input" id="arSecondName" name="arSecondName" type="text"
+                formControlName="arSecondName" />
+              <span *ngIf="
+                !studentForm.get('arSecondName').valid &&
+                studentForm.get('arSecondName').touched
+              ">
+                <span *ngIf="studentForm.get('arSecondName').errors['minlength']" class="warning">يجب كتابة 2 احرف علي
+                  الاقل
+
+                </span>
+                <span *ngIf="studentForm.get('arSecondName').errors['required']" class="requierd">هذا الحقل مطلوب
+
+                </span>
+                <span *ngIf="studentForm.get('arSecondName').errors['pattern']" class="warning">
+                  لا يسمح بادخال علامات او احرف غير العربية
+
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="arThirdName">الثالث</label>
+            <div class="form_element">
+              <input class="text_input" id="arThirdName" name="arThirdName" type="text" formControlName="arThirdName">
+              <span *ngIf="!studentForm.get('arThirdName').valid && studentForm.get('arThirdName').touched">
+                <span *ngIf="studentForm.get('arThirdName').errors['minlength']" class="warning">يجب كتابة 2 احرف علي
+                  الاقل
+                </span>
+                <span *ngIf="studentForm.get('arThirdName').errors['required']" class="requierd">
+                  هذا الحقل مطلوب
+                </span>
+                <span *ngIf="studentForm.get('arThirdName').errors['pattern']" class="warning">
+                  لا يسمح بادخال علامات او احرف غير العربية
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="arFamilyName">لقب العائلة</label>
+            <div class="form_element">
+              <input class="text_input" id="arFamilyName" name="arFamilyName" type="text"
+                formControlName="arFamilyName">
+              <span *ngIf="!studentForm.get('arFamilyName').valid && studentForm.get('arFamilyName').touched">
+                <span *ngIf="studentForm.get('arFamilyName').errors['minlength']" class="warning">يجب كتابة 2 احرف علي
+                  الاقل
+                </span>
+                <span *ngIf="studentForm.get('arFamilyName').errors['required']" class="requierd">
+                  هذا الحقل مطلوب
+                </span>
+                <span *ngIf="studentForm.get('arFamilyName').errors['pattern']" class="warning">
+                  لا يسمح بادخال علامات او احرف غير العربية
+                </span>
+              </span>
+            </div>
+
+
+          </div>
+
+          <div class="form_row">
+            <div class="form_element form_row_header">الإسم الإنجليزي</div>
+
+            <label class="form_element" for="enFirstName">الأول</label>
+            <div class="form_element">
+              <input class="text_input english_direction" id="enFirstName" name="enFirstName" type="text"
+                formControlName="enFirstName" />
+              <span *ngIf="
+                !studentForm.get('enFirstName').valid &&
+                studentForm.get('enFirstName').touched
+              ">
+                <span *ngIf="studentForm.get('enFirstName').errors['minlength']" class="warning">يجب كتابة 2 احرف علي
+                  الاقل
+
+                </span>
+                <span *ngIf="studentForm.get('enFirstName').errors['required']" class="requierd">هذا الحقل مطلوب
+
+                </span>
+                <span *ngIf="studentForm.get('enFirstName').errors['pattern']" class="requierd">
+                  لا يسمح بادخال علامات او احرف غير الانجليزية
+
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="enSecondName">الثاني</label>
+            <div class="form_element">
+              <input class="text_input english_direction" id="enSecondName" name="enSecondName" type="text"
+                formControlName="enSecondName" />
+              <span *ngIf="
+                !studentForm.get('enSecondName').valid &&
+                studentForm.get('enSecondName').touched
+              ">
+                <span *ngIf="studentForm.get('enSecondName').errors['minlength']" class="warning">يجب كتابة 2 احرف علي
+                  الاقل
+
+                </span>
+                <span *ngIf="studentForm.get('enSecondName').errors['required']" class="requierd">هذا الحقل مطلوب
+
+                </span>
+                <span *ngIf="studentForm.get('enSecondName').errors['pattern']" class="requierd">
+                  لا يسمح بادخال علامات او احرف غير الانجليزية
+
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="enThirdName">الثالث</label>
+            <div class="form_element">
+              <input class="text_input english_direction" id="enThirdName" name="enThirdName" type="text"
+                formControlName="enThirdName" />
+              <span *ngIf="
+                !studentForm.get('enThirdName').valid &&
+                studentForm.get('enThirdName').touched
+              ">
+                <span *ngIf="studentForm.get('enThirdName').errors['minlength']" class="warning">يجب كتابة 2 احرف علي
+                  الاقل
+
+                </span>
+                <span *ngIf="studentForm.get('enThirdName').errors['required']" class="requierd">هذا الحقل مطلوب
+
+                </span>
+                <span *ngIf="studentForm.get('enThirdName').errors['pattern']" class="requierd">
+                  لا يسمح بادخال علامات او احرف غير الانجليزية
+
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="enFamiyName">لقب العائلة</label>
+            <div class="form_element">
+              <input class="text_input english_direction" id=" enFamilyName" name="enFamiyName" type="text"
+                formControlName="enFamilyName" /><span *ngIf="
+                !studentForm.get('enFamilyName').valid &&
+                studentForm.get('enFamilyName').touched">
+                <span *ngIf="studentForm.get('enFamilyName').errors['minlength']" class="warning">يجب كتابة 5 احرف علي
+                  الاقل
+                </span>
+                <span *ngIf="studentForm.get('enFamilyName').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="studentForm.get('enFamilyName').errors['pattern']" class="warning">
+                  لا يسمح بادخال علامات او احرف غير الانجليزية
+                </span>
+              </span>
+            </div>
+
+          </div>
+
+          <div class="form_row">
+            <label class="form_element" for="national_id">الرقم القومى</label>
+            <div class="form_element">
+              <input class="text_input" id="national_id" type="text" name="ssn" formControlName="ssn">
+              <span *ngIf="!studentForm.get('ssn').valid && studentForm.get('ssn').touched" class="help-block">
+                <span *ngIf="studentForm.get('ssn').errors['required']" class="requierd">
+                  هذا الحقل مطلوب
+                </span>
+                <span *ngIf="
+                  studentForm.get('ssn').errors['minlength'] ||
+                  studentForm.get('ssn').errors['maxlength']" class="warning">
+                  يجب ان يكون عدد الارقام 14
+                </span>
+                <span *ngIf="studentForm.get('ssn').errors['pattern']" class="warning">
+                  لا يسمح بادخال علامات او احرف
+                </span>
+                <!-- <span *ngIf="studentForm.get('ssn').errors['nameIsForbidden']">
+                لا يسمح بتكرار الرقم
+                <br />
+              </span> -->
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <label class="form_element" for="passport_num">رقم جواز السفر</label>
+            <div class="form_element">
+              <input class="text_input" id="passport_num" type="text" name="passportNumber"
+                formControlName="passportNumber">
+              <span *ngIf="
+                !studentForm.get('passportNumber').valid &&
+                studentForm.get('passportNumber').touched">
+                <span *ngIf="studentForm.get('passportNumber').errors['required']" class="requierd">
+                  هذا الحقل مطلوب
+                </span>
+                <span class="warning" *ngIf="studentForm.get('passportNumber').errors['pattern']">
+                  لا يسمح بادخال علامات او احرف
+                </span>
+                <span class="warning" *ngIf="studentForm.get('passportNumber').errors['maxlength']">
+                  يجب ان يكون عدد الارقام اقل من 20
+                </span>
+                <!-- <span
+                *ngIf="studentForm.get('passportNumber').errors['nameIsForbidden']"
+              >
+                لا يسمح بتكرار الرقم
+                <br />
+              </span> -->
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <label class="form_element">النوع</label>
+            <div class="form_element">
+              <label *ngFor="let gender of genders; let i = index" for="gender">
+                <input type="radio" name="gender" [value]="i" formControlName="gender" required />
+                {{ gender }}
+              </label>
+              <span *ngIf="
+                    !studentForm.get('gender').valid && studentForm.get('gender').touched
+                  ">
+                <span class="requierd" *ngIf="studentForm.get('gender').errors['required']">
+                  هذا الحقل مطلوب
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <label class="form_element" for="email ">الايميل</label>
+            <div class="form_element">
+              <input class="text_input english_direction" type="email" name="email" id="email"
+                placeholder="example@sci.asu.edu.eg" formControlName="collageEmail" />
+              <span *ngIf="
+                !studentForm.get('collageEmail').valid &&
+                studentForm.get('collageEmail').touched">
+                <span class="warning" *ngIf="studentForm.get('collageEmail').errors['minlength']">
+                  يجب كتابة 17 حرف علي الاقل
+                </span>
+                <span class="requierd" *ngIf="studentForm.get('collageEmail').errors['required']">
+                  هذا الحقل مطلوب
+                </span>
+                <span class="warning" *ngIf="studentForm.get('collageEmail').errors['pattern']">
+                  لا يسمح بادخال علامات او احرف غير الانجليزية وان يحتوي علي
+                  "@sci.asu.edu.eg"
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <!-- <div class="form_row">
+            <label class="form_element" for="currentDepartment">القسم</label>
+            <div class="form_element">
+              <select class="select_box" name="currentDepartment" id="department" formControlName="currentDepartment"
+                (change)="getMajors($event)">
+                <option value="null">اختر القسم...</option>
+                <option *ngFor="let department of departments; let i = index" value="{{department.id}}">
+                  {{ department.arName }}
+                </option>
+              </select>
+              <span *ngIf="
+                    !studentForm.get('currentDepartment').valid &&
+                    studentForm.get('currentDepartment').touched" class="help-block">
+                <span *ngIf="studentForm.get('currentDepartment').errors['required']">
+                  هذا الحقل مطلوب
+                </span>
+              </span>
+            </div>
+          </div>
+
+
+          <div class="form_row" *ngIf="uniqueMajors != null && uniqueMajors?.length != 0">
+            <label class="form_element" for="major ">التخصص</label>
+            <div class="form_element">
+              <select class="select_box" name="currentMajor" id="currentMajor" formControlName="currentMajor"
+                (change)="getPrograms($event)">
+                <option value="null">اختر التخصص...</option>
+                <option *ngFor="let major of uniqueMajors; let i = index" value="{{ major.id }}">{{ major.arName }}
+                </option>
+              </select>
+              <span *ngIf="
+              !studentForm.get('currentMajor').valid &&
+              studentForm.get('currentMajor').touched" class="help-block">
+                <span class="requierd" *ngIf="studentForm.get('currentMajor').errors['required']">
+                  هذا الحقل مطلوب
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row" *ngIf="uniquePrograms != null && uniquePrograms.length != 0">
+            <label class="form_element" for="currentProgram ">البرنامج</label>
+            <div class="form_element">
+              <select class="select_box" name="currentProgram" id="currentProgram" formControlName="currentProgram">
+                <option value="null">اختر البرنامج...</option>
+                <option *ngFor="let program of uniquePrograms; let i = index" value="{{ program.Id }}">
+                  {{ program.arName }}
+                </option>
+              </select>
+              <span *ngIf="!studentForm.get('currentProgram').valid && studentForm.get('currentProgram').touched"
+                class="help-block">
+                <span class="requierd" *ngIf="studentForm.get('currentProgram').errors['required']">
+                  هذا الحقل مطلوب
+                </span>
+              </span>
+            </div>
+          </div>--> 
+
+        </div>
+
+
+        <div class="form_section addtional_data_section">
+
+          <div class="form_section_header addtional_data_section_header">
+            البيانات الإضافية
+          </div>
+          <div formGroupName="additionalInfo" style="display: contents;">
+            <div class="form_row" id="additional_info">
+
+              <label class="form_element" for="birthday">تاريخ الميلاد</label>
+              <div class="form_element">
+                <input class="calender" type="date" id="birthday" name="birthDate" formControlName="birthDate" />
+                <span *ngIf="
+                !studentForm.get('additionalInfo.birthDate').valid &&
+                studentForm.get('additionalInfo.birthDate').touched">
+                  <span class="requierd" *ngIf="studentForm.get('additionalInfo.birthDate').errors['required']">
+                    هذا الحقل مطلوب
+                  </span>
+                </span>
+              </div>
+
+              <label class="form_element" for="birthplace "> محل الميلاد</label>
+              <div class="form_element">
+                <input class="text_input" type="text" name="birthPlace" formControlName="birthPlace" />
+                <span *ngIf="
+                !studentForm.get('additionalInfo.birthPlace').valid &&
+                studentForm.get('additionalInfo.birthPlace').touched
+              ">
+                  <span *ngIf="
+                  studentForm.get('additionalInfo.birthPlace').errors['required']
+                ">هذا الحقل مطلوب
+
+                  </span>
+                  <span *ngIf="studentForm.get('additionalInfo.birthPlace').errors['pattern']">
+                    لا يسمح بادخال علامات او احرف غير العربية
+
+                  </span>
+                  <span *ngIf="
+                  studentForm.get('additionalInfo.birthPlace').errors['minlength'] ||
+                  studentForm.get('additionalInfo.birthPlace').errors['maxlength']
+                ">
+                    يجب ان يكون عدد الاحرف بين 4 الي 20 حرف
+                  </span>
+                </span>
+              </div>
+            </div>
+
+
+            <div class="form_row" id="address" formGroupName="address">
+
+              <label class="form_element" for="address">العنوان</label>
+              <div class="form_element student_address_inputs">
+                <input class="text_input" type="number" name="homeNo" formControlName="homeNo"
+                  placeholder="رقم المبني السكني" />
+                <input class="text_input" type="text" name="streetName" formControlName="streetName"
+                  placeholder="اسم الشارع" />
+                <span *ngIf="
+                  !studentForm.get('additionalInfo.address.streetName').valid &&
+                  studentForm.get('additionalInfo.address.streetName').touched
+                ">
+                  <span class="requierd" *ngIf="
+                    studentForm.get('additionalInfo.address.streetName').errors[
+                      'required'
+                    ]
+                  ">هذا الحقل مطلوب
+
+                  </span>
+                  <span class="warning" *ngIf="
+                    studentForm.get('additionalInfo.address.streetName').errors[
+                      'pattern'
+                    ]
+                  ">
+                    لا يسمح بادخال علامات او احرف غير العربية
+
+                  </span>
+                </span>
+                <input class="text_input" type="text" name="areaName" formControlName="areaName"
+                  placeholder="المنطقة" />
+                <span *ngIf="
+                  !studentForm.get('additionalInfo.address.areaName').valid &&
+                  studentForm.get('additionalInfo.address.areaName').touched
+                ">
+                  <span class="requierd" *ngIf="
+                    studentForm.get('additionalInfo.address.areaName').errors[
+                      'required'
+                    ]
+                  ">هذا الحقل مطلوب
+
+                  </span>
+                  <span class="warning" *ngIf="
+                    studentForm.get('additionalInfo.address.areaName').errors[
+                      'pattern'
+                    ]
+                  ">
+                    لا يسمح بادخال علامات او احرف غير العربية
+
+                  </span>
+                </span>
+                <input class="text_input" type="text" name="countryName" formControlName="countryName"
+                  placeholder="المحافظة" />
+                <span *ngIf="
+                  !studentForm.get('additionalInfo.address.countryName').valid &&
+                  studentForm.get('additionalInfo.address.countryName').touched
+                ">
+                  <span class="requierd" *ngIf="
+                    studentForm.get('additionalInfo.address.countryName').errors[
+                      'required'
+                    ]
+                  ">هذا الحقل مطلوب
+
+                  </span>
+                  <span class="warning" *ngIf="
+                    studentForm.get('additionalInfo.address.countryName').errors[
+                      'pattern'
+                    ]
+                  ">
+                    لا يسمح بادخال علامات او احرف غير العربية
+
+                  </span>
+                </span>
+              </div>
+
+            </div>
+
+            <div class="form_row" *ngIf="!typingFlag">
+              <label class="form_element" for="religion ">الديانة</label>
+              <div class="form_element religion_input">
+                <select class="select_box" name="religion" id="religion" formControlName="religion"
+                  (change)="onChange()">
+                  <option value="null">اختر الديانة...</option>
+                  <option *ngFor="let religion of religions" value="{{ religion }}">{{
+                    religion
+                  }}</option>
+                </select>
+                <span *ngIf="
+                    !studentForm.get('additionalInfo.religion').valid &&
+                    studentForm.get('additionalInfo.religion').touched
+                  " class="help-block">
+                  <span class="requierd" *ngIf="
+                      studentForm.get('additionalInfo.religion').errors['required']
+                    ">هذا الحقل مطلوب
+                  </span>
+                </span>
+              </div>
+            </div>
+
+            <div class="form_row" *ngIf="typingFlag">
+              <label class="form_element" for="religion ">الديانة</label>
+              <div class="form_element religion_input">
+                <input class="text_input" type="text" id="religion" name="religion" formControlName="religion" />
+                <span *ngIf="
+                  !studentForm.get('additionalInfo.religion').valid &&
+                  studentForm.get('additionalInfo.religion').touched
+                " class="help-block">
+                  <span class="requierd" *ngIf="studentForm.get('additionalInfo.religion').errors['required']">
+                    هذا الحقل مطلوب
+                  </span>
+                </span>
+              </div>
+            </div>
+
+            <div class="form_row">
+              <label class="form_element" for="motherName ">اسم الام</label>
+              <div class="form_element">
+                <input class="text_input" type="text" id="motherName" name="motherName" formControlName="motherName" />
+                <span *ngIf="
+                !studentForm.get('additionalInfo.motherName').valid &&
+                studentForm.get('additionalInfo.motherName').touched" class="help-block">
+                  <span class="requierd" *ngIf="
+                  studentForm.get('additionalInfo.motherName').errors['required']">
+                    هذا الحقل مطلوب
+                  </span>
+                  <span class="warning" *ngIf="
+                  studentForm.get('additionalInfo.motherName').errors['minlength'] ||
+                  studentForm.get('additionalInfo.motherName').errors['maxlength']">
+                    يجب ان يكون عدد الاحرف من 15 الي 150
+                  </span>
+                  <span class="warning" *ngIf="studentForm.get('additionalInfo.motherName').errors['pattern']">
+                    لا يسمح بادخال علامات او احرف غير العربية
+                  </span>
+                </span>
+              </div>
+            </div>
+
+            <div class="form_row">
+              <label class="form_element" for="father_profession ">وظيفة الاب</label>
+              <div class="form_element">
+                <input class="text_input" type="text" id="father_profession" name="fatherProfession"
+                  formControlName="fatherProfession" /><br />
+                <span *ngIf="
+                !studentForm.get('additionalInfo.fatherProfession').valid &&
+                studentForm.get('additionalInfo.fatherProfession').touched
+              " class="help-block">
+                  <span class="requierd" *ngIf="
+                  studentForm.get('additionalInfo.fatherProfession').errors[
+                    'required'
+                  ]
+                ">هذا الحقل مطلوب
+
+                  </span>
+                  <span class="warning" *ngIf="
+                  studentForm.get('additionalInfo.fatherProfession').errors['pattern']
+                ">
+                    لا يسمح بادخال علامات او احرف غير العربية
+
+                  </span>
+                  <span class="warning" *ngIf="
+                  studentForm.get('additionalInfo.fatherProfession').errors[
+                    'minlength'
+                  ] ||
+                  studentForm.get('additionalInfo.fatherProfession').errors[
+                    'maxlength'
+                  ]
+                ">
+                    يجب ان يكون عدد الاحرف من 4 الي 30
+
+                  </span>
+                </span>
+              </div>
+            </div>
+
+
+
+
+            <div class="form_row" *ngIf="nationalities !== null">
+              <label class="form_element" for="nationalityId ">الجنسية</label>
+              <div class="form_element flex_center_center">
+                {{studentCurrentData?.additionalInfo?.nationalityName}}
+              </div>
+
+              <div class="form_element flex_end_center">
+                <button class="form_element btn" (click)="changeNationalityFlag = !changeNationalityFlag">تغيير الجنسية</button>
+              </div>
+              <div class="form_element">
+                <div class="form_row" *ngIf="changeNationalityFlag">
+                  <ng-multiselect-dropdown [placeholder]="'اختر البلد'" [settings]="dropdownSettings"
+                    [data]="nationalities" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)"
+                    formControlName="nationalityId" name="nationalityId" required>
+                  </ng-multiselect-dropdown>
+                  <span *ngIf="
+                    !studentForm.get('additionalInfo.nationalityId').valid &&
+                    studentForm.get('additionalInfo.nationalityId').touched" class="help-block">
+                    <span class="requierd" *ngIf="studentForm.get('additionalInfo.nationalityId').errors['required']">
+                      هذا الحقل مطلوب
+                    </span>
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="form_row">
+
+              <label class="form_element" for="land_phone ">التليفون الارضى</label>
+              <div class="form_element">
+                <input class="text_input" type="text" id="land_phone" name="landPhone" formControlName="landPhone" />
+                <span *ngIf="
+                !studentForm.get('additionalInfo.landPhone').valid &&
+                studentForm.get('additionalInfo.landPhone').touched
+              " class="help-block">
+                  <span class="requierd" *ngIf="studentForm.get('additionalInfo.landPhone').errors['required']">هذا
+                    الحقل
+                    مطلوب
+
+                  </span>
+                  <span class="warning" *ngIf="studentForm.get('additionalInfo.landPhone').errors['pattern']">
+                    لا يسمح بادخال علامات او اي احرف
+
+                  </span>
+                  <span class="warning" *ngIf="
+                  studentForm.get('additionalInfo.landPhone').errors['minLength'] ||
+                  studentForm.get('additionalInfo.landPhone').errors['maxLength']
+                ">
+                    يجب ان يكون عدد الارقام من 8 الي 10
+                  </span>
+                </span>
+              </div>
+
+              <label class="form_element" for="mobile ">الموبايل</label>
+              <div class="form_element">
+                <input class="text_input" type="text" id="mobile" name="mobile" formControlName="mobile" />
+                <span *ngIf="
+                !studentForm.get('additionalInfo.mobile').valid &&
+                studentForm.get('additionalInfo.mobile').touched" class="help-block">
+                  <span class="requierd" *ngIf="studentForm.get('additionalInfo.mobile').errors['required']">هذا الحقل
+                    مطلوب
+                  </span>
+                  <span class="warning" *ngIf="studentForm.get('additionalInfo.mobile').errors['pattern']">
+                    لا يسمح بادخال علامات او اي احرف
+                  </span>
+                  <span class="warning" *ngIf="
+                  studentForm.get('additionalInfo.mobile').errors['minLength'] ||
+                  studentForm.get('additionalInfo.mobile').errors['maxLength']">
+                    يجب ان يكون عدد الارقام من 11 الي 16
+                  </span>
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="form_section high_school_section" id="highSchool" formGroupName="highSchool">
+
+          <div class="form_section_header high_school_section_header">
+            بيانات المرحلة الثانوية
+          </div>
+
+          <div class="form_row">
+            <label class="form_element" for="specialization ">تخصص الثانوية العامة </label>
+            <div class="form_element">
+              <select class="select_box" name="specialization" id="specialization" formControlName="hSSpecialization">
+                <option value="null">اختر التخصص...</option>
+                <option *ngFor="let specialization of specializations; let i = index" value="{{ i }}">
+                  {{ specialization }}
+                </option>
+              </select>
+              <br />
+              <span *ngIf="
+              !studentForm.get('highSchool.hSSpecialization').valid &&
+              studentForm.get('highSchool.hSSpecialization').touched
+            " class="help-block">
+                <span class="requierd" *ngIf="
+                studentForm.get('highSchool.hSSpecialization').errors['required']
+              ">هذا الحقل مطلوب
+
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="hSSeatNumber ">رقم الجلوس</label>
+            <div class="form_element">
+              <input class="text_input" type="text" id="hSSeatNumber" name="hSSeatNumber"
+                formControlName="hSSeatNumber">
+              <span *ngIf="
+              !studentForm.get('highSchool.hSSeatNumber').valid &&
+              studentForm.get('highSchool.hSSeatNumber').touched" class="help-block">
+                <span class="requierd" *ngIf="studentForm.get('highSchool.hSSeatNumber').errors['required']">هذا الحقل
+                  مطلوب
+                </span>
+                <span class="warning" *ngIf="studentForm.get('highSchool.hSSeatNumber').errors['pattern']">
+                  لا يسمح بادخال علامات او ارقام غير صحيح وان يكون عدد الارقام 5
+                </span>
+              </span>
+            </div>
+
+          </div>
+
+          <div class="form_row">
+
+            <label class="form_element" for="hS_grade ">درجة الثانوية العامة</label>
+            <div class="form_element">
+              <input class="text_input" type="number" id="hS_grade" name="hSGrade" formControlName="hSGrade" /><br />
+              <span
+                *ngIf="!studentForm.get('highSchool.hSGrade').valid && studentForm.get('highSchool.hSGrade').touched"
+                class="help-block">
+                <span class="requierd" *ngIf="studentForm.get('highSchool.hSGrade').errors['required']">هذا الحقل
+                  مطلوب
+                </span>
+                <span class="warning" *ngIf="studentForm.get('highSchool.hSGrade').errors['max']">لا يسمح بقيمة اكبر
+                  من 410
+                </span>
+                <span class="warning" *ngIf="studentForm.get('highSchool.hSGrade').errors['pattern']">
+                  لا يسمح بادخال علامات او ارقام غير صحيح
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="hS_grade_plus ">درجة الثانوية العامة + المستوى الرفيع</label>
+            <div class="form_element">
+              <input class="text_input" type="number" id="hS_grade_plus" name="hSGradePlus"
+                formControlName="hSGradePlus" />
+              <span
+                *ngIf="!studentForm.get('highSchool.hSGradePlus').valid && studentForm.get('highSchool.hSGradePlus').touched"
+                class="help-block">
+                <span class="requierd" *ngIf="studentForm.get('highSchool.hSGradePlus').errors['required']">هذا الحقل
+                  مطلوب
+                </span>
+                <span class="warning" *ngIf="studentForm.get('highSchool.hSGradePlus').errors['pattern']">
+                  لا يسمح بادخال علامات او ارقام غير صحيح
+                </span>
+              </span>
+            </div>
+
+          </div>
+
+          <div class="form_row">
+
+            <label class="form_element" for="hS_grad_year ">سنة التخرج من ثانوية عامة</label>
+            <div class="form_element">
+              <input class="text_input" type="number" id="hS_grad_year" name="hSGradYear"
+                formControlName="hSGradYear" />
+              <span
+                *ngIf="!studentForm.get('highSchool.hSGradYear').valid && studentForm.get('highSchool.hSGradYear').touched"
+                class="help-block">
+                <span class="requierd" *ngIf="studentForm.get('highSchool.hSGradYear').errors['required']">هذا الحقل
+                  مطلوب
+                </span>
+                <span class="warning" *ngIf="studentForm.get('highSchool.hSGradYear').errors['pattern']">
+                  لا يسمح بادخال علامات او عام غير صحيح
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="hSName ">اسم المدرسة الثانوية</label>
+            <div class="form_element">
+              <input class="text_input" type="text" id="hSName" name="hSName" formControlName="hSName" />
+              <span *ngIf="!studentForm.get('highSchool.hSName').valid && studentForm.get('highSchool.hSName').touched"
+                class="help-block">
+                <span class="requierd" *ngIf="studentForm.get('highSchool.hSName').errors['required']">
+                  هذا الحقل مطلوب
+                </span>
+                <span class="warning" *ngIf="
+                studentForm.get('highSchool.hSName').errors['pattern'] ||
+                studentForm.get('highSchool.hSName').errors['minlength'] ||
+                studentForm.get('highSchool.hSName').errors['maxlength']">
+                  لا يسمح بادخال علامات او احرف غير العربية ويجب ان يكون عدد الحروف من
+                  10 الي 100
+                </span>
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="form_section special_reg_section" id="special_registration" formGroupName="specialRegistration">
+
+          <div class="form_section_header special_reg_section_header">
+            بيانات التسجيل الخاص
+          </div>
+
+         
+          <div class="form_row"  *ngIf="wafedAppearanceFlag">
+
+            <div class="form_element">
+              <input type="checkbox" id="wafed" name="wafed" formControlName="wafed" />
+              <label for="wafed ">الطالب موفد </label>
+            </div>
+
+            <div class="form_element col_span_3 flex_center_center" *ngIf="studentForm.get('specialRegistration.wafed').value == true">
+              <label class="form_element" for="wafedFrom">الجهة الموفد منها</label>
+              <div class="form_element">
+                <input class="text_input" class="text_input" type="text" id="wafedFrom" name="wafedFrom"
+                  formControlName="wafedFrom" /><br />
+                <span *ngIf="
+                  !studentForm.get('specialRegistration.wafedFrom').valid &&
+                  studentForm.get('specialRegistration.wafedFrom').touched" class="help-block">
+                  <span class="requierd" *ngIf="
+                    (studentForm.get('specialRegistration.wafedFrom')?.errors)[
+                      'required'
+                    ]">
+                    هذا الحقل مطلوب
+                  </span>
+                  <span class="warning" *ngIf="
+                    studentForm.get('specialRegistration.wafedFrom').errors[
+                      'pattern'
+                    ] ||
+                    studentForm.get('specialRegistration.wafedFrom').errors[
+                      'minlength'
+                    ] ||
+                    studentForm.get('specialRegistration.wafedFrom').errors[
+                      'maxlength'
+                    ]
+                  ">
+                    لا يسمح بادخال علامات او احرف غير العربية ويجب ان يكون عدد الحروف من
+                    10 الي 100
+                  </span>
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="form_row" *ngIf="transferredAppearanceFlag">
+
+            <div class="form_element">
+              <input type="checkbox" id="transferred" name="transferred" formControlName="transferred" />
+              <label for="transferred ">الطالب محول </label>
+            </div>
+
+            <div class="form_element col_span_3 flex_center_center" *ngIf="studentForm.get('specialRegistration.transferred').value == true">
+              <label class="form_element" for="transferredFrom "> الجهة المحول منها</label>
+              <div class="form_element">
+                <input class="text_input" type="text" id="transferredFrom" name="transferredFrom"
+                  formControlName="transferredFrom" /><br />
+                <span *ngIf="
+                !studentForm.get('specialRegistration.transferredFrom').valid &&
+                studentForm.get('specialRegistration.transferredFrom').touched" class="help-block">
+                  <span class="requierd" *ngIf="
+                  (studentForm.get('specialRegistration.transferredFrom')?.errors)[
+                    'required'
+                  ]">
+                    هذا الحقل مطلوب
+                  </span>
+                  <span class="warning" *ngIf="
+                  studentForm.get('specialRegistration.transferredFrom').errors[
+                    'pattern'
+                  ] ||
+                  studentForm.get('specialRegistration.transferredFrom').errors[
+                    'minlength'
+                  ] ||
+                  studentForm.get('specialRegistration.transferredFrom').errors[
+                    'maxlength'
+                  ]
+                ">
+                    لا يسمح بادخال علامات او احرف غير العربية ويجب ان يكون عدد الحروف من
+                    10 الي 100
+
+                  </span>
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="form_row"  *ngIf="transferredRegAppearanceFlag">
+            <div class="form_element">
+              <input type="checkbox" id="registrationTransferred" name="registrationTransferred"
+                formControlName="registrationTransferred" />
+              <label for="registrationTransferred ">نقل قيد </label>
+            </div>
+
+            <div class="form_element col_span_3 flex_center_center" *ngIf="studentForm.get('specialRegistration.registrationTransferred').value == 1">
+              <label class="form_element" for="registrationTransferredFrom "> نقل قيد من</label>
+              <div class="form_element">
+                <input class="text_input" type="text" id="registrationTransferredFrom"
+                  name="registrationTransferredFrom" formControlName="registrationTransferredFrom" />
+                <span *ngIf="!studentForm.get('specialRegistration.registrationTransferredFrom').valid
+                &&
+                studentForm.get('specialRegistration.registrationTransferredFrom')
+                  .touched" class="help-block">
+                  <span class="requierd" *ngIf="
+                  (studentForm.get(
+                    'specialRegistration.registrationTransferredFrom'
+                  )?.errors)['required']">
+                    هذا الحقل مطلوب
+                  </span>
+                  <span class="warning" *ngIf="
+                  studentForm.get('specialRegistration.registrationTransferredFrom')
+                    .errors['pattern'] ||
+                  studentForm.get('specialRegistration.registrationTransferredFrom')
+                    .errors['minlength'] ||
+                  studentForm.get('specialRegistration.registrationTransferredFrom')
+                    .errors['maxlength']">
+                    لا يسمح بادخال علامات او احرف غير العربية ويجب ان يكون عدد الحروف من
+                    10 الي 100
+                  </span>
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="form_row">
+            <div class="form_element col_span_3">
+              <span class="requierd"
+                *ngIf="!studentForm.valid && studentForm.touched || imageURL == null || imageValidator == false">يجب
+                ادخال جميع البيانات صحيحة</span>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <div class="form_element form_btn_group_evenly col_span_2">
+
+              <div class="form_row"
+                *ngIf="studentForm.valid && (studentForm.touched && imageURL != null && imageValidator == true)">
+                <button class="btn btn_update" type="submit" (click)="update()">تحديث</button>
+              </div>
+
+              <div class="form_row" *ngIf="studentForm.touched || fileData != null">
+                <button class="btn" (click)="clear()">إعادة تعيين</button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+      </ng-form>
+
+    </div>
+  </div>
+</div>

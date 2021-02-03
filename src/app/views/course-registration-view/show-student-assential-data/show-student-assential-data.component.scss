@@ -1,0 +1,19 @@
+.custom_table {
+  grid-template-columns: 1fr 2fr 2fr 2fr;
+
+  .tpart .thead_cell {
+    height: auto !important;
+  }
+}
+
+.row_span {
+  grid-row: 1 / span 3;
+}
+
+td {
+  font-weight: 600;
+}
+
+.col_span {
+  grid-column: 2 / span 2;
+}

@@ -1,0 +1,40 @@
+.flash_msg {
+  position: fixed !important;
+  width: 95% !important;
+  transition: all ease-in-out .4s !important;
+  right: 4% !important;
+  text-align: center !important;
+  z-index: 1 !important;
+  border: $error_border !important;
+
+  .flash_danger {
+    color: $color-danger !important;
+    background-color: $background-danger !important;
+    border-color: $border-danger !important;
+    padding: $error_padding !important;
+    margin-bottom: 20px !important;
+    border-radius: $radius_general !important;
+    width: 93% !important;
+    transition: all ease-in-out .4s !important;
+  }
+
+  .flash_success {
+    color: $color-success !important;
+    background-color: $background-success !important;
+    border-color: $border-success !important;
+    padding: $error_padding !important;
+    margin-bottom: 20px !important;
+    border-radius: $radius_general !important;
+    width: 93% !important;
+  }
+
+  .flash_warning {
+    color: $color-warning !important;
+    background-color: $background-warning !important;
+    border-color: $border-warning !important;
+    padding: $error_padding !important;
+    margin-bottom: 20px !important;
+    border-radius: $radius_general !important;
+    width: 93% !important;
+  }
+}

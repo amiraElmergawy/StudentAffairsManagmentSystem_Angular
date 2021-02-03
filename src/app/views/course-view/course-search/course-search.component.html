@@ -1,0 +1,86 @@
+<div class="full_page">
+  <div class="form_container">
+
+    <div class="custom_form">
+      <ng-form #coursesearch>
+        <div class="form_header_container">
+          <h2 class="form_header">بحث عن مقرر</h2>
+        </div>
+        <div class="form_section dept_search_section">
+
+          <div class="form_row">
+            <label class="form_element" for="courseSearch">بحث بواسطة : </label>
+            <div class="form_element">
+              <select class="select_box" name="searchway" id="searchWay " [(ngModel)]="choiseIndex" required>
+                <option value=null>اختر طريقة البحث...</option>
+                <option *ngFor="let way of searchWays; let i=index" value="{{i}} ">{{ way }}</option>
+              </select>
+            </div>
+
+            <div class="form_element">
+              <input class="text_input" id="searchValue " name="searchValue " type="text" [(ngModel)]="searchValue"
+                required>
+            </div>
+          </div>
+
+          <div class="form_row">
+
+            <div class="form_element flex_center_center">
+              <button class="btn" type="submit" (click)="search()"
+                [disabled]="!searchValue || !choiseIndex || searchValue == 'null' || !authorizedList['course.search']">
+                بحث
+              </button>
+            </div>
+
+          </div>
+
+
+        </div>
+      </ng-form>
+    </div>
+
+
+  </div>
+
+  <div class="form_row" *ngIf="searchingResult">
+    <div class="form_row" *ngIf="searchingResult.length > 0">
+      <table class="custom_table" role="grid">
+        <thead class="tpart">
+          <tr class="trow thead_trow">
+            <th class="cell thead_cell">اسم المقرر</th>
+            <th class="cell thead_cell">الاسم الإنجليزي</th>
+            <th class="cell thead_cell flex_center_center">كود المقرر</th>
+            <th class="cell thead_cell flex_center_center">الكود الإنجليزي</th>
+            <th class="cell thead_cell flex_center_center">عدد الساعات</th>
+            <th class="cell thead_cell flex_center_center">الدرجة</th>
+            <th class="cell thead_cell flex_center_center"
+              *ngIf="authorizedList['courses.show'] || authorizedList['courses.update'] || authorizedList['courses.destroy']">
+            </th>
+          </tr>
+        </thead>
+        <tbody class="tpart">
+          <tr class="trow tbody_row" *ngFor="let course of searchingResult">
+            <td class="cell tbody_cell">{{course.arName}}</td>
+            <td class="cell tbody_cell">{{course.enName}}</td>
+            <td class="cell tbody_cell flex_center_center">{{course.arCode}}</td>
+            <td class="cell tbody_cell flex_center_center">{{course.enCode}}</td>
+            <td class="cell tbody_cell flex_center_center">{{course.hours}}</td>
+            <td class="cell tbody_cell flex_center_center">{{course.degree}}</td>
+            <td class="cell tbody_cell flex_center_center"
+              *ngIf="authorizedList['courses.show'] || authorizedList['courses.update'] || authorizedList['courses.destroy']">
+              <a class="link_in_table" [routerLink]="['/show-course/', course.id]">عرض التفاصيل</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div *ngIf="searchingResult?.length == 0">
+      <div class="requierd">
+        هذه البيانات غير موجودة
+        يرجي التأكد من قيمة البحث
+      </div>
+
+    </div>
+  </div>
+
+</div>

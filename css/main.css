@@ -1,0 +1,239 @@
+.form {
+  border: 0.005px solid #b7b9cc;
+  -webkit-box-shadow: 0px 5px 16px #eaecf4;
+          box-shadow: 0px 5px 16px #eaecf4;
+  padding: 10px;
+  width: 85%;
+}
+
+.form .student input[type=text], .form .student input[type=email], .form .student input[type=number], .form .student input[type=date], .form .student select, .form .courses input[type=text], .form .courses input[type=email], .form .courses input[type=number], .form .courses input[type=date], .form .courses select, .form .search input[type=text], .form .search input[type=email], .form .search input[type=number], .form .search input[type=date], .form .search select, .form .form-group input[type=text], .form .form-group input[type=email], .form .form-group input[type=number], .form .form-group input[type=date], .form .form-group select, .form .course-reg input[type=text], .form .course-reg input[type=email], .form .course-reg input[type=number], .form .course-reg input[type=date], .form .course-reg select, .form .department input[type=text], .form .department input[type=email], .form .department input[type=number], .form .department input[type=date], .form .department select, .form .major input[type=text], .form .major input[type=email], .form .major input[type=number], .form .major input[type=date], .form .major select, .form .program input[type=text], .form .program input[type=email], .form .program input[type=number], .form .program input[type=date], .form .program select {
+  background-color: #f4eeff;
+  border-radius: 4px;
+  border: none;
+  padding: 10px;
+  margin: 10px;
+}
+
+.form .student input[type=text]:focus, .form .student input[type=email]:focus, .form .student input[type=number]:focus, .form .student input[type=date]:focus, .form .student select:focus, .form .courses input[type=text]:focus, .form .courses input[type=email]:focus, .form .courses input[type=number]:focus, .form .courses input[type=date]:focus, .form .courses select:focus, .form .search input[type=text]:focus, .form .search input[type=email]:focus, .form .search input[type=number]:focus, .form .search input[type=date]:focus, .form .search select:focus, .form .form-group input[type=text]:focus, .form .form-group input[type=email]:focus, .form .form-group input[type=number]:focus, .form .form-group input[type=date]:focus, .form .form-group select:focus, .form .course-reg input[type=text]:focus, .form .course-reg input[type=email]:focus, .form .course-reg input[type=number]:focus, .form .course-reg input[type=date]:focus, .form .course-reg select:focus, .form .department input[type=text]:focus, .form .department input[type=email]:focus, .form .department input[type=number]:focus, .form .department input[type=date]:focus, .form .department select:focus, .form .major input[type=text]:focus, .form .major input[type=email]:focus, .form .major input[type=number]:focus, .form .major input[type=date]:focus, .form .major select:focus, .form .program input[type=text]:focus, .form .program input[type=email]:focus, .form .program input[type=number]:focus, .form .program input[type=date]:focus, .form .program select:focus {
+  outline: none;
+  background-color: #bbe1fa;
+  -webkit-transition: ease-in-out 0.15s;
+  transition: ease-in-out 0.15s;
+}
+
+.form .student label, .form .courses label, .form .search label, .form .form-group label, .form .course-reg label, .form .department label, .form .major label, .form .program label {
+  text-align: right;
+  font-size: 20px;
+}
+
+.form button {
+  text-decoration: none;
+  background-color: transparent;
+  border-radius: 8px;
+  margin: 20px;
+  border: 0.25px solid #494949;
+  color: #080808;
+  width: 75px;
+  height: 35px;
+  background-color: #c0c0f0;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.form button:hover, .form button:focus {
+  cursor: pointer;
+  outline: none;
+}
+
+.form .create:hover {
+  border-radius: 15px;
+  background-color: #0fce4f;
+  color: white;
+}
+
+.form .delete:hover {
+  border-radius: 15px;
+  background-color: #ce0f29;
+  color: white;
+}
+
+.form .update:hover {
+  border-radius: 15px;
+  background-color: #ffd868;
+}
+
+.form .show:hover, .form .index:hover {
+  border-radius: 15px;
+  background-color: royalblue;
+  color: white;
+}
+
+.long-t {
+  width: 250px;
+}
+
+* {
+  direction: rtl;
+}
+
+body {
+  font-family: Arial;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.arabic_directon {
+  direction: rtl;
+}
+
+.english_direction {
+  direction: ltr;
+}
+
+.header_home {
+  width: 100%;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(#b7b9cc), to(#5a5c69));
+  background-image: linear-gradient(to top, #b7b9cc, #5a5c69);
+}
+
+.header_home .head {
+  padding: 5px 0px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.header_home ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.menu {
+  font-size: 20px;
+  font-weight: 1000;
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  display: inline-block;
+}
+
+.menu-item {
+  text-align: center;
+  padding: 10px 10px;
+  margin: 0;
+  cursor: pointer;
+  background: transparent;
+  position: relative;
+  min-width: 90px;
+}
+
+.menu-item:hover {
+  border-radius: 4px;
+  background-color: rgba(230, 232, 240, 0.15);
+  -webkit-transition: ease-out 0.05s;
+  transition: ease-out 0.05s;
+}
+
+.menu-item:hover .sub-menu, .menu-item:hover .sub-menu:hover {
+  visibility: visible;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.sub-menu {
+  font-size: 17px;
+  border-radius: 5px;
+  min-width: 170px;
+  background-color: #eaecf4;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: absolute;
+  right: -30px;
+  visibility: hidden;
+  display: block;
+  z-index: 1;
+}
+
+.sub-menu .menu-item {
+  text-align: center;
+  color: #080808;
+  border-radius: 4px;
+  padding: 12px 16px;
+  z-index: 1;
+  display: block;
+}
+
+.sub-menu .menu-item:hover {
+  font-size: 20px;
+  color: #080808;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a + .sub-menu {
+  margin-top: 10px;
+}
+
+.container {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.footer {
+  left: 0;
+  bottom: 0;
+  background-color: #b7b9cc;
+  width: 100%;
+  height: 20px;
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+/*# sourceMappingURL=main.css.map */

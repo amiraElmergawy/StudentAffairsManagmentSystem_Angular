@@ -1,0 +1,185 @@
+$header_background: rgb(135, 176, 197);
+$font-size: 16pt;
+
+@media print {
+  .upper_header {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.upper_header {
+  top: 0px !important;
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  border-bottom: 2px solid darkgray !important;
+  background-color: $header_background !important;
+  min-height: min-content !important;
+  height: auto !important;
+  max-height: 68.72px !important;
+  font-size: $font-size !important;
+
+  img {
+    padding: 0em 0.5em 0.2em 0.5em !important;
+  }
+
+  h1 {
+    font-size: 110% !important;
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+
+  a {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+
+.header_image {
+  width: 50px !important;
+  height: 50px !important;
+  margin: 0.1em !important;
+}
+
+.lower_header_container {
+  flex: 1 1 auto !important;
+  justify-self: flex-end !important;
+  align-self: stretch !important;
+  // border: 1px solid blue !important;
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  justify-content: flex-end !important;
+  align-items: stretch !important;
+}
+
+.lower_header {
+  flex: 0 1 auto !important;
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  justify-content: flex-end !important;
+  align-items: stretch !important;
+  list-style: none !important;
+  line-height: normal !important;
+  font-size: 100% !important;
+}
+
+.nav_item {
+  min-width: 4em;
+  max-width: 100%;
+  color: black !important;
+  padding: 0px 0.5em !important;
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  position: relative !important;
+  cursor: pointer !important;
+
+  // border: 1px solid yellow !important;
+  &:hover * {
+    visibility: visible !important;
+  }
+
+  &:hover {
+    background-color: lighten($color: $header_background, $amount: 10%) !important;
+    border-left: 1px solid darkgray !important;
+    border-right: 1px solid darkgray !important;
+  }
+
+  &:hover .sub_menu,
+  .sub_menu:hover {
+    visibility: visible !important;
+  }
+
+  .link_in_table {
+    font-size: inherit !important;
+    background-color: inherit !important;
+    color: inherit !important;
+    border-bottom: 1px solid black !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+
+    &:hover {
+      transition: ease-in-out !important;
+      color: rgba(241, 52, 52, 1) !important;
+      border-color: rgba(241, 52, 52, 1) !important;
+    }
+  }
+}
+
+$nav_item_upper_padding: 0.5em;
+$inner_top_margin: 0.5em;
+
+.sub_menu {
+  position: absolute !important;
+  z-index: 2 !important;
+  flex: 1 1 auto !important;
+  background-color: transparent !important;
+  padding: 0px !important;
+  border: none !important;
+  border-color: transparent !important;
+
+  display: flex !important;
+  flex-flow: column nowrap !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  font-size: large !important;
+  visibility: hidden !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+  left: 0px !important;
+  top: 100% !important;
+
+  &:hover .inner_sub_menu {
+    visibility: visible !important;
+  }
+}
+
+.inner_sub_menu {
+  position: relative !important;
+  margin-top: $inner_top_margin !important;
+  z-index: 2 !important;
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-flow: column nowrap !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  font-size: large !important;
+  visibility: hidden !important;
+  width: 200% !important;
+  left: 50% !important;
+  padding: 0em 0px !important;
+  background-color: $header_background !important;
+  border: 1px solid black !important;
+  border-radius: 0.2em !important;
+
+  .nav_item {
+    position: relative !important;
+    text-align: center !important;
+    justify-content: center !important;
+
+    a {
+      padding: $nav_item_upper_padding !important;
+
+    }
+  }
+
+  .nav_item:hover {
+    background-color: lighten($color: $header_background, $amount: 10%) !important;
+    border-left: none !important;
+    border-right: none !important;
+  }
+}
+
+.heeader_icon {
+  width: 2em !important;
+  height: 10px !important;
+}

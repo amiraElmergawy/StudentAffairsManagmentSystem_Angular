@@ -1,0 +1,133 @@
+<div class="full_page">
+
+  <div class="form_container">
+    <!-- <br /><flash-messages></flash-messages><br /> -->
+    <ng-form [formGroup]="programForm">
+      <div class="custom_form">
+        <div class="form_header_container">
+          <h2 class="form_header">إضافة برنامج</h2>
+        </div>
+        <div class="form_section create_program">
+          <div class="form_row">
+
+            <label class="form_element" for="enName">اسم البرنامج بالعربية</label>
+            <div class="form_element">
+              <input class="text_input" type="text" id="arName" minlength="5" name="arName" required
+                formControlName="arName" required />
+
+              <span *ngIf="
+            !programForm.get('arName').valid &&
+            programForm.get('arName').touched
+          ">
+                <span *ngIf="programForm.get('arName').errors['minlength']" class="warning">يجب كتابة 5 احرف علي الاقل
+
+                </span>
+                <span *ngIf="programForm.get('arName').errors['required']" class="requierd">هذا الحقل مطلوب
+
+                </span>
+                <span *ngIf="programForm.get('arName').errors['pattern']" class="warning">
+                  لا يسمح بادخال علامات او احرف غير العربية
+
+                </span>
+                <span *ngIf="programForm.get('arName').errors['nameIsForbidden']" class="warning">
+                  لا يسمح بتكرار الاسم
+
+                </span>
+              </span>
+            </div>
+            <label class="form_element" for="enName">اسم البرنامج بالانجليزية</label>
+            <div class="form_element">
+              <input type="text" id="enName" class="text_input english_direction" name="enName" minlength="5" required
+                formControlName="enName" required />
+              <!--<p *ngIf="!refName.valid && refName.touched">Please enter a valid value</p>-->
+
+              <span *ngIf="!programForm.get('enName').valid && programForm.get('enName').touched">
+                <span *ngIf="programForm.get('enName').errors['minlength']" class="warning">يجب كتابة 5 احرف علي الاقل
+                </span>
+                <span *ngIf="programForm.get('enName').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="programForm.get('enName').errors['pattern']" class="warning">
+                  لا يسمح بادخال علامات او احرف غير الانجليزية
+                </span>
+                <span *ngIf="programForm.get('enName').errors['nameIsForbidden']" class="warning">
+                  لا يسمح بتكرار الاسم
+
+                </span>
+              </span>
+            </div>
+          </div>
+         
+          <div class="form_row">
+            <label class="form_element" for="department">القسم</label>
+            <div class="form_element">
+              <select class="select_box" name="department" id="department" formControlName="departmentId" required>
+                <option value="null">اختر القسم ...</option>
+                <option *ngFor="let department of departments" value="{{ department.id }}">{{ department.arName }}
+                </option>
+              </select>
+
+              <span *ngIf="
+            !programForm.get('departmentId').valid &&
+            programForm.get('departmentId').touched
+          ">
+                <span *ngIf="programForm.get('departmentId').errors['required']" class="requierd">هذا الحقل مطلوب
+
+                </span>
+              </span>
+            </div>
+           
+          </div>
+          <div class="form_row">
+           
+            <div class="form_row">
+              <div class="form_element">
+                <label for="isMajor">اخر برنامج في خطوات التشعيب؟</label>
+              </div>
+              <div class="form_element">
+                <label *ngFor="let im of ismajor; let i = index" for="isMajor ">
+                  <input type="radio" name="isMajor" [value]="i" formControlName="isMajor" required />
+                  {{ im }}
+                </label>
+              </div>
+
+              <span *ngIf="
+              !programForm.get('isMajor').valid &&
+              programForm.get('isMajor').touched
+            ">
+                <span *ngIf="programForm.get('isMajor').errors['required']" class="requierd">هذا الحقل مطلوب
+
+                </span>
+              </span>
+
+            </div>
+          </div>
+          
+          <div class="form_row">
+            <div class="form_element_center col_span_4">
+              <span *ngIf="!programForm.valid && programForm.touched" class="requierd">يجب ادخال جميع البيانات صحيحة
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <div class="form_element_center form_btn_group_evenly col_span_2">
+              <div class="form_row"
+                *ngIf="programForm.valid && programForm.touched && authorizedList['programs.store']">
+                <button class="btn btn_create" type="submit" (click)="create()">
+                  اضافة
+                </button>
+              </div>
+              <div class="form_row" *ngIf="programForm.touched">
+                <button class="btn" (click)="clear()">اعادة التعيين</button>
+              </div>
+              <div class="form_row" *ngIf="createdData && authorizedList['programs.linkParent']">
+                <a class="btn" [routerLink]="[ '/link-program-with-parent/', programId ]">ربط ببرنامج</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-form>
+  </div>
+
+</div>

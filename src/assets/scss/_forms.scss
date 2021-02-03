@@ -1,0 +1,213 @@
+.form {
+  box-shadow: $box_shadow !important;
+  padding: 10px !important;
+  width: 85% !important;
+
+  .student,
+  .courses,
+  .search,
+  .form-group,
+  .course-reg,
+  .department,
+  .major,
+  .program,
+  .special_registration,
+  .cert,
+  .operation {
+
+    input,
+    select {
+
+      background-color: $input_background !important;
+      border-radius: $radius_general !important;
+      border: none !important;
+      padding: 10px !important;
+      margin: 10px !important;
+      font-weight: bold !important;
+      font-size: 16px !important;
+
+      &:focus {
+        outline: none !important;
+        background-color: $input_background_hover !important;
+        transition: ease-in-out 0.15s !important;
+      }
+    }
+
+    select option {
+      background: white !important;
+    }
+
+    input[type=file] {
+      background: white !important;
+
+    }
+
+    label {
+      text-align: right !important;
+      font-size: $font_general !important;
+    }
+  }
+
+  .weekly_hours_templates,
+  .degree_templates {
+    input {
+      background-color: $input_background !important;
+      border-radius: $radius_general !important;
+      border: none !important;
+      padding: 10px !important;
+      margin: 10px !important;
+      width: 100px !important;
+
+      &:focus {
+        outline: none !important;
+        background-color: $input_background_hover !important;
+        transition: ease-in-out 0.15s !important;
+      }
+    }
+  }
+
+  button {
+    text-decoration: none !important;
+    background-color: transparent !important;
+    border-radius: $radius_button !important;
+    margin: $button_table_margin !important;
+    border: none !important;
+    color: $font_color !important;
+    width: $button_width !important;
+    height: $button_height !important;
+    background-color: $button_background !important;
+    transition: all 0.4s !important;
+
+    &:hover,
+    &:focus {
+      cursor: pointer !important;
+      outline: none !important;
+      background-color: $first_color !important;
+    }
+
+  }
+
+  //buttons hover
+  .create:hover {
+    border-radius: $radius_button_hover !important;
+    background-color: $create_color !important;
+    color: white !important;
+  }
+
+  .delete:hover {
+    border-radius: $radius_button_hover !important;
+    background-color: $delete_color !important;
+    color: white !important;
+  }
+
+  .update:hover {
+    border-radius: $radius_button_hover !important;
+    background-color: $create_color !important;
+    color: white !important;
+  }
+
+  .show:hover,
+  .index:hover {
+    border-radius: $radius_button_hover !important;
+    background-color: $show_color !important;
+    color: white !important;
+  }
+}
+
+//long text width
+.long-t {
+  width: 300px !important;
+}
+
+//name text
+.name {
+  width: 100px !important;
+}
+
+//button container
+.cont_add {
+  padding: 10px !important;
+  width: 85% !important;
+  align-items: center !important;
+  justify-content: center !important;
+  display: flex !important;
+  margin: 10px !important;
+
+  button {
+    text-decoration: none !important;
+    background-color: transparent !important;
+    border-radius: $radius_button !important;
+    margin: $button_table_margin !important;
+    border: $button_border !important;
+    color: $font_color !important;
+    width: 200px !important;
+    height: $button_height !important;
+    background-color: $button_background !important;
+    transition: all 0.4s !important;
+
+    &:hover,
+    &:focus {
+      cursor: pointer !important;
+      outline: none !important;
+      background-color: $first_color !important;
+    }
+  }
+
+}
+
+.button_block {
+  display: flex !important;
+  flex-direction: row !important;
+
+  .delete {
+    text-decoration: none !important;
+    background-color: transparent !important;
+    border-radius: $radius_button !important;
+    margin: 10px !important;
+    padding: 10px !important;
+    border: none !important;
+    color: $font_color !important;
+    width: 200px !important;
+    background-color: $button_background !important;
+    transition: all 0.4s !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
+
+    &:hover,
+    &:focus {
+      cursor: pointer !important;
+      outline: none !important;
+      background-color: $delete_color !important;
+    }
+  }
+
+  .update {
+    text-align: center !important;
+    text-decoration: none !important;
+    background-color: transparent !important;
+    border-radius: $radius_button !important;
+    margin: 10px !important;
+    padding: 10px !important;
+    border: none !important;
+    color: $font_color !important;
+    width: 150px !important;
+    background-color: $button_background !important;
+    transition: all 0.4s !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
+
+    &:hover,
+    &:focus {
+      cursor: pointer !important;
+      outline: none !important;
+      background-color: $create_color !important;
+    }
+  }
+
+}
+
+//remove input number arrows
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+}

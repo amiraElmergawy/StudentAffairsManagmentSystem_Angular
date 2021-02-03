@@ -1,0 +1,148 @@
+// >>>>>>>>>>>>>>>>>>> Custom Table <<<<<<<<<<<<<<<<<<<
+
+// _________________ outermost table tag _________________
+.custom_table_container {
+  display: flex !important;
+  flex-flow: column nowrap !important;
+  justify-content: stretch !important;
+  align-items: center !important;
+
+}
+
+.custom_table {
+  width: 95% !important;
+  flex: 1 1 auto !important;
+  border-collapse: collapse !important;
+  display: grid !important;
+  border-radius: 0.5em 0.5em 0px 0px !important;
+  gap: 0px !important;
+  padding: 0.5em !important;
+  justify-content: center !important;
+
+}
+
+// _________________ styling (thead, tbody, tfoot) using tpart class _________________
+
+.tpart {
+  display: contents !important;
+}
+
+.tfoot_cell {
+  border-top: 2px solid darkgray !important;
+  padding: 1em 0.5em !important;
+  background-color: rgb(237, 237, 237) !important;
+  font-weight: 740 !important;
+}
+
+// _________________ general styling for table rows (tr tags) _________________
+
+.trow {
+  display: contents !important;
+}
+
+// _________________ specific styles for tbody rows (tr tags inside tbody) _________________
+
+.tbody_row:nth-child(even)>.tbody_cell {
+  background-color: lighten($color: #F0F0F0, $amount: 1) !important;
+}
+
+.tbody_row:hover .tbody_cell {
+  background-color: rgb(153, 204, 209) !important; //lighten($color: #84d6df, $amount: 10%) !important;
+  font-weight: bold !important;
+}
+
+// _________________ general styling for a table cell _________________
+
+.cell {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center
+}
+
+
+// _________________ specific styling for thead cells (td tags within a tr within a thead) _________________
+
+.thead_cell {
+  font-size: 110% !important;
+  border-bottom: 2px solid gray !important;
+  padding: 1em 0.5em !important;
+  background-color: rgb(247, 247, 247) !important;
+  font-weight: 740 !important;
+}
+
+.thead_cell:first-child {
+  padding-right: 1em !important;
+}
+
+.thead_cell:hover {
+  background-color: rgb(101, 185, 206) !important;
+}
+
+// _________________ specific styling for tbody cells (td tags within a tr within a tbody) _________________
+
+.tbody_cell {
+  padding: 1em 0.5em !important;
+  font-size: 110% !important;
+}
+
+.tbody_cell:first-child {
+  padding-right: 1em !important;
+}
+
+// _________________ styling images within any table _________________
+
+.image_in_table {
+  border-radius: 20em !important;
+  width: 100px !important;
+  height: 100px !important;
+}
+
+// _________________ styling links within any table _________________
+.link_in_table {
+  border-bottom: 1px solid rgb(23, 162, 184) !important;
+  padding-bottom: 0em !important;
+  color: rgb(23, 162, 184) !important;
+  font-style: normal !important;
+  font-weight: inherit !important;
+  font-size: inherit !important;
+
+  &:hover {
+    color: black !important;
+    transition: ease-in-out 0.3s !important;
+    font-style: italic !important;
+    cursor: pointer !important;
+  }
+}
+
+.tbody_row:hover .link_in_table {
+  color: darken($color: rgb(23, 162, 184), $amount: 25%) !important;
+  border-color: darken($color: rgb(23, 162, 184), $amount: 25%) !important;
+}
+
+// _________________ styling buttons within any table _________________
+.btn_in_table {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  min-width: min-content !important;
+  width: auto !important;
+  max-width: max-content !important;
+  min-height: fit-content !important;
+  max-height: max-content !important;
+  font-size: 100% !important;
+
+  color: black !important;
+  background-color: transparent !important;
+  border-radius: 3px !important;
+  border: 1px solid black !important;
+  outline: none !important;
+  padding: 0.2em 0.8em !important;
+  margin: 0.5em 0px !important;
+
+  &:hover {
+    background-color: darken($color: rgb(23, 162, 184), $amount: 25%) !important;
+    border: 1px solid black !important;
+    color: white !important;
+  }
+
+}

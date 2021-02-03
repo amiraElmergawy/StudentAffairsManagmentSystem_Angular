@@ -1,0 +1,131 @@
+<h1 class="h">عرض تفاصيل البرنامج</h1>
+<div *ngIf="data" class="container">
+ 
+  <div class="show_class">
+    <div class="show_cont">
+    <div class="one_block">
+      <div class="small_block">
+      الاسم بالعربية
+      <span class="inline">
+      {{ data.arName }}
+    </span>
+    </div>
+    <div class="small_block">
+      الاسم بالانجليزية
+      <span class="inline">
+      {{ data.enName }}
+    </span>
+    </div>
+    
+      <!-- <td>الفصل الدراسي</td> -->
+      <!-- <td>عدد الساعات المعتمدة</td> -->
+     
+       <div class="small_block">
+      القسم
+      <span class="inline">
+      {{ data.department.arName }}
+    </span>
+       </div>
+    
+      
+       
+        <div class="small_block">
+     التخصصات التابع لها
+     <span *ngIf="uniqueMajors" class="inline">
+      <span *ngFor="let major of uniqueMajors">
+        <span *ngIf="authorizedList['majors.show']; else elseTemplate">
+          <a [routerLink]="['/show-major/', major.id ]">{{ major.arName }}</a><br />
+        </span>
+        <ng-template #elseTemplate>
+          {{ major.arName }}
+        </ng-template>
+      </span>
+    </span>
+        </div>
+        <div class="small_block" *ngIf="data?.parent && data?.parent?.length != 0">
+          البرنامج المتشعب منه هذا البرنامج
+          <span class="inline">
+          {{ data.parent?.arName }}
+          <br><button class="btn" *ngIf="authorizedList['programs.unlinkParent']" (click)="unlinkParent()" style="margin: .5em;">الغاء الربط</button>
+        </span>
+          </div>
+      </div>
+    
+      <!-- <td>المقررات</td> -->
+      
+      <div class="one_block"> 
+        <div class="small_block"
+         *ngIf="authorizedList['program.get-prerequisites'] ||
+        authorizedList['program.insert-prerequisites'] ||
+        authorizedList['programs.delete-prepackages'] ||
+        authorizedList['packages.index'] ||
+        authorizedList['packages.show']">
+       المقررات 
+       <span *ngIf="data.packages.length != 0"  class="inline" style="background-color: transparent;">
+        <span *ngFor="let level of levels; let j =index">
+          <span *ngIf="showLinks[2*(j+1)-1] || showLinks[2*(j+1)-2]">
+          {{level}}:
+          <br>
+          <span *ngFor="let semester of semesters; let i =index">
+            <span *ngIf="(i%2 == 0) ; else elseTemplate">
+            <span *ngIf="showLinks[2*(j+1)-2]">
+              <a [routerLink]="['/show-package-of-semester/', 2*(j+1)-1,programId ]"
+            >{{semester}} </a>
+            </span><br>
+          </span>
+          <ng-template #elseTemplate>
+            <span *ngIf="showLinks[2*(j+1)-1]">
+            <a [routerLink]="['/show-package-of-semester/', 2*(j+1),programId ]"
+            >{{semester}} </a>
+          </span>
+          </ng-template>
+        </span>
+        <hr>
+      </span>
+    </span>
+       </span>
+        </div>
+        <div class="small_block">
+          تعديل مقررات
+        <span class="inline" style="background-color: transparent;">
+          <!-- <a [routerLink]="['/add-courses-to-program/', data.Id]">اضافة مقررات </a> -->
+          <!-- <div *ngIf="data.packages.length == 0; else elseTemplate"> -->
+         
+           <br><br>
+            <a [routerLink]="['/add-package-to-program/', data.Id]" 
+              *ngIf="authorizedList['programs.create-packages']">اضافة مجموعة مقررات 
+            </a>
+        </span>
+      </div>
+      </div>
+    </div>
+        <!-- <td>{{ data.semester }}</td> -->
+        <!-- <td>{{ data.semesterHours }}</td> -->
+       
+        
+        
+        <!-- <td *ngIf="data.courses">
+          <span *ngFor="let course of data.courses">
+            {{ course.arName }},
+          </span>
+        </td> -->
+     
+   
+  
+  <button [routerLink]="['/update-program/', data.Id]" class="btn"
+  *ngIf="authorizedList['programs.update'] || authorizedList['programs.destroy']">تحديث </button>
+  <br>
+  <!-- </div> -->
+  <!-- <ng-template #elseTemplate> -->
+    <span *ngIf="data.packages.length > 0 && (authorizedList['programs.delete-packages'] || authorizedList['packages.update'] || authorizedList['packages.index'] || authorizedList['packages.show'] || authorizedList['program.packages'])">
+    <button [routerLink]="['/show-all-packages-in-program/', data.Id]"class="btn">
+عرض المجموعات الحالية 
+    </button>
+    <br>
+    <button [routerLink]="['/show-all-registred-students-of-program/', data.Id]" class="btn"
+    *ngIf="authorizedList['program.students']"> الطلاب المسجلين في هذا البرنامج</button><br />
+  </span>
+  <!-- </ng-template> -->
+
+</div>
+</div>

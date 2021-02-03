@@ -1,0 +1,67 @@
+<div class="full_page">
+  <div class="form_container">
+    <div class="custom_form">
+      <div class="form_header_container">
+        <h2 class="form_header"> الغاء اعتماد الدرجات</h2>
+      </div>
+
+      <div class="form_section acc_cancel_section">
+        <div class="form_row">
+
+          <label class="form_element" for="academicYear">السنة الدراسية: </label>
+          <div class="form_element">
+            <input class="text_input" type="text" name="academicYear" [(ngModel)]="academicYear">
+          </div>
+
+          <!-- <div class="form_element">
+            <select class="select_box" name="accreditationWay" [(ngModel)]="accreditationWay" id="accreditationWay"
+              (change)="getAccreditationWay()" required>
+              <option value=null selected>اختر ما تريد اعتماده...</option>
+              <option *ngFor="let way of accreditationWays; let i = index" value="{{ i }}">{{ way }}</option>
+            </select>
+          </div> -->
+        </div>
+
+      </div>
+      <div class="custom_table_container" *ngIf="resultedWay">
+
+        <table class="custom_table" role="grid">
+          <tbody class="tpart">
+            <tr class="trow tbody_row" *ngFor="let way of resultedWay">
+              <td class="cell tbody_cell">
+                <div class="flex_cell">
+                  <input type="checkbox" class="form-check-input" (change)="onChange(way, $event.target.checked)"
+                  name="{{ way.arName }}" id="{{ way.arName }}" />
+                </div>
+              </td>
+              <td class="cell tbody_cell">
+                <div class="flex_cell">
+                  <label class="form-check-label" for="{{ way.arName }}">
+                    {{ way.arName }}
+                  </label>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+
+          <tfoot class="tpart">
+            <tr class="trow tfoot_row">
+              <td class="cell tfoot_cell acc_foot_cell">
+                <div class="flex_foot_cell">
+                  <button class="btn_in_table" (click)="unAccredit()" *ngIf="authorizedList['course-registrations.unaccredit']">
+                    الغاء الاعتماد
+                  </button>
+                  <button class="btn_in_table" (click)="unAccreditAll()" *ngIf="authorizedList['course-registrations.unaccredit']">
+                    الغاء الاعتماد الكل
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tfoot>
+
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

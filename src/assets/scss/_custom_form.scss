@@ -1,0 +1,214 @@
+// div.form_container > ng-form
+.form_container {
+  max-width: 100% !important;
+  margin-top: 1em !important;
+
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  justify-content: center !important;
+  align-items: stretch !important;
+}
+
+// ng-form > div.custom_form
+ng-form {
+  display: contents !important;
+}
+
+// div.custom_form > di.form_header_container (optional)
+// div.custom_form > form_section, (your custom section class (to specify the grid dimensions) here)
+.custom_form {
+  width: 95% !important;
+  display: flex !important;
+  flex-flow: column nowrap !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+}
+
+// div.form_header_container > h2.form_header
+.form_header_container {
+  grid-row: 1 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  font-size: 19pt !important;
+  font-weight: 600 !important;
+
+  .form_header {
+    margin: 0.25em 0em !important;
+  }
+}
+
+// div.custom_form > div.form_section > div.form_section_header (optional)
+// div.custom_form > div.form_section > div.form_row
+.form_section {
+  display: grid !important;
+  justify-content: center !important;
+  width: 100% !important;
+  padding: 1em 0em 1.5em 0em !important;
+  margin: 1em 0em 1.5em 0em !important;
+  box-shadow: 0px 5px 16px #eaecf4 !important;
+
+  label.form_element {
+    justify-content: flex-end !important;
+    align-items: center !important;
+    font-size: 13pt !important;
+  }
+}
+
+// div.form_section > div.form_section_header
+.form_section_header {
+  font-size: 16pt !important;
+  font-weight: 600 !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  padding-right: 1em !important;
+  margin-bottom: 1em !important;
+  margin-right: 1em !important;
+}
+
+// div.form_row > div.form_row(optional and wont affect a thing no matter how many nested here) > div.form_element
+// div.form_row > div.form_element
+.form_row {
+  width: 100% !important;
+  display: contents !important;
+}
+
+// goes one for the label and one for the input
+.form_element {
+  // border: 1px solid blue !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  flex-flow: row wrap !important;
+  padding: 0.5em !important;
+  font-size: 14pt !important;
+
+  .text_input {
+    width: 95% !important;
+    font-size: normal !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+
+  input {
+    width: auto !important;
+  }
+}
+
+.form_element_center {
+  // border: 1px solid blue !important;
+  display: flex !important;
+  flex-flow: row wrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+
+  .text_input {
+    max-width: 60% !important;
+  }
+
+  padding: 0.5em !important;
+  font-size: 14pt !important;
+
+  .text_input {
+    width: 95% !important;
+    font-size: normal !important;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
+
+  input {
+    width: auto !important;
+  }
+}
+
+
+
+.form_row_header {
+  grid-column: span 8 !important;
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 0.5em 0em !important;
+  font-size: 16pt !important;
+  font-weight: 600 !important;
+  border-top: 1px solid lightgray !important;
+  border-bottom: 1px solid lightgray !important;
+}
+
+.form_btn_group_evenly {
+  display: flex !important;
+  justify-content: space-evenly !important;
+  align-items: center !important;
+}
+
+.form_btn_group_around {
+  display: flex !important;
+  justify-content: space-around !important;
+  align-items: center !important;
+}
+
+.form_btn_group_between {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.col_span_2 {
+  grid-column: span 2 !important;
+}
+
+.col_span_3 {
+  grid-column: span 3 !important;
+}
+
+.col_span_4 {
+  grid-column: span 4 !important;
+}
+
+.col_span_5 {
+  grid-column: span 5 !important;
+}
+
+.col_span_6 {
+  grid-column: span 6 !important;
+}
+
+.col_span_7 {
+  grid-column: span 7 !important;
+}
+
+.col_span_8 {
+  grid-column: span 8 !important;
+}
+
+.col_span_9 {
+  grid-column: span 9 !important;
+}
+
+.col_span_10 {
+  grid-column: span 10 !important;
+}
+
+.col_span_11 {
+  grid-column: span 11 !important;
+}
+
+.col_span_12 {
+  grid-column: span 12 !important;
+}
+
+.col_span_13 {
+  grid-column: span 13 !important;
+}
+
+.col_span_14 {
+  grid-column: span 14 !important;
+}
+
+.col_span_15 {
+  grid-column: span 15 !important;
+}

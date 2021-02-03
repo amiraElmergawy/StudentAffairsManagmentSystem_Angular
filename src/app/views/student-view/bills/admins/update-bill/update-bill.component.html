@@ -1,0 +1,171 @@
+<div class="full_page">
+  <div class="form_container">
+    <div class="custom_form">
+      <div class="form_header_container">
+        <h2 class="form_header">تعديل إيصال</h2>
+      </div>
+      <div class="form_section delete_bill_section">
+        <div class="form_row">
+          <button class="form_element_center btn btn_delete" type="submit" (click)="delete()"
+            *ngIf="authorizedList['student.delete_bill']">
+            مسح
+          </button>
+        </div>
+      </div>
+      <div class="form_section update_bill_section">
+        <ng-form [formGroup]="billForm" *ngIf="authorizedList['student.update_bill']">
+          <div class="form_row">
+
+            <label class="form_element" for="billNumber">رقم الايصال : </label>
+            <div class="form_element">
+              <input class="text_input" type="number" id="billNumber" name="billNumber" formControlName="billNumber"
+                required />
+              <span *ngIf="
+              ! billForm.get('billNumber').valid &&
+               billForm.get('billNumber').touched
+            ">
+                <span *ngIf=" billForm.get('billNumber').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf=" billForm.get('billNumber').errors['pattern']" class="warning">
+                  لا يسمح بادخال علامات
+                </span>
+              </span>
+            </div>
+            <!-- <label for="paymentDate">تاريخ الدفع : </label>
+          <input
+            type="date"
+            id="paymentDate"
+            class="form-control"
+            name="paymentDate"
+            formControlName="paymentDate"
+            required
+          />
+          <span
+            *ngIf="
+              ! billForm.get('paymentDate').valid &&
+               billForm.get('paymentDate').touched
+            "
+          >
+            <span *ngIf=" billForm.get('paymentDate').errors['required']"
+             class="requierd" >
+             هذا الحقل مطلوب
+            </span>
+          </span> -->
+            <label class="form_element" for="billTotal">قيمة الايصال : </label>
+            <div class="form_element">
+              <input type="number" id="billTotal" class="text_input" name="billTotal" formControlName="billTotal"
+                required />
+              <span *ngIf="
+              ! billForm.get('billTotal').valid &&
+               billForm.get('billTotal').touched
+            ">
+                <span *ngIf=" billForm.get('billTotal').errors['required']" class="requierd">
+                  هذا الحقل مطلوب
+                </span>
+                <span *ngIf=" billForm.get('billTotal').errors['pattern']" class="warning">
+                  لا يسمح بكتابة علامات غير .
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="form_row">
+            <div class="form_element col_span_4">
+              <label class="form_element" for="billData">بيانات الايصال : </label>
+              <div class="form_element">
+                <input type="text" id="billData" class="text_input" name="billData" formControlName="billData"
+                  required />
+                <span *ngIf="
+              ! billForm.get('billData').valid &&
+               billForm.get('billData').touched
+            ">
+                  <span *ngIf=" billForm.get('billData').errors['required']" class="requierd">
+                    هذا الحقل مطلوب
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form_row">
+            <label class="form_element" for="academicYear"> العام الدراسي : </label>
+            <div class="form_element">
+              <input class="text_input" type="text" id="academicYear" name="academicYear" formControlName="academicYear"
+                required />
+
+              <span *ngIf="
+            ! billForm.get('academicYear').valid &&
+             billForm.get('academicYear').touched
+          ">
+                <span *ngIf=" billForm.get('academicYear').errors['required']" class="requierd">
+                  هذا الحقل مطلوب
+                </span>
+                <span *ngIf=" billForm.get('academicYear').errors['pattern']" class="warning">
+                  يجب ان يكون شكل العام الدراسي 2009-2010
+                </span>
+              </span>
+            </div>
+            <label class="form_element" for="relativeSemester">الفصل الدراسي : </label>
+            <div class="form_element">
+              <select class="select_box" id="relativeSemester" name="relativeSemester"
+                formControlName="relativeSemester">
+                <option value=null>اختر ...</option>
+                <option *ngFor="let semester of semesters ; let i = index" value="{{i+1}}">
+                  {{semester}}
+                </option>
+              </select>
+              <span *ngIf="
+            ! billForm.get('relativeSemester').valid &&
+             billForm.get('relativeSemester').touched
+          ">
+                <span *ngIf=" billForm.get('relativeSemester').errors['required']" class="requierd">
+                  هذا الحقل مطلوب
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="form_row">
+            <div class="form_element col_span_4">
+              <label class="form_element" for="paymentType">نوع وصل الدفع : </label>
+              <div class="form_element">
+                <select class="select_box" id="paymentType" name="paymentType" formControlName="paymentType">
+                  <option value=null>اختر ...</option>
+                  <option *ngFor="let paymentType of paymentTypes ; let i=index" value="{{i+1}}">
+                    {{paymentType}}
+                  </option>
+                </select>
+                <span *ngIf="
+            ! billForm.get('paymentType').valid &&
+             billForm.get('paymentType').touched
+          ">
+                  <span *ngIf=" billForm.get('paymentType').errors['required']" class="requierd">
+                    هذا الحقل مطلوب
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <div class="form_element_center col_span_4">
+              <span *ngIf="! billForm.valid &&  billForm.touched" class="requierd">يجب ادخال جميع البيانات صحيحة
+              </span>
+            </div>
+          </div>
+          <div class="form_row">
+            <div class="form_element_center form_btn_group_evenly col_span_4">
+              <div class="form_row" *ngIf=" billForm.valid &&  billForm.touched">
+                <button class="btn btn_update" type="submit" (click)="update()">
+                  تحديث
+                </button>
+              </div>
+              <div class="form_row" *ngIf=" billForm.touched">
+                <button class="btn" (click)="clear()">اعادة التعيين</button>
+              </div>
+            </div>
+          </div>
+          <!--[disabled]="refName.valid "-->
+
+        </ng-form>
+      </div>
+    </div>
+  </div>
+</div>

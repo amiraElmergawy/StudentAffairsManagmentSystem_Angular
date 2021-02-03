@@ -1,0 +1,297 @@
+<div class="full_page">
+
+  <div class="form_container">
+    <ng-form [formGroup]="courseForm">
+      <div class="custom_form">
+        <div class="form_header_container">
+          <h2 class="form_header">إضافة مقرر جديد</h2>
+        </div>
+
+        <div class="form_section course_main_data_section">
+          <div class="form_section_header col_span_4">
+            البيانات الأساسية
+          </div>
+
+          <div class="form_row">
+
+            <label class="form_element" for="arCode">الكود العربي</label>
+            <div class="form_element">
+              <input class="text_input" type="text" name="arCode" id="arCode" formControlName="arCode" />
+              <span *ngIf="
+                    !courseForm.get('arCode').valid &&
+                    courseForm.get('arCode').touched
+                  ">
+                <span *ngIf="courseForm.get('arCode').errors['minlength']" class="warning">يجب كتابة 5 احرف علي الاقل
+
+                </span>
+                <span *ngIf="courseForm.get('arCode').errors['required']" class="requierd">هذا الحقل مطلوب
+
+                </span>
+                <span *ngIf="courseForm.get('arCode').errors['pattern']" class="warning">
+                  لا يسمح بادخال علامات او احرف غير العربية
+                </span>
+                <span *ngIf="courseForm.get('arCode').errors['nameIsForbidden']" class="requierd">
+                  لا يسمح بتكرارالكود
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="enCode">الكود الإنجليزي</label>
+            <div class="form_element">
+              <input class="text_input english_direction" type="text" name="enCode" id="enCode"
+                formControlName="enCode" />
+              <span *ngIf="
+                    !courseForm.get('enCode').valid &&
+                    courseForm.get('enCode').touched">
+                <span *ngIf="courseForm.get('enCode').errors['minlength']" class="warning">
+                  يجب كتابة 5 احرف علي الاقل
+                </span>
+                <span *ngIf="courseForm.get('enCode').errors['required']" class="requierd">
+                  هذا الحقل مطلوب
+                </span>
+                <span *ngIf="courseForm.get('enCode').errors['pattern']" class="warning">
+                  لا يسمح بادخال علامات او احرف غير الانجليزية
+                </span>
+                <span *ngIf="courseForm.get('enCode').errors['nameIsForbidden']" class="requierd">
+                  لا يسمح بتكرار الكود
+                </span>
+              </span>
+            </div>
+
+          </div>
+
+          <div class="form_row">
+
+            <label class="form_element" for="arName">الإسم العربي</label>
+            <div class="form_element">
+              <input class="text_input" type="text" name="arName" id="arName" formControlName="arName" />
+              <span *ngIf="
+                    !courseForm.get('arName').valid &&
+                    courseForm.get('arName').touched
+                  ">
+                <span *ngIf="courseForm.get('arName').errors['minlength']" class="warning">يجب كتابة 5 احرف علي الاقل
+                </span>
+                <span *ngIf="courseForm.get('arName').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="courseForm.get('arName').errors['pattern']" class="warning">
+                  لا يسمح بادخال علامات او احرف غير العربية
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="enName">الإسم الإنجليزي</label>
+            <div class="form_element">
+              <input class=" text_input english_direction" type="text" name="enName" id="enName"
+                formControlName="enName" />
+              <span *ngIf="
+                    !courseForm.get('enName').valid &&
+                    courseForm.get('enName').touched
+                  ">
+                <span *ngIf="courseForm.get('enName').errors['minlength']" class="warning">يجب كتابة 5 احرف علي الاقل
+                </span>
+                <span *ngIf="courseForm.get('enName').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="courseForm.get('enName').errors['pattern']" class="warning">
+                  لا يسمح بادخال علامات او احرف غير الانجليزية
+                </span>
+              </span>
+            </div>
+
+          </div>
+
+          <div class="form_row">
+
+            <label class="form_element" for="hours">عدد الساعات المعتمدة</label>
+            <div class="form_element">
+              <input class="text_input english_direction" type="number" name="hours" id="hours" formControlName="hours">
+              <span *ngIf="
+              !courseForm.get('hours').valid &&
+              courseForm.get('hours').touched">
+                <span *ngIf="courseForm.get('hours').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="courseForm.get('hours').errors['pattern']" class="warning">
+                  لا يسمح بكتابة علامات او ارقام غير صحيحة
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="degree">الدرجة الكلية</label>
+            <div class="form_element">
+              <input class="text_input english_direction" type="number" name="degree" id="degree"
+                formControlName="degree">
+              <span *ngIf="
+              !courseForm.get('degree').valid &&
+              courseForm.get('degree').touched">
+                <span *ngIf="courseForm.get('degree').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="courseForm.get('degree').errors['pattern']" class="warning">
+                  لا يسمح بكتابة علامات او ارقام غير صحيحة
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <div class="form_element_center col_span_4">
+              <label class="form_element_center" for="description">وصف المقرر</label>
+              <input class="text_input english_direction" type="text" name="description" id="description"
+                formControlName="description">
+              <span *ngIf="
+                !courseForm.get('description').valid &&
+                courseForm.get('description').touched">
+                <span *ngIf="courseForm.get('description').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form_section hours_template_section">
+          <div class="form_section_header col_span_6">
+            توزيع الساعات المعتمدة
+          </div>
+
+          <div class="form_row">
+
+            <label class="form_element" for="hTheory">عدد ساعات النظرى</label>
+            <div class="form_element">
+              <input class="text_input" type="number" name="hTheory" id="hTheory" formControlName="hTheory" />
+              <span *ngIf="
+              !courseForm.get('hTheory').valid &&
+              courseForm.get('hTheory').touched">
+                <span *ngIf="courseForm.get('hTheory').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="courseForm.get('hTheory').errors['pattern']" class="warning">
+                  لا يسمح بكتابة علامات او ارقام غير صحيحة
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="hExercise">عدد ساعات التمارين</label>
+            <div class="form_element">
+              <input class="text_input" type="number" name="hExercise" id="hExercise" formControlName="hExercise">
+              <span *ngIf="!courseForm.get('hExercise').valid && courseForm.get('hExercise').touched">
+                <span *ngIf="courseForm.get('hExercise').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="courseForm.get('hExercise').errors['pattern']" class="warning">
+                  لا يسمح بكتابة علامات او ارقام غير صحيحة
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="hPractical">عدد ساعات العملى</label>
+            <div class="form_element">
+              <input class="text_input" type="number" name="hPractical" id="hPractical" formControlName="hPractical">
+              <span *ngIf="
+              !courseForm.get('hPractical').valid &&
+              courseForm.get('hPractical').touched">
+                <span *ngIf="courseForm.get('hPractical').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="courseForm.get('hPractical').errors['pattern']" class="warning">
+                  لا يسمح بكتابة علامات او ارقام غير صحيحة
+                </span>
+              </span>
+            </div>
+
+          </div>
+
+
+
+        </div>
+
+        <div class="form_section degree_template_section">
+          <div class="form_row">
+
+            <label class="form_element" for="theory">النظري</label>
+            <div class="form_element">
+              <input class="text_input" type="number" name="theory" id="theory" formControlName="theory" />
+              <span *ngIf="!courseForm.get('theory').valid && courseForm.get('theory').touched">
+                <span *ngIf="courseForm.get('theory').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="courseForm.get('theory').errors['pattern']" class="warning">
+                  لا يسمح بكتابة علامات او ارقام غير صحيحة
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="activity">أعمال السنة</label>
+            <div class="form_element">
+              <input class="text_input" type="number" name="activity" id="activity" formControlName="activity">
+              <span *ngIf="!courseForm.get('activity').valid && courseForm.get('activity').touched">
+                <span *ngIf="courseForm.get('activity').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="courseForm.get('activity').errors['pattern']" class="warning">
+                  لا يسمح بكتابة علامات او ارقام غير صحيحة
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="oral">الشفوى</label>
+            <div class="form_element">
+              <input class="text_input" type="number" name="oral" id="oral" formControlName="oral">
+              <span *ngIf="!courseForm.get('oral').valid && courseForm.get('oral').touched">
+                <span *ngIf="courseForm.get('oral').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="courseForm.get('oral').errors['pattern']" class="warning">
+                  لا يسمح بكتابة علامات او ارقام غير صحيحة
+                </span>
+              </span>
+            </div>
+
+          </div>
+
+          <div class="form_row">
+
+            <label class="form_element" for="practical">العملى</label>
+            <div class="form_element col_span_2">
+              <input class="text_input" type="number" id="practical" name="practical" formControlName="practical" />
+              <span *ngIf="!courseForm.get('practical').valid && courseForm.get('practical').touched">
+                <span *ngIf="courseForm.get('practical').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="courseForm.get('practical').errors['pattern']" class="warning">
+                  لا يسمح بكتابة علامات او ارقام غير صحيحة
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="exercise">التمارين</label>
+            <div class="form_element col_span_2">
+              <input class="text_input" type="number" id="exercise" name="exercise" formControlName="exercise" />
+              <span *ngIf="
+              !courseForm.get('exercise').valid &&
+              courseForm.get('exercise').touched">
+                <span *ngIf="courseForm.get('exercise').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="courseForm.get('exercise').errors['pattern']" class="warning">
+                  لا يسمح بكتابة علامات او ارقام غير صحيحة
+                </span>
+              </span>
+            </div>
+          </div>
+
+
+          <div class="form_row">
+            <div class="form_element col_span_6">
+              <span *ngIf="!courseForm.valid && courseForm.touched" class="requierd">
+                يجب ادخال جميع البيانات صحيحة
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <div class="form_element_center form_btn_group_evenly col_span_3">
+              <div class="form_row" *ngIf="courseForm.valid && courseForm.touched && authorizedList['courses.store']">
+                <button class="btn btn_create" type="submit" (click)="create()">إضافة</button>
+              </div>
+
+              <div class="form_row" *ngIf="courseForm.touched">
+                <button class="btn" (click)="clear()">اعادة تعيين</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </ng-form>
+  </div>
+</div>

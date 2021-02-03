@@ -1,0 +1,25 @@
+<div class="full_page" *ngIf="data">
+  <h2>عرض جميع الاقسام الحالية</h2>
+  <table class="custom_table" role="grid">
+
+    <thead class="tpart">
+      <tr class="trow thead_trow">
+        <th class="cell thead_cell">اسم القسم بالعربية</th>
+        <th class="cell thead_cell flex_center_center">اسم القسم بالانجليزية</th>
+        <th class="cell thead_cell flex_center_center"
+          *ngIf="authorizedList['departments.show'] || authorizedList['departments.update'] || authorizedList['departments.destroy']">
+        </th>
+      </tr>
+    </thead>
+
+    <tbody class="tpart">
+      <tr class="trow tbody_row" *ngFor="let dept of data">
+        <td class="cell tbody_cell">{{dept.arName}}</td>
+        <td class="cell tbody_cell flex_center_center">{{dept.enName}}</td>
+        <td class="cell tbody_cell flex_center_center"
+          *ngIf="authorizedList['departments.show']|| authorizedList['departments.update'] || authorizedList['departments.destroy']">
+          <a class="link_in_table" [routerLink]="[ '/show-department/', dept.id ]">عرض التفاصيل</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

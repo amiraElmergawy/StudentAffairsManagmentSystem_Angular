@@ -1,0 +1,75 @@
+
+.student_section_header{
+    grid-column: span 8;
+  }
+  
+  .student_section{
+    grid-template-columns: repeat(8, 1fr);
+  }
+  
+  .student_photo_input{
+    grid-column: span 7;
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    min-height: 100px;
+    .student_image{
+      flex: 0 1 auto;
+      justify-self: flex-start;
+      display: flex;
+      justify-content: flex-start;
+      // border: 1px solid blue;
+      margin: 0px 1em;
+    }
+    // border: 1px solid red;
+  }
+  
+  .student_address_inputs{
+    grid-column: span 3;
+    .text_input{
+      flex: 1 1 auto;
+      width: 20%;
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+  }
+  
+  .addtional_data_section{
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+  }
+  
+  .addtional_data_section_header{
+    grid-column: span 4;
+  }
+  
+  .religion_input{
+    grid-column: span 3;
+    .select_box{
+      flex: 0 1 auto;
+      margin: 0px;
+  
+    }
+  }
+  
+  .calender{
+    flex: 1 1 auto;
+  }
+  
+  .high_school_section{
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .high_school_section_header{
+    grid-column: span 4;
+  }
+  
+  .special_reg_section{
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .special_reg_section_header{
+    grid-column: span 3;
+  }
+  ng-multiselect-dropdown{
+    max-width: 100%;
+    width: 10em;
+  }

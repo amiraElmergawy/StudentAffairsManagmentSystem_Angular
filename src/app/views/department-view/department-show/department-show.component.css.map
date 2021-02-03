@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "department-show.component.scss"
+    ],
+    "names": [],
+    "file": "department-show.component.css"
+}

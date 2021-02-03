@@ -1,0 +1,39 @@
+<div class="full_page">
+    <div class="form_container">
+        <div class="custom_form">
+            <div class="form_header_container">
+                <h2 class="form_header">تشعيب</h2>
+              </div>
+              <div class="form_section register_student_section">
+                  <div class="form_row">
+            <label class="form_element" for="academicYear">السنة الدراسية </label>
+            <div class="form_element">
+            <input class="text_input" type="text" name="academicYear" [(ngModel)]="academicYear">
+        </div>
+            <label class="form_element" for="semester">الفصل الدراسي </label>
+            <div class="form_element">
+            <select class="select_box" name="semester" [(ngModel)]="semester" id="semester" required>
+                <option value='null'>اختر الفصل الدراسي...</option>
+                <option *ngFor="let semester of semesters; let i = index" value="{{ i+1 }}">{{ semester }}</option>
+            </select>
+        </div>
+        </div>
+            <div class="form_row" *ngIf="programs">
+                <label class="form_element" for="programId">البرامج الحالية  </label>
+                <div class="form_element col_span_3">
+                <select class="select_box" name="programId" id="programId " required [(ngModel)]="programId">
+                    <option value='null'>اختر البرنامج ...</option>
+                    <option *ngFor="let prog of programs; let i = index" value="{{ prog.Id }}">
+                        {{ prog.arName }}</option>
+                </select>
+            </div>
+            </div>
+            <div class="form_row">
+                <div class="form_element_center  col_span_4">
+            <button class="btn btn_create" (click)="register()" *ngIf="programId && programId.toString() != 'null' && semester && semester.toString() != 'null' && academicYear">تسجيل</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

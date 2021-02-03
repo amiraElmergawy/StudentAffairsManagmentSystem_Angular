@@ -1,0 +1,17 @@
+.course_main_data_section{
+  grid-template-columns: 1fr 2fr 1fr 2fr;
+}
+.hours_template_section{
+  grid-template-columns: 1fr 2fr 1fr 2fr 1fr 2fr;
+}
+.degree_template_section{
+  grid-template-columns: 1fr 2fr 1fr 2fr 1fr 2fr;
+}
+label{
+  font-size: normal;
+}
+
+.course_btn_group{
+  justify-content: space-evenly;
+  align-items: center;
+}

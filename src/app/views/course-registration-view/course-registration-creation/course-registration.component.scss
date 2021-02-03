@@ -1,0 +1,16 @@
+.second_table{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 1.4em;
+}
+.custom_td{
+  vertical-align: top;
+  padding: 1;
+  margin-top: 1;
+}
+.course_reg_page{
+  padding: 1em;
+  padding-bottom: 2em;
+}

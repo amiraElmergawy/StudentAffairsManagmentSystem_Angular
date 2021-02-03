@@ -1,0 +1,30 @@
+@mixin flexCenter {
+  justify-content: center !important;
+  align-items: center !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+@mixin theme($dark-theme: true) {
+  @if $dark-theme {
+    background: $background !important;
+
+    .header_home {
+      width: $original_width !important;
+      background-image: linear-gradient(to top, rgb(241, 224, 224), rgb(153, 149, 149)) !important;
+    }
+
+    .footer {
+
+      left: 0 !important;
+      bottom: 0 !important;
+      background-color: rgb(241, 224, 224) !important;
+      width: $original_width !important;
+      height: 20px !important;
+      position: fixed !important;
+      display: flex !important;
+      justify-content: center !important;
+    }
+  }
+
+}

@@ -1,0 +1,19 @@
+<div *ngIf="allAvailableTrainnings" class="full_page">
+    <h2>عرض التدريبات المتاحة</h2>
+    <table class="custom_table" role="grid">
+        <thead class="tpart">
+            <tr class="trow thead_trow">
+            <th class="cell thead_cell">مكان التدريب</th>
+            <th class="cell thead_cell">محتوي التدريب</th>
+            <th class="cell thead_cell">مدة التدريب</th>
+        </tr>
+        </thead>
+        <tbody class="tpart">
+            <tr class="trow tbody_row" *ngFor="let trainning of allAvailableTrainnings">
+                <td class="cell tbody_cell">{{trainning.place}}</td>
+                <td class="cell tbody_cell">{{trainning.topic}}</td>
+                <td class="cell tbody_cell">{{trainning.duration_in_days}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

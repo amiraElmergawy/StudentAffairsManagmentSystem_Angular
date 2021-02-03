@@ -1,0 +1,63 @@
+//directions
+$arabic_direction:rtl;
+$english_direction:ltr;
+
+//all colors
+
+$button_first_gradiant:rgb(167, 167, 167);
+$button_second_gradiant: rgb(227, 227, 233);
+$button_background:rgb(83, 200, 211) ;//rgb(44, 184, 184);
+$first_color:rgb(44, 184, 184);
+$second_color:rgb(84, 158, 177);
+$font_color:rgb(8, 8, 8);
+$input_background: rgb(212, 234, 238);
+$input_background_hover:whitesmoke;
+$create_color: rgb(15, 206, 79);
+$update_color: darken($color: rgb(255, 216, 104), $amount: 7%);
+$delete_color:  lighten($color: rgb(206, 15, 41), $amount: 15%);
+$show_color: royalblue;
+$background:rgb(75, 78, 77);
+
+//flash colors
+$color-danger:#f2dede;
+$background-danger:#a94442;
+$border-danger:#ebccd1;
+
+$color-success:#dff0d8;
+$background-success:#3c763d;
+$border-success:#d6e9c6;
+
+$color-warning:#fcf8e3;
+$background-warning:#8a6d3b;
+$border-warning:#faebcc;
+
+
+
+//dimentions
+$button_width:75px;
+$button_height:35px;
+$dimension_student:100px;
+$original_width:100%;
+
+//radius
+$radius_button:8px;
+$radius_button_hover:15px;
+$radius_general:4px;
+$radius_table:20px 20px 0px 0px;
+
+//other avriables
+$basic:0;
+$box_shadow:0px 5px 16px  #eaecf4;
+$button_table_margin:20px;
+$button_table_padding:10px;
+$space_between_button_and_list:10px;
+$button_border:0.25px solid rgb(73, 73, 73);
+$font_general:17px;
+$original_padding:10px;
+$original_margin:10px;
+
+$error_padding:15px; //used in error.scss (class err_msg , class link_home a) and flash.scss
+$error_border: 1px solid transparent;
+
+
+

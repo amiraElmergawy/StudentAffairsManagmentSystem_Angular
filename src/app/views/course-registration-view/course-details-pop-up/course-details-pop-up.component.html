@@ -1,0 +1,57 @@
+<div *ngIf="courseData" class="full_page">
+
+  <table class="custom_table" role="grid" style="max-width: 100%;">
+
+    <thead class="tpart">
+
+      <tr class="trow thead_trow">
+        <th class="cell thead_cell row_span flex_center_center">اسم المقرر</th>
+        <th class="cell thead_cell row_span flex_center_center">كود المقرر</th>
+        <!-- <th class="cell thead_cell row_span">الوصف</th> -->
+        <th class="cell thead_cell col_span_deg flex_center_center"> درجات المادة</th>
+        <th class="cell thead_cell row_span col_9 flex_center_center">مجموع الدرجات</th>
+        <th class="cell thead_cell col_span_hour flex_center_center">عدد الساعات الاسبوعية</th>
+        <th class="cell thead_cell row_span col_13 flex_center_center">عدد الساعات المعتمدة</th>
+      </tr>
+      <tr class="trow thead_trow">
+        <td class="cell thead_cell flex_center_center"> ن</td>
+        <td class="cell thead_cell flex_center_center"> ا</td>
+        <td class="cell thead_cell flex_center_center"> ش</td>
+        <td class="cell thead_cell flex_center_center"> ع</td>
+        <td class="cell thead_cell flex_center_center"> ت</td>
+
+        <td class="cell thead_cell flex_center_center"> ن</td>
+        <td class="cell thead_cell flex_center_center"> ت</td>
+        <td class="cell thead_cell flex_center_center"> ع</td>
+      </tr>
+    </thead>
+
+    <tbody class="tpart">
+
+
+
+      <tr class="trow tbody_row">
+        <td class="cell tbody_cell flex_center_center">{{ courseData.arName }}</td>
+        <td class="cell tbody_cell">{{ courseData.enCode }}</td>
+        <!-- <td class="cell tbody_cell">{{ courseData.description }}</td> -->
+
+        <td class="cell tbody_cell flex_center_center">{{ courseData.degreeTemplate.theory }}</td>
+        <td class="cell tbody_cell flex_center_center">{{ courseData.degreeTemplate.activity }}</td>
+        <td class="cell tbody_cell flex_center_center">{{ courseData.degreeTemplate.oral }}</td>
+        <td class="cell tbody_cell flex_center_center">{{ courseData.degreeTemplate.practical }}</td>
+        <td class="cell tbody_cell flex_center_center">{{ courseData.degreeTemplate.exercise }}</td>
+
+        <td class="cell tbody_cell flex_center_center">{{ courseData.degree }}</td>
+
+        <td class="cell tbody_cell flex_center_center">{{ courseData.weeklyHoursTemplate.theory }}</td>
+        <td class="cell tbody_cell flex_center_center">{{ courseData.weeklyHoursTemplate.exercise }}</td>
+        <td class="cell tbody_cell flex_center_center">{{ courseData.weeklyHoursTemplate.practical }}</td>
+
+        <td class="cell tbody_cell flex_center_center">{{ courseData.hours }}</td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>

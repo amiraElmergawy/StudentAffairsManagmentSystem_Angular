@@ -1,0 +1,57 @@
+.custom_table {
+  grid-template-columns: minmax(min-content, max-content) 1fr;
+  width: 95%;
+}
+.form_container{
+  min-width: 100%;
+  width: auto;
+  max-width: 100%;
+}
+.form-check-input {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.acc_section{
+  grid-template-columns: 1fr;
+}
+
+select{
+  max-width: 25%;
+}
+.cell{
+  padding: 0px;
+}
+.acc_foot_cell{
+
+  grid-column: span 2;
+}
+.flex_cell{
+  flex: 1 1 auto;
+  display: flex;
+  max-width: 100%;
+  box-sizing: border-box;
+  justify-content: stretch;
+  align-items: center;
+  height: 100%;
+    label{
+      padding: 1em 0.5em 1em 0.5em;
+      flex: 1 1 auto;
+  }
+  input{
+    flex: 1 1 auto;
+  }
+}
+.flex_foot_cell{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  font-size: 110%;
+  button{
+    flex: 1 1 auto;
+  }
+}

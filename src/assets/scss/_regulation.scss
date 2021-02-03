@@ -1,0 +1,72 @@
+.button_list {
+  display: flex !important;
+  flex-direction: column !important;
+
+  transition: 0.5s !important;
+
+  .reg {
+    width: 220px !important;
+  }
+
+  button {
+    text-decoration: none !important;
+    background-color: transparent !important;
+    font-weight: bold !important;
+    font-size: 17px !important;
+    margin-top: .5px !important;
+    margin-bottom: 0.5px !important;
+    border: none !important;
+    color: $font_color !important;
+    width: 200px !important;
+    height: $button_height !important;
+
+    background: #84d6df !important;
+    transition: all 0.4s !important;
+
+    &:hover {
+      cursor: pointer !important;
+      background-color: lighten($color: #84d6df, $amount: 10%) !important;
+    }
+
+    &:focus {
+      outline: none !important;
+    }
+
+  }
+}
+
+.window {
+
+  width: 75% !important;
+  height: 100% !important;
+}
+
+.dropdown_container {
+  margin: 0px !important;
+  padding: 10px !important;
+  background-color: lighten($color: #84d6df, $amount: 15%) !important;
+  display: block !important;
+  transition: 0.3s !important;
+  text-align: center !important;
+  overflow-y: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+
+  button {
+    background-color: lighten($color: #84d6df, $amount: 15%) !important;
+  }
+
+  a {
+    padding: 5px !important;
+    display: block !important;
+    transition: 0.3s !important;
+
+    &:hover {
+      cursor: pointer !important;
+      font-size: larger !important;
+    }
+
+  }
+
+
+}

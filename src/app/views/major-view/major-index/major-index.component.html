@@ -1,0 +1,37 @@
+<div *ngIf="data">
+    <h2>عرض جميع التخصصات</h2>
+
+    <table class="custom_table" role="grid">
+
+        <thead class="tpart">
+            <tr class="trow thead_trow">
+                <th class="cell thead_cell">اسم التخصص </th>
+                <th class="cell thead_cell flex_center_center">وصف التخصص</th>
+                <th class="cell thead_cell flex_center_center">اسم الشهادة بالعربية</th>
+                <th class="cell thead_cell flex_center_center"> القسم التابع له</th>
+                <th class="cell thead_cell flex_center_center"
+                    *ngIf="authorizedList['majors.show'] || authorizedList['majors.destroy'] || authorizedList['majors.update'] || authorizedList['major.unlinkDepartment'] || authorizedList['major.unlinkDivision'] || authorizedList['majors.update-programs'] || authorizedList['majors.get-programs']">
+                </th>
+            </tr>
+        </thead>
+
+        <tbody class="tpart">
+            <tr class="trow tbody_row" *ngFor="let major of data">
+                <td class="cell tbody_cell">{{major.arName}}</td>
+                <td class="cell tbody_cell flex_center_center">
+                  <div class="tooltip">{{discShorthand(major.desc)}}
+                    <span class="tooltiptext">{{major.desc}}</span>
+                  </div>
+                </td>
+                <td class="cell tbody_cell flex_center_center">{{major.certArName}}</td>
+                <td class="cell tbody_cell flex_center_center">{{major.department.arName}}</td>
+                <td class="cell tbody_cell flex_center_center"
+                    *ngIf="authorizedList['majors.show'] || authorizedList['majors.destroy'] || authorizedList['majors.update'] || authorizedList['major.unlinkDepartment'] || authorizedList['major.unlinkDivision'] || authorizedList['majors.update-programs'] || authorizedList['majors.get-programs']">
+                    <a class="link_in_table" [routerLink]="[ '/show-major/', major.id ]">عرض التفاصيل</a>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</div>

@@ -1,0 +1,172 @@
+<div class="full_page">
+  <div class="form_container">
+    <ng-form [formGroup]="studentForm">
+      <div class="custom_form">
+        <div class="form_header_container">
+          <h2 class="form_header">طلب الخدمة العسكرية</h2>
+        </div>
+
+        <div class="form_section military_section">
+
+          <div class="form_row">
+            <div class="form_element col_span_3">
+              <label *ngFor="let want of wanted; let i = index" for="wanted">
+                <input type="radio" name="wanted" value="{{i}}" formControlName="wanted">
+                {{ want }}
+              </label>
+            </div>
+
+            <label class="form_element" for="status ">الموقف من التجنيد</label>
+            <div class="form_element col_span_2">
+              <select class="select_box" name="status" id="status " formControlName="status">
+                <option value=null> اختر الحالة ...</option>
+                <option *ngFor="let stat of status; let i = index" value="{{i}}">
+                  {{stat}}
+                </option>
+              </select>
+              <span *ngIf="
+              !studentForm.get('status')
+                .valid &&
+              studentForm.get('status')
+                .touched
+            ">
+                <span class="requierd" *ngIf="
+                (studentForm.get(
+                  'status'
+                )?.errors)['required']
+              ">هذا الحقل مطلوب
+                </span>
+              </span>
+            </div>
+          </div>
+          <div class="form_row">
+            <label class="form_element" for="note">ملاحظات </label>
+            <div class="form_element col_span_2">
+              <input class="text_input" type="text" id="note" name="note" formControlName="note" />
+            </div>
+          </div>
+          <div class="form_row">
+            <div class="form_element col_span_3">
+              <label class="form_element" for="trinaryNumber ">الرقم الثلاثى</label>
+              <div class="form_element">
+                <input class="text_input" type="text" id="trinaryNumber" name="trinaryNumber "
+                  formControlName="trinaryNumber" />
+                <span *ngIf="
+              !studentForm.get('trinaryNumber')
+                .valid &&
+              studentForm.get('trinaryNumber')
+                .touched
+            ">
+                  <span class="warning" *ngIf="
+                studentForm.get('trinaryNumber')
+                  .errors['pattern'] ||
+                studentForm.get('trinaryNumber')
+                  .errors['maxlength']
+              ">
+                    غير مسموح بادخال احرف او علامات غير /
+                    وان لا يكون عدد الارقام اكبر من 20 رقم
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form_row">
+            <div class="form_element col_span_3">
+              <label class="form_element" for="postponedNumber ">رقم قرار التأجيل</label>
+              <div class="form_element">
+                <input class="text_input" type="text" id="postponedNumber" name="postponedNumber "
+                  formControlName="postponedNumber" />
+                <span *ngIf="
+              !studentForm.get('postponedNumber')
+                .valid &&
+              studentForm.get('postponedNumber')
+                .touched
+            ">
+                  <span class="warning" *ngIf="
+                studentForm.get('postponedNumber')
+                  .errors['pattern'] ||
+                studentForm.get('postponedNumber')
+                  .errors['maxlength']
+              ">
+                    غير مسموح بادخال احرف او علامات غير /
+                    وان لا يكون عدد الارقام اكبر من 25 رقم
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form_row">
+            <div class="form_element col_span_3">
+              <label class="form_element" for="issuing_party ">جهة الصدور</label>
+              <div class="form_element">
+                <input class="text_input" type="text" id="issuing_party" name="issuing_party "
+                  formControlName="issuingParty" />
+                <span *ngIf="
+              !studentForm.get('issuingParty')
+                .valid &&
+              studentForm.get('issuingParty')
+                .touched
+            ">
+                  <span class="warning" *ngIf="
+                studentForm.get('issuingParty')
+                  .errors['pattern'] ||
+                studentForm.get('issuingParty')
+                  .errors['maxlength']
+              ">
+                    غير مسموح بادخال ارقام او علامات
+                    وان لا يكون عدد الاحرف اكبر من 100 حرف
+                  </span>
+                </span>
+              </div>
+
+            </div>
+          </div>
+          <div class="form_row">
+            <div class="form_element col_span_3">
+              <label class="form_element" for="collageService ">التربية العسكرية </label>
+              <div class="form_element">
+                <label *ngFor="let service of collageService; let i = index" for="collageService">
+                  <input type="radio" name="collageService" [value]="i" formControlName="collageService" />
+                  {{ service }}
+                </label>
+                <span *ngIf="
+              !studentForm.get('collageService')
+                .valid &&
+              studentForm.get('collageService')
+                .touched
+            " class="help-block">
+                  <span class="requierd" *ngIf="
+                (studentForm.get(
+                  'collageService'
+                )?.errors)['required']
+              ">هذا الحقل مطلوب
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <div class="form_element col_span_3">
+              <span class="requierd" *ngIf="!studentForm.valid && studentForm.touched">يجب ادخال جميع
+                البيانات صحيحة
+              </span>
+            </div>
+          </div>
+          <div class="form_row">
+            <div class="form_element_center form_btn_group_evenly col_span_3">
+              <div class="form_row" *ngIf="studentForm.valid && studentForm.touched">
+                <button class="btn btn_update" (click)="create()"> اضافة</button>
+              </div>
+              <div class="form_row" *ngIf="studentForm.touched">
+                <button class="btn" (click)="clear()">
+                  اعادة تعيين
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-form>
+  </div>
+</div>

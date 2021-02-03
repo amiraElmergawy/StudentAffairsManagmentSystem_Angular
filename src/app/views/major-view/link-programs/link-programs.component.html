@@ -1,0 +1,113 @@
+<div class="full_page">
+
+  <div class="form_container">
+
+    <div *ngIf="availablePrograms" style="display: contents;">
+
+      <ng-form [formGroup]="linkForm" *ngIf="authorizedList['majors.update-programs']">
+
+        <div class="custom_form">
+
+          <div class="form_section program_link_section">
+
+            <div class="form_row">
+
+              <label class="form_element" for="semesterNo">الفصل الدراسي : </label>
+              <div class="form_element">
+
+                <!-- <div class="form_row"> -->
+                <input type="number" class="text_input" id="semesterNo" name="semesterNo"
+                  formControlName="semesterNo" />
+                <span *ngIf="!linkForm.get('semesterNo').valid && linkForm.get('semesterNo').touched">
+                  <span *ngIf="linkForm.get('semesterNo').errors['required']" class="requierd">هذا الحقل مطلوب</span>
+                  <span *ngIf="linkForm.get('semesterNo').errors['pattern']" class="warning">
+                    لا يسمح بادخال علامات
+                    وان تكون القيمة من 1 الي 8
+                  </span>
+                </span>
+                <!-- </div> -->
+              </div>
+
+
+              <label class="form_element" for="semesterHours"> عدد الساعات المعتمدة : </label>
+              <div class="form_element">
+                <input type="number" class="text_input" id="semesterHours" name="semesterHours"
+                  formControlName="semesterHours" />
+                <span *ngIf="
+              !linkForm.get('semesterHours').valid && linkForm.get('semesterHours').touched">
+                  <span *ngIf="linkForm.get('semesterHours').errors['required']" class="requierd">هذا الحقل مطلوب</span>
+                  <span *ngIf="linkForm.get('semesterHours').errors['pattern']" class="warning">
+                    لا يسمح بادخال علامات
+                    وان تكون القيمة من 16 الي 19
+                  </span>
+                </span>
+              </div>
+
+
+              <label class="form_element" for="programId">البرنامج : </label>
+              <div class="form_element">
+                <select class="select_box" name="programId" id="programId " formControlName="programId" required>
+                  <option value=null>اختر البرنامج ...</option>
+                  <option *ngFor="let prog of availablePrograms; let i = index" value="{{prog.Id}} ">{{ prog.arName }}
+                  </option>
+                </select>
+              </div>
+
+            </div>
+
+
+            <div class="form_row">
+              <div class="form_element col_span_6">
+                <span *ngIf="!linkForm.valid && linkForm.touched" class="requierd">
+                  يجب ادخال جميع البيانات صحيحة
+                </span>
+              </div>
+            </div>
+
+            <div class="form_row">
+
+              <div *ngIf="linkForm.valid && linkForm.touched" class="form_element col_span_6 form_btn_group_evenly">
+                <button type="submit" class="btn btn_create" (click)="link()">
+                  ربط
+                </button>
+                <button (click)="saveProgram()" class="btn">
+                  اضافة برنامج اخر
+                </button>
+                <div class="form_row" *ngIf="linkForm.touched">
+                  <button (click)="clear()" class="btn">
+                    اعادة تعيين
+                  </button>
+                </div>
+
+              </div>
+
+
+            </div>
+
+          </div>
+
+
+        </div>
+      </ng-form>
+    </div>
+  </div>
+  <div *ngIf="currentPrograms?.length > 0" class="form_row">
+    <h2 style="text-align: center;">البرامج الحالية</h2>
+    <table class="custom_table" role="grid">
+      <thead class="tpart">
+        <tr class="trow thead_trow">
+          <th class="cell thead_cell">اسم البرنامج</th>
+          <th class="cell thead_cell">الفصل الدراسي</th>
+          <th class="cell thead_cell">عدد الساعات المعتمدة</th>
+        </tr>
+      </thead>
+      <tbody class="tpart">
+        <tr class="trow tbody_row" *ngFor="let prog of currentPrograms">
+          <td class="cell tbody_cell">{{prog?.ar_name}}</td>
+          <td class="cell tbody_cell">{{prog?.pivot?.semester}}</td>
+          <td class="cell tbody_cell">{{prog?.pivot?.semester_hours}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

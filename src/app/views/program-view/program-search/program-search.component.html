@@ -1,0 +1,95 @@
+<div class="form_container">
+  <div class="custom_form">
+    <ng-form>
+      <div class="form_section program_search_section">
+        <div class="form_row">
+
+          <label class="form_element" for="courseSearch">بحث بواسطة : </label>
+          <select class="form_element" class="select_box" name="searchway" id="searchWay " [(ngModel)]="choiseIndex" required>
+            <option value=null>اختر طريقة البحث...</option>
+            <option *ngFor="let way of searchWays; let i=index" value="{{i}} ">{{ way }}</option>
+          </select>
+
+          <input class="text_input form_elements" id="searchValue " name="searchValue " type="text" [(ngModel)]="searchValue" required>
+        </div>
+        <div class="flex_center_center form_element">
+          <button class="btn" type="submit" (click)="search()"
+          [disabled]="!searchValue || !choiseIndex || searchValue == 'null'">بحث</button>
+        </div>
+
+      </div>
+    </ng-form>
+  </div>
+</div>
+
+
+<div *ngIf="searchingResult" class="container">
+
+  <table *ngIf="searchingResult?.length > 0" class="custom_table" role="grid">
+
+    <thead class="tpart">
+
+      <tr class="trow thead_trow">
+        <td class="cell thead_cell">الإسم العربي</td>
+        <td class="cell thead_cell">الإسم الإنجليزي</td>
+        <td class="cell thead_cell flex_center_center" *ngIf="authorizedList['program.get-prerequisites'] ||
+            authorizedList['program.insert-prerequisites'] ||
+            authorizedList['programs.delete-prepackages'] ||
+            authorizedList['packages.index'] ||
+            authorizedList['packages.show'] ||
+            authorizedList['packages.store']||
+            authorizedList['packages.update']||
+              authorizedList['packages.destroy']||
+              authorizedList['program.students']||
+              authorizedList['program.packages']||
+              authorizedList['programs.store']||
+              authorizedList['programs.update']||
+              authorizedList['programs.show']||
+              authorizedList['programs.destroy']||
+              authorizedList['programs.unlinkParent']||
+              authorizedList['programs.linkParent']||
+              authorizedList['programs.linkCourses'] ||
+              authorizedList['programs.create-packages'] ||
+              authorizedList['programs.delete-packages']"></td>
+      </tr>
+
+    </thead>
+
+    <tbody class="tpart">
+
+      <tr class="trow tbody_row" *ngFor="let program of searchingResult ">
+        <td class="cell tbody_cell">{{program.arName}}</td>
+        <td class="cell tbody_cell">{{program.enName}}</td>
+        <td class="cell tbody_cell flex_center_center" *ngIf="authorizedList['program.get-prerequisites'] ||
+               authorizedList['program.insert-prerequisites'] ||
+               authorizedList['programs.delete-prepackages'] ||
+               authorizedList['packages.index'] ||
+               authorizedList['packages.show'] ||
+               authorizedList['packages.store']||
+               authorizedList['packages.update']||
+                 authorizedList['packages.destroy']||
+                 authorizedList['program.students']||
+                 authorizedList['program.packages']||
+                 authorizedList['programs.store']||
+                 authorizedList['programs.update']||
+                 authorizedList['programs.show']||
+                 authorizedList['programs.destroy']||
+                 authorizedList['programs.unlinkParent']||
+                 authorizedList['programs.linkParent']||
+                 authorizedList['programs.linkCourses'] ||
+                 authorizedList['programs.create-packages'] ||
+                 authorizedList['programs.delete-packages']">
+          <a [routerLink]="[ '/show-program/', program.Id ]" class="link_in_table">عرض التفاصيل</a></td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <div *ngIf="searchingResult?.length == 0">
+    <div class="requierd">
+      هذه البيانات غير موجودة
+      يرجي التأكد من قيمة البحث
+    </div>
+  </div>
+</div>

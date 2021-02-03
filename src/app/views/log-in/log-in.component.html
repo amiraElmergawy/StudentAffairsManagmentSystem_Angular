@@ -1,0 +1,93 @@
+<div class="container">
+      <div class="login-form">
+
+        <ng-form [formGroup]="logInForm">
+          <span class="log">
+            تسجيل الدخول
+          </span>
+          <div class="form-cotainer">
+            <div>
+          <div class="form-cotainer">
+            <div>
+              <label for="email"> الايميل : </label><br />
+              <input
+                type="email"
+                id="email"
+                class="english_direction text_input"
+                name="email"
+                formControlName="email"
+                placeholder="example@chp.com"
+                required
+                minlength="10"
+              /><br>
+              <span
+                *ngIf="
+                  !logInForm.get('email').valid &&
+                  logInForm.get('email').touched
+                "
+                
+              >
+                <span *ngIf="logInForm.get('email').errors['required']"
+                  class="requierd">هذا الحقل مطلوب
+                  </span
+                ><br>
+                <span *ngIf="logInForm.get('email').errors['pattern']"
+                  class="warning"> يجب ان يحتوي الايميل علي '@chp.com'
+                  واستخدام الاحرف الانجليزية فقط
+                  </span
+                ><br>
+                <span *ngIf="logInForm.get('email').errors['minlength']"
+                class="warning">يجب كتابة 10 حروف علي الاقل</span
+              >
+                <!-- <span *ngIf="logInForm.get('email').errors['pattern']"
+                  > لا يسمح بادخال علامات
+                  <br></span
+                > -->
+              </span>
+              <br>
+              <label for="password"> كلمة المرور : </label><br />
+              <input
+                type="password"
+                id="password"
+                class="english_direction text_input"
+                name="password"
+                formControlName="password"
+                required
+                minlength="8"
+              /><br>
+              <span
+                *ngIf="
+                  !logInForm.get('password').valid &&
+                  logInForm.get('password').touched
+                "
+                
+              >
+            <span *ngIf="logInForm.get('password').errors['required']"
+              class="requierd">هذا الحقل مطلوب
+              </span
+            ><br>
+            <span *ngIf="logInForm.get('password').errors['minlength']"
+               class="warning" >يجب كتابة 8 احرف علي الاقل</span
+              >
+              </span>
+              <br>
+            </div>
+          </div>
+          <!-- <span
+            *ngIf="!logInForm.valid && logInForm.touched"
+            class="help-block"
+            >يجب ادخال جميع البيانات صحيحة
+          </span> -->
+          <!-- <div *ngIf="logInForm.valid && logInForm.touched"> -->
+            <div class="sign_in">
+            <button  type="submit" (click)="logIn()" [disabled]="!logInForm.valid">
+              تسجيل الدخول
+            </button>
+          </div>
+          <!-- </div> -->
+            </div>
+          </div>
+        </ng-form>
+     </div>
+	 </div>
+<app-footer></app-footer>

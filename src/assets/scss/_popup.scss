@@ -1,0 +1,81 @@
+
+
+.button {
+  text-decoration: none !important;
+  background-color: transparent !important;
+  border-radius: $radius_button !important;
+  padding: $original_padding !important;
+  margin: $original_margin !important;
+  width: 150px !important;
+  border: $button_border !important;
+  color: $font_color !important;
+
+  height: $button_height !important;
+  background: rgb(101, 185, 206) !important;
+
+  &:hover,
+  &:focus {
+    transition: ease-in-out 0.3s !important;
+    cursor: pointer !important;
+    outline: none !important;
+    border-radius: $radius_button_hover !important;
+    background: $create_color !important;
+
+  }
+}
+
+.overlay {
+  position: fixed !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  background: rgba(0, 0, 0, 0.7) !important;
+  transition: opacity 500ms !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  overflow: scroll !important;
+
+  &:target {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
+
+.popup {
+  margin: 70px auto !important;
+  padding: 20px !important;
+  background: #fff !important;
+  border-radius: 5px !important;
+  width: 80% !important;
+  position: relative !important;
+  transition: all 5s ease-in-out !important;
+
+  h2 {
+    margin-top: 0 !important;
+    color: #333 !important;
+    text-align: center !important;
+    font-family: Tahoma, Arial, sans-serif !important;
+  }
+
+  .close {
+    position: absolute !important;
+    top: 20px !important;
+    right: 30px !important;
+    transition: all 200ms !important;
+    font-size: 30px !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+    color: #333 !important;
+
+    &:hover {
+      color: rgb(101, 185, 206) !important;
+    }
+  }
+
+  .content {
+    max-height: 30% !important;
+    //overflow: scroll !important;
+  }
+}

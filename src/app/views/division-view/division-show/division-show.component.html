@@ -1,0 +1,28 @@
+<h1>عرض تفاصيل الشعبة</h1>
+<div *ngIf="data" class="container">
+
+    <div class="show_class">
+        <div class="show_cont">
+            <div class="one_block">
+                <div class="small_block">
+                    اسم الشعبة
+                    <span class="inline">
+                        {{data.name}}
+                    </span>
+                </div>
+
+                <div class="small_block">
+                    القسم التابع له هذه الشعبة
+                    <span class="inline">
+                        {{data.department.arName}}
+                    </span>
+                </div>
+                <button [routerLink]="[ '/update-division/', data.id ]" class="btn"
+                    *ngIf="authorizedList['divisions.update'] || authorizedList['divisions.destroy'] || authorizedList['division.unlink_department']">
+                    تحديث </button>
+            </div>
+
+        </div>
+    </div>
+
+</div>

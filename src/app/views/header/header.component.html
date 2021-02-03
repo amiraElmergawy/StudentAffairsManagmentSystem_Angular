@@ -1,0 +1,61 @@
+<div class="upper_header" id="test-header">
+  <img src="./assets/icons/AinShams.png" class="header_image" id="im1">
+  <img src="./assets/icons/3lom2.png" class="header_image" id="im2">
+  <h1>كلية العلوم جامعة عين شمس</h1>
+
+  <nav class="lower_header_container">
+    <div class="lower_header">
+
+      <div class="nav_item" *ngIf="addStudentFlag || studentSearchFlag">
+        الطلاب
+
+        <div class="sub_menu">
+          <div class="inner_sub_menu">
+
+            <div class="nav_item" *ngIf="addStudentFlag">
+              <a [routerLink]="['/add-student/']"> اضافة طالب</a>
+            </div>
+
+            <div class="nav_item" *ngIf="studentSearchFlag">
+              <a [routerLink]="['/search-student/']"> بحث </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="nav_item"
+        *ngIf="authList && (authList['reports.general-report'] || authList['reports.with-low-gpa'])">
+        تقارير
+
+        <div class="sub_menu">
+          <div class="inner_sub_menu">
+
+            <div class="nav_item">
+              <a routerLink="/full-student-report" *ngIf="authList['reports.general-report']">احصائية الطلاب </a>
+            </div>
+
+            <div class="nav_item" *ngIf="authList['reports.with-low-gpa']">
+              <a routerLink="/students-low-gpa">الطلاب الاقل في المعدل التراكمي</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="nav_item" *ngIf="internalRegulationFlag">
+        <a routerLink="/internal-regulation">اللائحة الداخلية</a>
+      </div>
+
+      <li class="nav_item" *ngIf="authorizedList">
+        <a routerLink="change-password">الحساب </a>
+      </li>
+      <div class="nav_item" *ngIf="authorizedList">
+        <button class="link_in_table" (click)="logout()">تسجيل خروج </button>
+      </div>
+
+    </div>
+  </nav>
+
+
+</div>

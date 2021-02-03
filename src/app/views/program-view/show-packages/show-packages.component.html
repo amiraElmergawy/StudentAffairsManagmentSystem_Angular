@@ -1,0 +1,98 @@
+<div *ngIf="packages" class="full_page">
+  <table class="custom_table" role="grid" style="max-width: 100%;">
+      <thead class="tpart">
+        <tr class="trow thead_trow">
+          <th class="cell thead_cell row_span" rowspan="2">حالة المقرر</th>
+          <th class="cell thead_cell row_span" rowspan="2">كود المقرر</th>
+          <th class="cell thead_cell row_span" rowspan="2">اسم المقرر</th>
+          <th class="cell thead_cell col_span_deg" colspan="5"> درجات المادة</th>
+          <th class="cell thead_cell row_span col_9" rowspan="2">مجموع الدرجات</th>
+          <th class="cell thead_cell col_span_hour" colspan="3">عدد الساعات الاسبوعية</th>
+          <th class="cell thead_cell row_span col_13" rowspan="2">عدد الساعات المعتمدة</th>
+    <th class="cell thead_cell row_span col_14" rowspan="2">متطلبات سابقة </th>
+          <th class="cell thead_cell row_span col_15" rowspan="2" *ngIf="(semesterNo != 1 && semesterNo != 2)"></th>
+        </tr>
+        <tr class="trow thead_trow">
+              <td class="cell thead_cell">  ن</td>
+              <td class="cell thead_cell">  ا</td>
+              <td class="cell thead_cell">  ش</td>
+              <td class="cell thead_cell">  ع</td>
+              <td class="cell thead_cell">  ت</td>
+              <td class="cell thead_cell">  ن</td>
+              <td class="cell thead_cell">  ت</td>
+              <td class="cell thead_cell">  ع</td>
+        </tr>
+      </thead>
+
+      <!-- <span *ngFor="let kindNumber of countKinds"> -->
+      <tbody class="tpart" *ngFor="let package of packages">
+
+        <tr class="trow tbody_row" *ngFor="let course of package.courses">
+          <!-- <span *ngIf="package.kind == 1"> -->
+            <td class="cell tbody_cell">{{package.kind | packageKindPipe}}</td>
+          <!-- </span> -->
+            <td class="cell tbody_cell">{{course.enCode}}</td>
+            <td class="cell tbody_cell">{{course.arName}}</td>
+            <td class="cell tbody_cell">{{course.degreeTemplate.theory}}</td>
+            <td class="cell tbody_cell">{{course.degreeTemplate.activity}}</td>
+            <td class="cell tbody_cell">{{course.degreeTemplate.oral}}</td>
+            <td class="cell tbody_cell">{{course.degreeTemplate.practical}}</td>
+            <td class="cell tbody_cell">{{course.degreeTemplate.exercise}}</td>
+            <td class="cell tbody_cell">{{course.degree}}</td>
+            <td class="cell tbody_cell">{{course.weeklyHoursTemplate.theory}}
+            </td>
+              <td class="cell tbody_cell">{{course.weeklyHoursTemplate.exercise}}
+              </td>
+              <td class="cell tbody_cell">{{course.weeklyHoursTemplate.practical}}
+              </td>
+              <td class="cell tbody_cell">{{course.hours}}</td>
+              <td class="cell tbody_cell">
+                <div
+                    *ngIf="course?.prePackages.length > 0; else elseTemplate"
+                  >
+                  (
+                    <span *ngFor="let prePackage of course.prePackages">
+                      <span
+                      *ngFor="let course of prePackage.courses; let i = index"
+                      >
+                      <div
+                      *ngIf="
+                      prePackage.coursesOperation &&
+                      (i + 1) < prePackage.courses.length;
+                      else elseTemplate1
+                      "
+                      >
+                      {{ prePackage.courses[i].enCode }}<br />
+                      {{ prePackage.coursesOperation | coursesOpPipe
+                      }}
+                    </div>
+                    <ng-template #elseTemplate1>
+                      {{ prePackage.courses[i].enCode }}
+                    </ng-template>
+                  </span>
+                  <span *ngIf="course.prePackages.length > 1">
+                    )
+                    {{ prePackage.operationWithNext | coursesOpPipe }}
+                    (
+                    </span>
+                    </span>
+                    )
+                  </div>
+                  <ng-template #elseTemplate>
+                    _
+                  </ng-template>
+                </td>
+              <td class="cell tbody_cell" style="display: flex; flex-direction: column;" *ngIf="(package.semester != 1 && package.semester != 2)">
+                <span *ngIf="course.prePackages.length == 0 ; else elseTemplate">
+                  <a class="link_in_table" [routerLink]="['/add-course-prerequisites/', programId,course.id,semesterNo,package.id]">اضافة متطلبات </a>
+                </span>
+
+                <ng-template #elseTemplate>
+                  <a class="link_in_table" [routerLink]="['/show-course-prerequisites/', programId,course.id,semesterNo,package.id]" >تعديل المتطلبات الحالية </a>
+                </ng-template>
+              </td>
+            </tr>
+          </tbody>
+        <!-- </span> -->
+        </table>
+      </div>

@@ -1,0 +1,28 @@
+.custom_table {
+  grid-template-columns: 2fr 3fr 2fr 2fr;
+}
+
+.col_span {
+  grid-column: 1 / span 4;
+  justify-content: center;
+
+}
+
+.pre_create_section {
+
+  grid-template-columns: 1fr 2fr;
+}
+
+ng-multiselect-dropdown {
+  max-width: 100%;
+  width: 10em;
+}
+
+.select_box {
+  max-width: max-content;
+}
+
+td.btn_group_cell {
+  justify-content: space-evenly !important;
+  align-items: center !important;
+}

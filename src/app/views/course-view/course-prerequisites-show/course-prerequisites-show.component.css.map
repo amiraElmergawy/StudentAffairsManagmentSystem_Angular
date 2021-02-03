@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "course-prerequisites-show.component.scss"
+    ],
+    "names": [],
+    "file": "course-prerequisites-show.component.css"
+}
