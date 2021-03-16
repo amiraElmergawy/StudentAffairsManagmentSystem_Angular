@@ -1,0 +1,17 @@
+<div class="app_root">
+
+  <app-header></app-header>
+
+  <!-- <div *ngIf="!homeFlag && !loginFlag">
+    <app-lower-header></app-lower-header>
+  </div> -->
+  <div *ngIf="loadingFireFlag">
+    <app-loader></app-loader>
+  </div>
+
+  <div class="flash_msg">
+    <flash-messages></flash-messages>
+  </div>
+  <router-outlet></router-outlet>
+
+</div>

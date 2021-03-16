@@ -1,0 +1,43 @@
+<h1>عرض تفاصيل القسم</h1>
+<div *ngIf="data" class="container">
+
+    <div class="show_class">
+        <div class="show_cont">
+            <div class="one_block" >
+                <div class="small_block">
+                    اسم القسم بالعربية
+                    <span class="inline">
+                        {{data.arName}}
+                    </span>
+                </div>
+                <div class="small_block">
+                    اسم القسم بالانجليزية
+                    <span class="inline english_direction">
+                        {{data.enName}}
+                    </span>
+                </div>
+
+                <!-- <div class="one_block">
+          <div class="small_block">
+            وجود القسم
+            <span class="inline">
+            {{data.isVirtual | booleanPipe}}
+            </span>
+          </div>
+        </div>  -->
+
+                <div class="small_block">
+                    تخصص الثانوية العامة
+                    <span class="inline">
+                        {{data.hSDept | highSchoolDeptPipe}}
+                    </span>
+                </div>
+                <span class="buttons"
+                    *ngIf="authorizedList['departments.update'] || authorizedList['departments.destroy']">
+                    <button [routerLink]="[ '/update-department/', deptId ]" class="btn">تحديث</button>
+                </span>
+            </div>
+        </div>
+
+    </div>
+</div>

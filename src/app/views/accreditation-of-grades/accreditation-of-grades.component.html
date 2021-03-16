@@ -1,0 +1,51 @@
+<div class="full_page">
+  <div class="form_container">
+    <div class="custom_form">
+      <div class="form_header_container">
+        <h2 class="form_header">اعتماد الدرجات</h2>
+      </div>
+      <div class="form_section acc_section">
+        <div class="form_row">
+          <div class="custom_table_container" *ngIf="resultedWay">
+            <table class="custom_table" role="grid">
+              <tbody class="tpart">
+                <tr class="trow tbody_row" *ngFor="let way of resultedWay">
+
+                  <td class="cell tbody_cell">
+                    <div class="flex_cell">
+                      <input type="checkbox" class="form-check-input" (change)="onChange(way, $event.target.checked)"
+                      name="{{ way.arName }}" id="{{ way.arName }}" />
+                    </div>
+                  </td>
+                  <td class="cell tbody_cell">
+                    <div class="flex_cell">
+                      <label class="form-check-label" for="{{ way.arName }}">
+                        {{ way.arName }}
+                      </label>
+                    </div>
+                  </td>
+
+                </tr>
+              </tbody>
+
+              <tfoot class="tpart tfoot">
+                <tr class="trow tfoot_row">
+                  <td class="cell tfoot_cell acc_foot_cell">
+                    <div class="flex_foot_cell">
+                      <button class="btn_in_table" (click)="accredit()" [disabled]="accreditationIds.length > 0"
+                        *ngIf="authorizedList['course-registrations.accredit']">اعتماد</button>
+                      <button class="btn_in_table" (click)="accreditAll()" *ngIf="authorizedList['course-registrations.accredit']"> اعتماد الكل</button>
+                    </div>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

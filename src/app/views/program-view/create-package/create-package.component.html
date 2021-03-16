@@ -1,0 +1,104 @@
+<div class="full_page">
+  <div class="form_container">
+    <div class="custom_form">
+      <ng-form [formGroup]="programForm">
+        <div class="form_section package_create_section">
+
+          <div class="form_row" *ngIf="courses !== null">
+            <label class="form_element" for="courses">المقررات : </label>
+            <div class="form_element">
+              <ng-multiselect-dropdown [placeholder]="'اختر مقرر'" [data]="courses" name="selectedCourses"
+                [settings]="dropdownSettings" formControlName="selectedCourses" (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)" (onDeSelect)="onItemDeSelect($event)" required>
+              </ng-multiselect-dropdown>
+              <span *ngIf="!programForm.get('selectedCourses').valid && programForm.get('selectedCourses').touched">
+                <span *ngIf="programForm.get('selectedCourses').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <label class="form_element" for="kind "> النوع :</label>
+            <div class="form_element">
+              <select class="select_box" name="kind " id="kind " formControlName="kind" required>
+                <option value=null>اختر نوع المجموعة...</option>
+                <option *ngFor="let kind of kinds; let i = index" value="{{ i + 1 }} ">{{kind}}</option>
+              </select>
+              <span *ngIf="!programForm.get('kind').valid && programForm.get('kind').touched" class="help-block">
+                <span *ngIf="programForm.get('kind').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <label class="form_element" for="semester">الفصل الدراسي : </label>
+            <div class="form_element">
+              <input class="text_input" type="number" name="semester" formControlName="semester" />
+              <span *ngIf="!programForm.get('semester').valid && programForm.get('semester').touched"
+                class="help-block">
+                <span *ngIf="programForm.get('semester').errors['pattern']" class="warning">
+                  يجب ان تكون القيمة من 1 الي 8
+                </span>
+                <span *ngIf="programForm.get('semester').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <label class="form_element" for="hoursToReg">عدد الساعات الواجب تسجيلها من هذه المجموعة</label>
+            <div class="form_element">
+              <input class="text_input" type="number" name="hoursToReg" formControlName="hoursToReg" />
+              <span *ngIf="!programForm.get('hoursToReg').valid && programForm.get('hoursToReg').touched"
+                class="help-block">
+                <span *ngIf="programForm.get('hoursToReg').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="programForm.get('hoursToReg').errors['pattern']" class="warning">لا يسمح بكتابة ارقام سالبة
+                  او
+                  علامات
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <label class="form_element" for="orderOfShowing">ترتيبها في العرض : </label>
+            <div class="form_element">
+              <input class="text_input" type="number" name="orderOfShowing" formControlName="orderOfShowing" />
+              <span *ngIf="!programForm.get('orderOfShowing').valid && programForm.get('orderOfShowing').touched">
+                <span *ngIf="programForm.get('orderOfShowing').errors['min']" class="warning">لا يسمح بكتابة ارقام سالبة
+                  او
+                  علامات
+                </span>
+                <span *ngIf="programForm.get('orderOfShowing').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <div class="form_element col_span_2">
+              <span *ngIf="!programForm.valid && programForm.touched" class="requierd">يجب ادخال جميع البيانات صحيحة
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <div class="form_element form_btn_group_evenly">
+              <div class="form_row" *ngIf="programForm.valid && programForm.touched">
+                <button class="btn btn_create" type="submit " (click)="createPackage()">اضافة</button>
+              </div>
+              <div class="form_row" *ngIf="programForm.touched">
+                <button class="btn" type="reset " (click)="clear()">اعادة تعيين</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </ng-form>
+    </div>
+  </div>
+
+</div>

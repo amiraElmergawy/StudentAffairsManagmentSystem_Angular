@@ -1,0 +1,103 @@
+
+<div class="full_page">
+    <div *ngIf="studentData && studentFlag" >
+        <app-show-student-assential-data></app-show-student-assential-data>
+        <div class="form_container" *ngIf="programs">
+            <div class="custom_form">
+                <div class="form_section program_section">
+                    <div class="form_row">
+            <label class="form_element" for="programId">البرامج الحالية : </label>
+            <div class="form_element">
+            <select class="select_box" name="programId" id="programId " required [(ngModel)]="programId">
+                <option value="null">اختر البرنامج ...</option>
+                <option *ngFor="let prog of programs; let i = index" value="{{prog?.Id}} ">
+                    {{ prog?.arName }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form_row">
+        <div class="form_element_center form_btn_group_evenly col_span_3">
+            <button class="btn" (click)="testTransfer()">اختبار التحويل</button>
+            <button class="btn btn_create" (click)="transfer()"
+                *ngIf="programId && authorizedList['student.transfer']">
+                تحويل
+            </button>
+        </div>
+    </div>
+        </div>
+            </div>
+        </div>
+        
+        <div  *ngIf="showingTransferDataFlag">
+            
+            <div *ngIf="addedCourses && addedCourses?.length >0" class="container" style="margin-top: 0px;">
+                <table class="custom_table custom_add" role="grid">
+                    <thead class="tpart">
+                        <tr class="trow thead_trow">
+                            <th class="cell thead_cell col_span_4 flex_center_center" colspan="4">المقررات المضافة
+                            </th>
+                        </tr>
+                        <tr class="trow thead_trow">
+                            <td class="cell thead_cell">اسم المقرر</td>
+                            <td class="cell thead_cell">كود المقرر</td>
+                            <td class="cell thead_cell">درجة المقرر</td>
+                            <td class="cell thead_cell">درجة الطالب</td>
+                        </tr>
+                    </thead>
+                    <tbody class="tpart">
+
+                        <tr class="trow tbody_row" *ngFor="let item of addedCourses">
+                            <td class="cell tbody_cell">
+                                {{ item?.course?.arName }}
+                            </td>
+                            <td class="cell tbody_cell">
+                                {{ item?.course?.enCode }}
+                            </td>
+                            <td class="cell tbody_cell">
+                                {{ item?.course?.degree }}
+                            </td>
+                            <td class="cell tbody_cell">
+                                {{ item?.degree }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="deletedCourses && deletedCourses?.length >0" class="container" style="margin-top: 0px;">
+                <table class="custom_table custom_delete" role="grid">
+                    <thead class="tpart">
+                        <tr class="trow thead_trow">
+                            <th class="cell thead_cell col_span_4 flex_center_center" colspan="4">المقررات المحذوفة
+                            </th>
+                        </tr>
+                        <tr class="trow thead_trow">
+                            <td class="cell thead_cell">اسم المقرر</td>
+                            <td class="cell thead_cell">كود المقرر</td>
+                            <td class="cell thead_cell">درجة المقرر</td>
+                            <td class="cell thead_cell">درجة الطالب</td>
+                        </tr>
+                    </thead>
+
+                    <tbody class="tpart">
+
+                        <tr class="trow tbody_row" *ngFor="let item of deletedCourses">
+                            <td class="cell tbody_cell">
+                                {{ item?.course?.arName }}
+                            </td>
+                            <td class="cell tbody_cell">
+                                {{ item?.course?.enCode }}
+                            </td>
+                            <td class="cell tbody_cell">
+                                {{ item?.course?.degree }}
+                            </td>
+                            <td class="cell tbody_cell">
+                                {{ item?.degree }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+</div>

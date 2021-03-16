@@ -1,0 +1,71 @@
+<table *ngIf="studentData" class="custom_table" role="grid">
+
+  <thead class="tpart">
+
+    <tr class="trow thead_row">
+      <th class="cell thead_cell row_span flex_center_center">
+        <img class="image_in_table" src="{{ studentData?.url }}" alt="{{ studentData.enFirstName }}" />
+      </th>
+
+      <th class="cell thead_cell">
+        {{ studentData?.arFullName }}
+      </th>
+
+      <th class="cell thead_cell">
+        <span *ngIf="nationalities">
+          الجنسية :
+          {{ studentNationality }}
+          <!-- {{ studentData?.additionalInfo?.nationalitiesId  | convertIdToName:nationalities:"countryArName" }} -->
+        </span>
+      </th>
+
+      <th class="cell thead_cell">
+        الرقم القومي :
+        {{ studentData?.ssn }}
+      </th>
+    </tr>
+
+  </thead>
+
+  <tbody class="tpart">
+
+    <tr class="trow thead_trow">
+
+      <td class="cell thead_cell"> المستوي :
+        {{ studentData?.level }}
+      </td>
+
+      <td class="cell thead_cell">
+        البرنامج :
+        {{ studentData?.program?.arName }}
+      </td>
+
+      <td class="cell thead_cell">
+        الشعبة :
+        {{ studentData?.major?.arName }}
+      </td>
+
+    </tr>
+
+    <tr class="trow thead_trow">
+      <td class="cell thead_cell col_span">
+        الكود الاكاديمي :
+        {{ studentData?.academicCode }}
+      </td>
+
+      <!--         <td class="cell thead_cell">
+          المرشد الاكاديمي :
+        </td> -->
+
+      <td class="cell thead_cell">
+        <span *ngIf="studentData?.currentTotalHours != 0">
+          المعدل التراكمي :
+          {{ studentData?.currentTotalQP / studentData?.currentTotalHours }}
+        </span>
+      </td>
+
+    </tr>
+
+  </tbody>
+
+</table>

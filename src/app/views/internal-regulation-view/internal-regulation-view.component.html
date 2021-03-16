@@ -1,0 +1,163 @@
+<div class="ir_container">
+
+  <div class="ir_side">
+
+    <div *ngIf="authorizedList">
+      <h2 class="ir_header">اللائحة الداخلية</h2>
+    </div>
+    <div class="side_header_separator"></div>
+
+    <div class="ir_nav_container">
+      <div class="ir_sub_nav_container">
+
+        <div class="ir_sub_nav_header" type="button" (click)="displayCourses()" *ngIf="authflags.courses">
+          مقررات
+        </div>
+
+        <div class="ir_sub_nav" *ngIf="coursesListFlag">
+          <div class="ir_sub_nav_btn" (click)="displayAllCourses()" *ngIf="authorizedList['courses.index']"> عرض جميع المقررات</div>
+          <div class="ir_sub_nav_btn" (click)="displayAddCourse()" *ngIf="authorizedList['courses.store']">اضافة مقرر</div>
+          <div class="ir_sub_nav_btn" (click)="displaySearchCourses()" *ngIf="authorizedList['course.search']">بحث</div>
+        </div>
+
+      </div>
+
+      <div class="ir_sub_nav_container">
+        <div class="ir_sub_nav_header" type="button" (click)="displayDepts()" *ngIf="authflags.depts">
+          اقسام
+        </div>
+
+        <div class="ir_sub_nav" *ngIf="departmentsListFlag">
+          <div class="ir_sub_nav_btn" (click)="displayAllDepartments()" *ngIf="authorizedList['departments.index']">عرض جميع
+            الاقسام</div>
+          <div  class="ir_sub_nav_btn" (click)="displayAddDepartment()" *ngIf="authorizedList['departments.store']">اضافة قسم</div>
+          <div  class="ir_sub_nav_btn" (click)="displaySearchDepartments()" *ngIf="authorizedList['department.search']">بحث</div>
+        </div>
+
+
+      </div>
+
+      <div class="ir_sub_nav_container">
+        <div class="ir_sub_nav_header" type="button" (click)="displayMajors()" *ngIf="authflags.majs">تخصصات</div>
+        <div class="ir_sub_nav" *ngIf="majorsListFlag">
+          <div class="ir_sub_nav_btn" (click)="displayAllMajors()" *ngIf="authorizedList['majors.index']">عرض جميع التخصصات</div>
+          <div class="ir_sub_nav_btn" (click)="displayAddMajor()" *ngIf="authorizedList['majors.store']">اضافة تخصص</div>
+          <div class="ir_sub_nav_btn" (click)="displaySearchMajors()" *ngIf="authorizedList['major.search']">بحث</div>
+        </div>
+      </div>
+
+      <div class="ir_sub_nav_container">
+        <div class="ir_sub_nav_header" type="button" (click)="displayPrograms()" *ngIf="authflags.progs">برامج</div>
+        <div class="ir_sub_nav" *ngIf="programsListFlag">
+          <div class="ir_sub_nav_btn" (click)="displayAllPrograms()" *ngIf="authorizedList['programs.index']">عرض جميع البرامج</div>
+          <div class="ir_sub_nav_btn" (click)="displayAddProgram()" *ngIf="authorizedList['programs.store']">اضافة برنامج</div>
+          <div class="ir_sub_nav_btn" (click)="displaySearchPrograms()" *ngIf="authorizedList['program.search']">بحث</div>
+        </div>
+      </div>
+
+      <div class="ir_sub_nav_container">
+        <div class="ir_sub_nav_header" type="button" (click)="displayDivisions()" *ngIf="authflags.divs">الشُعب</div>
+        <div class="ir_sub_nav" *ngIf="divisionsListFlag">
+          <div class="ir_sub_nav_btn" (click)="displayAllDivisions()" *ngIf="authorizedList['divisions.index']">عرض جميع الشُعب</div>
+          <div class="ir_sub_nav_btn" (click)="displayAddDivision()" *ngIf="authorizedList['divisions.store']">اضافة شعبة</div>
+          <div class="ir_sub_nav_btn" (click)="displaySearchDivisions()" *ngIf="authorizedList['division.search']">بحث</div>
+        </div>
+      </div>
+
+
+      <div class="ir_sub_nav_container">
+        <div class="ir_sub_nav_header" type="button" (click)="displayAccreditation()" *ngIf="authflags.acc">الاعتماد </div>
+        <div class="ir_sub_nav" *ngIf="accreditListFlag">
+          <div class="ir_sub_nav_btn" (click)="goToAccreditation()" *ngIf="authorizedList['course-registrations.accredit']"> اعتماد
+            الدرجات</div>
+          <div class="ir_sub_nav_btn" (click)="cancelAccreditation()" *ngIf="authorizedList['course-registrations.unaccredit']">الغاء اعتماد
+            الدرجات</div>
+        </div>
+      </div>
+
+      <!-- <div class="ir_sub_nav_container">
+        <div class="ir_sub_nav_header" type="button" [(ngModel)]="dropbtn" >تشعيب</div>
+          <div class="ir_sub_nav">
+            <div class="ir_sub_nav_btn" target="frame" routerLinkActive="active" routerLink="/show-all-department">عرض جميع الشعب</div>
+            <div class="ir_sub_nav_btn" target="frame" routerLinkActive="active" routerLink="/add-department">اضافة شعبة</div>
+            <div class="ir_sub_nav_btn" target="frame" routerLinkActive="active" routerLink="/search-department">بحث</div>
+          </div>
+      </div> -->
+
+    </div>
+
+  </div>
+
+  <div class="ir_body">
+    <div *ngIf="showingFlags.displayAllCoursesFlag">
+      <app-course-index></app-course-index>
+    </div>
+    <div *ngIf="showingFlags.displayAddCourseFlag">
+      <app-course></app-course>
+    </div>
+    <div *ngIf="showingFlags.displaySearchCoursesFlag">
+      <app-course-search></app-course-search>
+    </div>
+    <!-- <div *ngIf="showingFlags.displayUpdateCourseFlag">
+        <app-course-update></app-course-update>
+      </div>
+      <div *ngIf="showingFlags.displayShowCourseFlag">
+        <app-course-show></app-course-show>
+      </div> -->
+    <div *ngIf="showingFlags.displayAllDepartmentsFlag">
+      <app-department-index></app-department-index>
+    </div>
+    <div *ngIf="showingFlags.displayAddDepartmentFlag">
+      <app-department></app-department>
+    </div>
+    <div *ngIf="showingFlags.displaySearchDepartmentsFlag">
+      <app-department-search></app-department-search>
+    </div>
+    <!-- <div *ngIf="showingFlags.displayUpdateDepartmentFlag">
+        <app-department-update></app-department-update>
+      </div>
+      <div *ngIf="showingFlags.displayShowDepartmentFlag">
+        <app-department-show></app-department-show>
+      </div> -->
+    <div *ngIf="showingFlags.displayAllMajorsFlag">
+      <app-major-index></app-major-index>
+    </div>
+    <div *ngIf="showingFlags.displayAddMajorFlag">
+      <app-major></app-major>
+    </div>
+    <div *ngIf="showingFlags.displaySearchMajorsFlag">
+      <app-major-search></app-major-search>
+    </div>
+    <!-- <div *ngIf="showingFlags.displayUpdateMajorFlag">
+        <app-major-update></app-major-update>
+      </div>
+      <div *ngIf="showingFlags.displayShowMajorFlag">
+        <app-major-show></app-major-show>
+      </div> -->
+    <div *ngIf="showingFlags.displayAllProgramsFlag">
+      <app-program-index></app-program-index>
+    </div>
+    <div *ngIf="showingFlags.displayAddProgramFlag">
+      <app-program></app-program>
+    </div>
+    <div *ngIf="showingFlags.displaySearchProgramsFlag">
+      <app-program-search></app-program-search>
+    </div>
+    <div *ngIf="showingFlags.displayAllDivisionsFlag">
+      <app-division-index></app-division-index>
+    </div>
+    <div *ngIf="showingFlags.displayAddDivisionFlag">
+      <app-division></app-division>
+    </div>
+    <div *ngIf="showingFlags.displaySearchDivisionsFlag">
+      <app-division-search></app-division-search>
+    </div>
+    <!-- <div *ngIf="showingFlags.displayUpdateProgramFlag">
+        <app-program-update></app-program-update>
+      </div>
+      <div *ngIf="showingFlags.displayShowProgramFlag">
+        <app-program-show></app-program-show>
+      </div> -->
+  </div>
+
+</div>

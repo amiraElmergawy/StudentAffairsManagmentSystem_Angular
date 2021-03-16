@@ -1,0 +1,15 @@
+.custom_table{
+  grid-template-columns: minmax(min-content, 2fr) minmax(min-content, 2fr) 1fr;
+}
+
+h2{
+  text-align: center;
+  margin-bottom: 1em;
+}
+.program_search_section{
+  grid-template-columns: 1fr 1fr 2fr;
+
+}
+.search_btn{
+  margin: 0px 0.5em;
+}

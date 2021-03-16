@@ -1,0 +1,300 @@
+<h2 class="h">عرض بيانات الطالب</h2>
+<div *ngIf="studentData" class="container">
+
+  <div class="show_class">
+    <div class="show_cont">
+      <div class="one_block">
+        <div class="small_block" *ngIf="studentData.url" style="justify-content: center; align-items: center;">
+          <img class="photo" src={{studentData.url}} alt={{studentData.enFirstName}}>
+        </div>
+        <div class="small_block">
+          الاسم بالعربية
+          <span class="inline">
+            {{studentData.arFullName}}
+          </span>
+        </div>
+        <div class="small_block">
+          الاسم بالانجليزية
+          <span class="inline english_direction">
+            {{studentData.enFullName}}
+          </span>
+        </div>
+        <div class="small_block">
+          المستوي
+          <span class="inline">
+            {{studentData.level}}
+          </span>
+        </div>
+        <div class="small_block">
+          المعدل التراكمي
+          <span class="inline">
+            <span *ngIf="studentData.currentTotalHours != 0">
+              {{ +studentData?.currentTotalQP / +studentData?.currentTotalHours }}
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="one_block">
+        <div class="small_block">
+          الرقم القومى
+          <span class="inline">
+            {{studentData.ssn}}
+          </span>
+        </div>
+        <div class="small_block">
+          الكود الاكاديمى
+          <span class="inline">
+            {{studentData.academicCode}}
+          </span>
+        </div>
+        <div class="small_block">
+          القسم التابع له
+          <span class="inline">
+            {{studentData.department.arName}}
+          </span>
+        </div>
+        <div class="small_block">
+          البرنامج التابع له
+          <span class="inline">
+            {{studentData.program.arName}}
+          </span>
+        </div>
+        <div class="small_block">
+          التخصص التابع له
+          <span class="inline">
+            {{studentData?.major?.arName}}
+          </span>
+        </div>
+      </div>
+
+      <!-- <td *ngIf="studentData.url">صورة الطالب </td> -->
+      <!-- <td>بيانات الطالب</td>
+                    <td *ngIf="studentData.additionalInfo">بيانات اضافية</td>
+                    <td *ngIf="studentData.highSchool"> بيانات الثانوية العامة</td>
+                    <td *ngIf="studentData.specialRegistartion">بيانات للتسجيل الخاص</td>
+                    <td class="special_width"></td> -->
+
+
+
+    </div>
+    <div class="show_cont">
+      <div class="one_block" *ngIf="studentData.additionalInfo">
+        <div class="small_block">
+          تاريخ الميلاد
+          <span class="inline">
+            {{studentData.additionalInfo.birthDate}}
+          </span>
+        </div>
+        <div class="small_block">
+          مكان الميلاد
+          <span class="inline">
+            {{studentData.additionalInfo.birthPlace}}
+          </span>
+        </div>
+
+        <div class="small_block">
+          العنوان
+          <span class="inline">
+            {{studentData.additionalInfo.address}}
+          </span>
+        </div>
+        <div class="small_block">
+          الديانة
+          <span class="inline">
+            {{studentData.additionalInfo.religion}}
+          </span>
+        </div>
+      </div>
+
+      <div class="one_block" *ngIf="studentData.additionalInfo">
+        <div class="small_block">
+          اسم الام
+          <span class="inline">
+            {{studentData.additionalInfo.motherName}}
+          </span>
+        </div>
+        <div class="small_block">
+          وظيفة الاب
+          <span class="inline">
+            {{studentData.additionalInfo.fatherProfession}}
+          </span>
+        </div>
+
+        <div class="small_block">
+          التليفون الارضي
+          <span class="inline">
+            {{studentData.additionalInfo.landPhone}}
+          </span>
+        </div>
+        <div class="small_block">
+          الموبيل
+          <span class="inline">
+            {{studentData.additionalInfo.mobile}}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="show_cont">
+      <div class="one_block" *ngIf="studentData.highSchool">
+        <div class="small_block">
+          رقم الجلوس
+          <span class="inline">
+            {{studentData.highSchool.hSSeatNumber}}
+          </span>
+        </div>
+        <div class="small_block">
+          مجموع الدرجات
+          <span class="inline">
+            {{studentData.highSchool.hSGrade}}
+          </span>
+        </div>
+        <div class="small_block">
+          الدرجة بعد اضافة المستوي الرفيع
+          <span class="inline">
+            {{studentData.highSchool.hSGradePlus}}
+          </span>
+        </div>
+        <div class="small_block">
+          اسم المدرسة
+          <span class="inline">
+            {{studentData.highSchool.hSName}}
+          </span>
+        </div>
+        <div class="small_block">
+          عام التخرج
+          <span class="inline">
+            {{studentData.highSchool.hSGradeYear}}
+          </span>
+        </div>
+
+      </div>
+      <div class="one_block" *ngIf="studentData.specialRegistartion">
+        <div>
+
+          <span *ngIf="studentData.specialRegistartion.wafed != 0 else elseTemplate">
+            <div class="small_block">
+              وافد من
+              <span class="inline">
+                {{studentData.specialRegistartion?.wafedFrom}}
+              </span>
+            </div>
+            <!--  وافد -->
+            <!-- : {{studentData.specialRegistartion.wafed}} -->
+          </span>
+          <ng-template #elseTemplate>
+            <div class="small_block">
+              <span class="inline">
+                غير وافد
+              </span>
+            </div>
+          </ng-template>
+          <span *ngIf="studentData.specialRegistartion?.transferred != 0 else elseTemplate2">
+            <div class="small_block">
+              جهة النقل
+              <span class="inline">
+                {{studentData.specialRegistartion?.transferredFrom}}
+              </span>
+            </div>
+          </span>
+          <ng-template #elseTemplate2>
+            <div class="small_block">
+
+              <span class="inline flex_center_center">
+                غير منقول
+              </span>
+            </div>
+          </ng-template>
+          <span *ngIf="studentData.specialRegistartion?.registrationTransferred != 0 else elseTemplate3">
+            <!-- <div class="small_block">
+              تسجيل النقل
+              <span class="inline">
+                {{studentData.specialRegistartion?.registrationTransferred}}
+              </span>
+            </div> -->
+            <div class="small_block">
+              محول من
+              <span class="inline">
+                {{studentData.specialRegistartion?.registrationTransferredFrom}}
+              </span>
+            </div>
+          </span>
+          <ng-template #elseTemplate3>
+            <div class="small_block">
+
+              <span class="inline flex_center_center">
+                غير محول </span>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+    <div class="show_cont">
+      <div class="one_block">
+        <div class="small_block" *ngIf="authorizedList['course-registrations.store'] ||
+            authorizedList['course-registrations.destroy'] ||
+            authorizedList['course-registrations.index']">
+          عمليات خاصة بتسجيل المقررات
+          <span class="inline" style="background-color: transparent;">
+            <a [routerLink]="[ '/show-all-registered-courses-for-student/', studentData.id] "
+              *ngIf="authorizedList['course-registrations.index']">
+              المقررات المسجلة
+            </a>
+            <a [routerLink]="[ '/register-courses-for-student/', studentData.id] "
+              *ngIf="authorizedList['course-registrations.store']">تسجيل مواد</a>
+
+            <a [routerLink]="[ '/manage-hours-balance-for-student/', studentData.id] "
+              *ngIf="authorizedList['student.manage-hours-balance']">
+              ادارة رصيد الساعات
+            </a>
+
+            <a [routerLink]="['/academic-record/',studentData.id]" *ngIf="authorizedList['student.academic_record']">
+              السجل الاكاديمى</a>
+          </span>
+        </div>
+      </div>
+      <div class="one_block">
+        <div class="small_block" *ngIf="authorizedList['student.manage-hours-balance'] ||
+            authorizedList['student.bills'] || authorizedList['student.add_bill']">
+          عمليات اخري
+          <span class="inline" style="background-color: transparent;">
+
+            <a [routerLink]="[ '/show-all-bills-for-student/', studentData.id ]"
+              *ngIf="authorizedList['student.bills']">عرض جميع الايصالات</a>
+            <a [routerLink]="[ '/create-bill-for-student/', studentData.id ]"
+              *ngIf="authorizedList['student.add_bill']">اضافة ايصال</a>
+
+            <a [routerLink]="[ '/military-serivce-for-student/', studentData.id] "
+              *ngIf="authorizedList['student.military-service'] && studentData.gender == 1">
+              الخدمة العسكرية</a>
+
+            <a [routerLink]="[ '/transfer-student-to-program/', studentData.id] "
+              *ngIf="authorizedList['student.transfer']">
+              تحويل </a>
+
+            <a [routerLink]="[ '/register-to-program-student/', studentData.id ]"
+              *ngIf="authorizedList['student.programRegister']">
+              تشعيب</a>
+            <a [routerLink]="[ '/update-registeration-to-program-of-student/', studentData.id ]"
+              *ngIf="authorizedList['program_registration.update'] || authorizedList['program_registration.delete']">تعديل
+              التشعيب</a>
+
+            <a [routerLink]="[ '/edit-training-for-student/', studentData.id] " *ngIf="authorizedList['student.delete-training'] ||
+                        authorizedList['student.trainings']">
+              عرض التدريبات
+            </a>
+            <a [routerLink]="[ '/create-trainning-for-student/', studentData.id] "
+              *ngIf="authorizedList['student.add-training']">
+              اضافة تدريب
+            </a>
+
+          </span>
+        </div>
+      </div>
+    </div>
+    <button [routerLink]="[ '/update-student/', studentData.id] " class="btn"
+      *ngIf="authorizedList['students.update'] || authorizedList['students.destroy']">
+      تحديث البيانات
+    </button>
+  </div>
+</div>

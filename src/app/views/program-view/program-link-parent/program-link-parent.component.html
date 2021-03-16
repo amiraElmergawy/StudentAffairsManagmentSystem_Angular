@@ -1,0 +1,31 @@
+<div class="full_page">
+  <div class="form_container">
+    <div class="custom_form">
+      <div class="form_header_container">
+        <h2 class="form_header">ربط البرنامج بما يسبقه في التشعيب</h2>
+      </div>
+
+      <div class="form_section link_parent_section" *ngIf="programs && this.programs?.length > 0">
+
+        <div class="form_row">
+          <label class="form_element" for="parentId">اختر البرنامج للربط</label>
+          <div class="form_element">
+            <select class="select_box" name="parentId" id="parentId" [(ngModel)]="parentId">
+              <option value='null'>اختر البرنامج ..</option>
+              <option *ngFor="let item of programs" value="{{item.Id}}">
+                {{item.arName}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form_row">
+          <div class="form_element col_span_2" *ngIf="parentId && parentId.toString() != 'null'">
+            <button class="btn btn_create" (click)="link()">ربط</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+.custom_table {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+
+.col_span_deg {
+    grid-column: 3 / span 5;
+    justify-content: center;
+  }
+
+.col_span_hour {
+    grid-column: 9 / span 3;
+    justify-content: center;
+  }
+  .thead_cell{
+
+    height: auto !important;
+  }
+
+.row_span {
+    grid-row: 1 / span 2;
+  }
+
+.col_9 {
+    grid-column: 8 / span 1;
+  }
+
+.col_13 {
+    grid-column: 12 / span 1;
+  }

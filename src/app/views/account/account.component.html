@@ -1,0 +1,43 @@
+<div class="form_container">
+  <ng-form [formGroup]="changePassForm">
+    <div class="custom_form">
+      <div class="form_header_container">
+        <h2 class="form_header">الحساب الشخصي</h2>
+      </div>
+      <div class="form_section account_section">
+        <div class="form_row">
+
+          <label class="form_element" for="oldPassword">كلمة السر القديمة</label>
+          <div class="form_element">
+            <div class="form_element">
+              <input class="text_input english_direction" type="text" name="oldPassword" id="oldPassword"
+                formControlName="oldPassword">
+              <span *ngIf="!changePassForm.get('oldPassword').valid && changePassForm.get('password').touched" class="help-block">
+                <span class="requierd" *ngIf="changePassForm.get('oldPassword').errors['required']">هذا الحقل مطلوب</span>
+                <span class="warning" *ngIf="changePassForm.get('oldPassword').errors['minlength']">يجب كتابة 8 احرف علي الاقل</span>
+              </span>
+            </div>
+          </div>
+
+          <label for="password" class="form_element">كلمة السر الجديدة</label>
+          <div class="form_element">
+            <input class="text_input english_direction" type="text" id="password" name="password"
+              formControlName="password">
+            <span *ngIf="!changePassForm.get('password').valid && changePassForm.get('password').touched" class="help-block">
+              <span class="requierd" *ngIf="changePassForm.get('password').errors['required']">هذا الحقل مطلوب</span>
+              <span class="warning" *ngIf="changePassForm.get('password').errors['minlength']">يجب كتابة 8 احرف علي الاقل</span>
+            </span>
+          </div>
+
+        </div>
+        <div class="form_row">
+          <div class="form_elment flex_center_center">
+            <button class="btn btn_create" type="submit" (click)="changPass()" [disabled]="!changePassForm.valid">
+              تغيير كلمة المرور
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-form>
+</div>

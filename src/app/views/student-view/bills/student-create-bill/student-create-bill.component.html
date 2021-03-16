@@ -1,0 +1,170 @@
+<div class="container"> 
+    <div class="form">
+      <!-- <br /><flash-messages></flash-messages><br /> -->
+      <ng-form [formGroup]="billForm">
+        <div>
+          <label for="billNumber">رقم الايصال : </label><br />
+          <input
+            type="number"
+            id="billNumber"
+            name="billNumber"
+            formControlName="billNumber"
+            required
+          />
+          <span
+            *ngIf="
+              ! billForm.get('billNumber').valid &&
+               billForm.get('billNumber').touched
+            "
+          >
+            <span *ngIf=" billForm.get('billNumber').errors['required']"
+              class="requierd">هذا الحقل مطلوب
+            </span>
+            <span *ngIf=" billForm.get('billNumber').errors['pattern']" class="warning">
+              لا يسمح بادخال علامات 
+            </span>
+          </span><br>
+          <!-- <label for="paymentDate">تاريخ الدفع : </label>
+          <input
+            type="date"
+            id="paymentDate"
+            class="form-control"
+            name="paymentDate"
+            formControlName="paymentDate"
+            required
+          />
+          <span
+            *ngIf="
+              ! billForm.get('paymentDate').valid &&
+               billForm.get('paymentDate').touched
+            "
+          >
+            <span *ngIf=" billForm.get('paymentDate').errors['required']"
+             class="requierd" >
+             هذا الحقل مطلوب
+            </span>
+          </span> -->
+          <label for="billTotal">قيمة الايصال : </label>
+          <input
+            type="number"
+            id="billTotal"
+            class="form-control"
+            name="billTotal"
+            formControlName="billTotal"
+            required
+          />
+          <span
+            *ngIf="
+              ! billForm.get('billTotal').valid &&
+               billForm.get('billTotal').touched
+            "
+          >
+            <span *ngIf=" billForm.get('billTotal').errors['required']"
+              class="requierd">
+              هذا الحقل مطلوب
+            </span>
+            <span *ngIf=" billForm.get('billTotal').errors['pattern']"
+            class="warning">
+            لا يسمح بكتابة علامات غير .
+          </span>
+          </span><br>
+          <label for="billData">بيانات الايصال : </label>
+          <input
+            type="text"
+            id="billData"
+            class="form-control"
+            name="billData"
+            formControlName="billData"
+            required
+          />
+          <span
+            *ngIf="
+              ! billForm.get('billData').valid &&
+               billForm.get('billData').touched
+            "
+          >
+            <span *ngIf=" billForm.get('billData').errors['required']"
+              class="requierd">
+              هذا الحقل مطلوب
+            </span>
+        </span><br>
+        <label for="academicYear"> العام الدراسي : </label><br />
+        <input
+          type="text"
+          id="academicYear"
+          name="academicYear"
+          formControlName="academicYear"
+          required
+        />
+        
+        <span
+          *ngIf="
+            ! billForm.get('academicYear').valid &&
+             billForm.get('academicYear').touched
+          "
+        >
+          <span *ngIf=" billForm.get('academicYear').errors['required']"
+            class="requierd">
+            هذا الحقل مطلوب
+          </span>
+          <span *ngIf=" billForm.get('academicYear').errors['pattern']"
+           class="warning">
+           يجب ان يكون شكل العام الدراسي 2009-2010
+          </span>
+        </span><br>
+        <label for="relativeSemester">الفصل الدراسي : </label>
+        <select id="relativeSemester" name="relativeSemester" formControlName="relativeSemester">
+            <option value=null>اختر ...</option>
+            <option *ngFor="let semester of semesters ; let i = index" value="{{i+1}}">
+                {{semester}}
+            </option>
+        </select>
+        <span
+          *ngIf="
+            ! billForm.get('relativeSemester').valid &&
+             billForm.get('relativeSemester').touched
+          "
+        ><br/>
+          <span *ngIf=" billForm.get('relativeSemester').errors['required']"
+            class="requierd">
+            هذا الحقل مطلوب
+          </span>
+        </span><br>
+        <label for="paymentType">نوع وصل الدفع : </label>
+        <select id="paymentType" name="paymentType" formControlName="paymentType">
+            <option value=null>اختر ...</option>
+            <option *ngFor="let paymentType of paymentTypes ; let i=index" value="{{i+1}}">
+                {{paymentType}}
+            </option>
+        </select>
+        <span
+          *ngIf="
+            ! billForm.get('paymentType').valid &&
+             billForm.get('paymentType').touched
+          "
+        >
+          <span *ngIf=" billForm.get('paymentType').errors['required']"
+            class="requierd">
+            هذا الحقل مطلوب
+          </span>
+        </span><br><br>
+        <span
+            *ngIf="! billForm.valid &&  billForm.touched"
+            
+            class="requierd">يجب ادخال جميع البيانات صحيحة
+          </span>
+		  <div class="button_block">
+          <div *ngIf=" billForm.valid &&  billForm.touched">
+            <button type="submit" (click)="create()">
+              اضافة
+            </button>
+          </div>
+          <div *ngIf=" billForm.touched">
+            <button (click)="clear()">اعادة التعيين</button>
+          </div>
+		  </div>
+          <!--[disabled]="refName.valid "-->
+        </div>
+      </ng-form>
+    </div>
+</div>

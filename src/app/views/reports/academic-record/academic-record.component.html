@@ -1,0 +1,71 @@
+<div class="container-fluid">
+  <div class="student-info">
+    <div class="card">
+      <div class="card-body">
+
+        <h3 class="card-title text-center">Academic Record</h3>
+        <div class="row">
+          <div class="col-3">
+            <img src="{{studentData?.image_url}}" class="img-thumbnail" alt="{{studentData?.full_en_name}}">
+          </div>
+          <div class="col-9">
+            <strong>Name:</strong>{{studentData?.full_en_name}} <br>
+            <div class="row">
+              <div class="col-6">
+                <strong>Program:</strong>{{studentData?.program?.en_name}}<br>
+                <strong>Level: </strong>{{studentData?.current_level}}<br>
+              </div>
+              <div class="col-6">
+                <strong>Academic code: </strong>{{studentData?.academic_code}}<br>
+                <strong>National ID: </strong>{{studentData?.ssn}}<br> </div>
+            </div>
+          </div>
+        </div>
+
+        <button id="print" type="button" class="btn btn-outline-success float-right" (click)="print()">طباعة</button>
+
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" #academicRecord>
+    <div *ngFor="let item of record | keyvalue">
+      <h2> {{item?.key?.substr(0,item?.key?.length-2)}}
+        {{ this?.getSemester(item?.key?.slice(-1))}}</h2>
+      <table class="table" id="table" #table>
+        <thead class="thead-dark">
+          <tr>
+            <th>Course name</th>
+            <th>Course code</th>
+            <th>Credit hours</th>
+            <th>QP</th>
+            <th>Grade</th>
+            <th>Degree</th>
+            <th>percent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let course of item?.value?.courses |keyvalue">
+            <td>{{course?.value?.course_name}}</td>
+            <td>{{course?.value?.course_code}}</td>
+            <td>{{course?.value?.CH}}</td>
+            <td>{{course?.value?.QP}}</td>
+            <td>{{course?.value?.GL}}</td>
+            <td>{{course?.value?.score}}</td>
+            <td>{{course?.value?.percent + '%'}}</td>
+          </tr>
+
+        </tbody>
+        <tfoot>
+          <tr class="bg-dark text-light">
+            <td colspan="1">S?.GPA: {{item?.value?.sGPA}} ({{item?.value?.sGrade?.en_code}}) {{item?.value?.sGrade?.en_grade}}
+            </td>
+            <td colspan="2">semester hours: {{item?.value?.sHours}}</td>
+            <td colspan="2">C?.GPA: {{item?.value?.CGPA}} ({{item?.value?.CGrade?.en_code}}) {{item?.value?.CGrade?.en_grade}}
+            </td>
+            <td colspan="2">total hours: {{item?.value?.CHours}} </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

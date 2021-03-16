@@ -1,0 +1,118 @@
+<div class="full_page">
+  <div class="form_container">
+    <div class="custom_form">
+      <ng-form>
+        <div class="form_section student_search_section">
+
+          <div class="form_row">
+            <label class="form_element" for="courseSearch">بحث بواسطة</label>
+            <div class="form_element">
+              <ng-multiselect-dropdown [placeholder]="'اختر طريقة البحث'" [data]="searchWays" name="searchway"
+                [(ngModel)]="choiseIndex" [settings]=" dropdownSettings" (onSelect)="onItemSelect($event) "
+                (onDeSelect)="onItemDeSelect() " required>
+              </ng-multiselect-dropdown>
+            </div>
+
+
+            <div class="form_element" *ngIf="!selectFlag">
+              <input class="text_input" id="searchValue " name="searchValue" type="text" [(ngModel)]="searchValue"
+                placeholder="بحث ......." required> <br><br>
+            </div>
+
+            <div class="form_row">
+              <div class="form_element" *ngIf="selectFlag">
+                <select class="select_box" name="searchValue" id="searchValue" [(ngModel)]="searchValue" required>
+                  <option value="null">اختر {{choiseIndex}} ....</option>
+                  <option *ngFor="let item of selectData" value="{{item.id}}">{{ item.arName }}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form_row">
+              <div class="form_element col_span_3">
+                <button class="btn search_btn" type="submit" (click)="search()"
+                  [disabled]="!searchValue || !choiseIndex || searchValue == 'null'">
+                  بحث
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="search">
+          <!-- <select name="searchway" id="searchWay " [(ngModel)]="choiseIndex" (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)" required>
+                <option *ngFor="let way of searchWays; let i=index"value="{{i}} ">{{ way }}</option>
+            </select> -->
+
+
+        </div>
+
+      </ng-form>
+    </div>
+  </div>
+
+  <div class="form_row" *ngIf="searchingResults?.length != 0 && searchingResults != null" class="container">
+    <h2 style="text-align:center">نتائج البحث</h2>
+    <table class="table-h">
+      <thead>
+        <td>صورة الطالب </td>
+        <td>بيانات الطالب</td>
+        <td>المستوى</td>
+        <td> الشعبة التابع لها</td>
+        <td>عرض</td>
+        <td class="special_width" *ngIf="studentLinkFlag">عمليات خاصة بالطالب</td>
+      </thead>
+      <tr *ngFor="let searchingResult of searchingResults">
+        <td class="photo " *ngIf="studentLinkFlag; else elseTemplate">
+          <a [routerLink]="[ '/show-student/', searchingResult.id] ">
+            <img src={{searchingResult.url}} alt="{{searchingResult.enFirstName}}" />
+          </a>
+        </td>
+        <ng-template #elseTemplate>
+          <td class="photo ">
+            <img src={{searchingResult.url}} alt="{{searchingResult.enFirstName}}" />
+          </td>
+        </ng-template>
+        <a [routerLink]="[ '/show-student/', searchingResult.id] " *ngIf="studentLinkFlag; else elseTemplate1">
+          <td>
+            الاسم : <b>{{searchingResult.arFullName}}</b><br>
+            <br> الرقم القومى: {{searchingResult.ssn}} <br>
+            <br> الكود الاكاديمى:{{searchingResult.academicCode}}
+            <!--waiting to know the way to get this-->
+          </td>
+        </a>
+        <ng-template #elseTemplate1>
+          <td>
+            الاسم : <b>{{searchingResult.arFullName}}</b><br>
+            <br> الرقم القومى: {{searchingResult.ssn}} <br>
+            <br> الكود الاكاديمى:{{searchingResult.academicCode}}
+          </td>
+        </ng-template>
+
+        <td>{{searchingResult.level}}</td>
+        <td> {{searchingResult.program.arName}}</td>
+        <td><a [routerLink]="['/academic-record/',searchingResult.id]" class="special_width"
+            *ngIf="authorizedList['student.academic_record']">
+            السجل الاكاديمى</a>
+          </td>
+        <td *ngIf="studentLinkFlag">
+          <a [routerLink]="[ '/register-courses-for-student/', searchingResult.id]"
+            *ngIf="authorizedList['course-registrations.store']">تسجيل مواد</a>
+          <br><br>
+          <a [routerLink]="[ '/delete-registered-course/', searchingResult.id]"
+            *ngIf="authorizedList['course-registrations.destroy']">حذف مواد</a>
+          <br><br>
+          <a [routerLink]="[ '/show-student/', searchingResult.id] " *ngIf="studentLinkFlag">عمليات اخري</a>
+        </td>
+      <!-- </ng-template> -->
+
+    </tr>
+  </table>
+</div>
+<div *ngIf="searchingResults?.length == 0">
+  <div style="text-align: center;" class="requierd">
+    هذه البيانات غير موجودة
+    يرجي التأكد من قيمة البحث
+  </div>
+
+</div>

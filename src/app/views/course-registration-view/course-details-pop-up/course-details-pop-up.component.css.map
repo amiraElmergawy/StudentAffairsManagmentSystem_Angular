@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "course-details-pop-up.component.scss"
+    ],
+    "names": [],
+    "file": "course-details-pop-up.component.css"
+}

@@ -1,0 +1,20 @@
+.custom_table{
+    grid-template-columns: minmax(min-content, 2fr) minmax(min-content, 2fr) 1.2fr 1.5fr 1.5fr 1fr 1.5fr;
+    width: 95%;
+  }
+
+h2{
+    text-align: center;
+    margin-bottom: 1em;
+  }
+
+.dept_search_section{
+  grid-template-columns: 1fr 1fr 2fr;
+}
+// .full_page{
+//   display: flex;
+//   flex-flow: column nowrap;
+//   justify-content: stretch;
+//   align-items: center;
+// }
+

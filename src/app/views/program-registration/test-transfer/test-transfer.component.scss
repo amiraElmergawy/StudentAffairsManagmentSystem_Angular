@@ -1,0 +1,16 @@
+    .custom_add {
+        grid-template-columns: minmax(min-content, 2fr) 1fr 1fr 1fr;
+    }
+
+    .custom_delete {
+        grid-template-columns: minmax(min-content, 2fr) 1fr 1fr 1fr;
+    }
+
+
+    .program_section {
+        grid-template-columns: 1fr 2fr 2fr;
+    }
+
+    .tables_section {
+        grid-template-columns: 3fr 3fr;
+    }

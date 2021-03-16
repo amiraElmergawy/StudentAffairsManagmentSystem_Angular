@@ -1,0 +1,252 @@
+<div *ngIf="registrationStatus == true" class="full_page">
+  <h2 style="text-align: center;">تسجيل مواد الطالب</h2>
+  <div *ngIf="studentData" class="full_page">
+    <!-- <br /><flash-messages></flash-messages><br /> -->
+    <table class="trow" frame="vsides">
+      <thead class="trow">
+        <!-- <td class="im">
+          <img src="{{ studentData?.url }}" width="100px" height="100px" alt="{{ studentData.enFirstName }}" />
+        </td>
+        <td>
+          {{ studentData?.arFullName }}
+          <br /><br />
+          {{ studentData?.level }} <br /><br />
+          {{ studentData?.academicCode }}
+        </td>
+
+        <td>
+          <span *ngIf="nationalities">
+            {{studentNationality}}
+             {{ studentData?.additionalInfo?.nationalitiesId  | convertIdToName:nationalities:"countryArName" }}
+          </span>
+          <br /><br />
+          {{ studentData?.program?.arName }} <br /><br />
+          اسم المرشد الاكاديمي
+        </td>
+        <td>
+          {{ studentData?.ssn }}
+          <br /><br />
+          {{ studentData?.major?.arName }} <br /><br />
+          {{ studentData?.currentTotalQP / studentData?.currentTotalHours }}
+        </td> -->
+        <app-show-student-assential-data></app-show-student-assential-data>
+
+      </thead>
+      <tbody class="course_reg_page">
+        <tr>
+          <td colspan="4">
+            <div class="container">
+              <table class="cont_table">
+                <tbody>
+                  <td>
+                    <div class="container" *ngIf="courses">
+                      <table class="table-h">
+                        <thead>
+                          <td colspan="6">المقررات المتاحة</td>
+                        </thead>
+                        <tr>
+                          <td colspan="6">
+                            <select name="filteringWay " placeholder="طريقة البحث" id="filteringWay "
+                              [(ngModel)]="filteringWay" required>
+                              <option *ngFor="let way of filteringWays; let i = index" value="{{ i }}">{{ way }}
+                              </option>
+                            </select><input type="text" [(ngModel)]="filteredValue" name="filteredValue"
+                              style="width: 250px;" placeholder="بحث......" />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>اسم المقرر</td>
+                          <td>كود المقرر</td>
+                          <td>متطلب سابق</td>
+                          <td>عدد الوحدات</td>
+                          <td style="width: 120px;"></td>
+                        </tr>
+                        <tr *ngFor="let course of courses | filter: filteredValue:filteringWay">
+                          <td>
+                            <div *ngIf="course.available == 1">
+                              <input class="form-check-input" (change)="onChange(course, $event.target.checked)"
+                                name="{{ course.arName }}" type="checkbox" id="{{ course.arName }}" />
+                            </div>
+                            <!-- it means that student can register this course if it availablefor him-->
+
+                          </td>
+                          <td>
+                            <label class="form-check-label" for="{{ course.arName }}">
+                              {{ course.arName }}
+                            </label>
+
+                            <!-- <ng-template #elseTemplate2>
+                          {{course.arName}}
+                        </ng-template> -->
+                          </td>
+                          <td>
+                            <!-- <div *ngIf="course.available == 1; else elseTemplate2">
+                    <input
+                        class="form-check-input"
+                        (change)="onChange(course, $event.target.checked)"
+                        name="{{ course.enCode }}"
+                        type="checkbox"
+                        id="{{ course.enCode }}"
+                      />
+
+                    </div>it means that student can register this course if it availablefor him
+                    <ng-template #elseTemplate2>
+                      {{ course.enCode }}
+                    </ng-template> -->
+                            <label class="form-check-label" for="{{ course.arName }}">
+                              {{ course.enCode }}
+                            </label>
+                          </td>
+                          <!-- <td>{{ course.enCode }}</td> -->
+                          <label class="form-check-label" for="{{ course.arName }}">
+                            <td>
+                              <div *ngIf="course?.prePackages.length > 0; else elseTemplate">
+                                (
+                                <span *ngFor="let prePackage of course.prePackages">
+                                  <span *ngFor="let course of prePackage.courses; let i = index">
+                                    <div *ngIf="
+                              prePackage.coursesOperation &&
+                                (i + 1) < prePackage.courses.length;
+                              else elseTemplate1
+                            ">
+                                      {{ prePackage.courses[i].enCode }}<br />
+                                      {{ prePackage.coursesOperation | coursesOpPipe}}
+                                      <!-- {{ prePackage.courses[i + 1].enCode }}<br />
+                                      {{ prePackage.coursesOperation | coursesOpPipe }} -->
+                                    </div>
+                                    <ng-template #elseTemplate1>
+                                      {{ prePackage.courses[i].enCode }}
+                                    </ng-template>
+                                  </span>
+                                  <span *ngIf="course.prePackages.length > 1">
+                                    )
+                                    {{ prePackage.operationWithNext | coursesOpPipe }}
+                                    (
+                                  </span>
+                                </span>
+                                )
+                              </div>
+                              <ng-template #elseTemplate>
+                                _
+                              </ng-template>
+                            </td>
+                          </label>
+                          <td>
+                            <label class="form-check-label" for="{{ course.arName }}">
+                              {{ course.hours }}
+                            </label>
+                          </td>
+                          <td>
+                            <div>
+                              <a class="btn" (click)="showCourseDetails(course)" href={{popUpLink}}>؟</a>
+                            </div>
+                            <div *ngIf="popUpFlag">
+                              <div class="overlay" id="popup1">
+                                <div class="popup">
+                                  <button class="close" (click)="closePopUp()">&times;</button><br>
+                                  <h2>تفاصيل المقرر</h2>
+                                  <br>
+                                  <div class="content">
+                                    <app-course-details-pop-up></app-course-details-pop-up>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </td>
+
+                  <td class="custom_td">
+                    <div class="second_table" *ngIf="showSelectedCourses?.length > 1">
+                      <table class="table-h">
+                        <thead>
+                          <td colspan="4">المقررات المسجلة</td>
+                        </thead>
+                        <tr>
+                          <td>اسم المقرر</td>
+                          <td>كود المقرر</td>
+                          <td>متطلب سابق</td>
+                          <td>عدد الوحدات</td>
+                        </tr>
+                        <tr class="form-check" *ngFor="let course of showSelectedCourses; let i = index">
+                          <td *ngIf="i + 1 < showSelectedCourses.length">
+                            {{ showSelectedCourses[i + 1]?.arName }}
+                          </td>
+                          <td *ngIf="i + 1 < showSelectedCourses.length">
+                            {{ showSelectedCourses[i + 1]?.enCode }}
+                          </td>
+                          <td *ngIf="i + 1 < showSelectedCourses.length">
+                            <div *ngIf="
+                      showSelectedCourses[i + 1]?.prePackages.length > 0;
+                      else elseTemplate
+                    ">
+                              (
+                              <span *ngFor="
+                        let prePackage of showSelectedCourses[i + 1].prePackages
+                      ">
+                                <span *ngFor="let course of prePackage.courses; let i = index">
+                                  <div *ngIf="
+                            prePackage.coursesOperation &&
+                              (i + 1) < prePackage.courses.length;
+                            else elseTemplate1
+                          ">
+                                    {{ prePackage.courses[i].enCode }}<br />
+                                    {{ prePackage.coursesOperation | coursesOpPipe }}
+                                    <!-- {{ prePackage.courses[i + 1].enCode }}<br />
+                                    {{ prePackage.coursesOperation | coursesOpPipe }} -->
+                                  </div>
+                                  <ng-template #elseTemplate1>
+                                    {{ prePackage.courses[i].enCode }}
+                                  </ng-template>
+                                </span>
+                                <span *ngIf="
+                          showSelectedCourses[i + 1]?.prePackages?.length > 1
+                        ">
+                                  )
+                                  {{ prePackage.operationWithNext | coursesOpPipe }}
+                                  (
+                                </span>
+                              </span>
+                              )
+                            </div>
+                            <ng-template #elseTemplate>
+                              _
+                            </ng-template>
+                          </td>
+                          <td *ngIf="i + 1 < showSelectedCourses.length">
+                            {{ showSelectedCourses[i + 1]?.hours }}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="2">اجمالي عدد الوحدات : {{ unitsNo }}</td>
+                          <td colspan="2">المتبقي علي الحد الاقصي : {{ restUnitsNo }}</td>
+                        </tr>
+                      </table>
+                    </div>
+                  </td>
+                </tbody>
+              </table>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="flex_center_center">
+            <span
+              *ngIf="showSelectedCourses.length > 1 && restUnitsNo >= 0 && authorizedList['course-registrations.store']">
+              <button class="btn btn_create" (click)="saveRegistration()">تسجيل</button>
+            </span>
+          </td>
+          <td>
+            <!-- <button class="create" (click)="clear()">إعادة تعيين</button> -->
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>

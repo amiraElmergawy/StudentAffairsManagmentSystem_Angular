@@ -1,0 +1,26 @@
+<div class="full_page">
+
+  <h2>التدريبات الحالية</h2>
+
+  <div class="cutom_container">
+    <table class="custom_table" role="grid">
+      <thead class="tpart">
+        <tr class="trow thead_trow">
+          <th class="cell thead_cell">جهة التدريب</th>
+          <th class="cell thead_cell">موضوع التدريب</th>
+          <th class="cell thead_cell" *ngIf="authorizedList['student.trainings']"></th>
+        </tr>
+      </thead>
+      <tbody class="tpart">
+        <tr class="trow tbody_row" *ngFor="let training of currentTrainings">
+          <td class="cell tbody_cell">{{training.place}}</td>
+          <td class="cell tbody_cell">{{training.topic}}</td>
+          <td class="cell tbody_cell" *ngIf="authorizedList['student.trainings']">
+            <button class="btn btn_delete" (click)="delete(training.id)">مسح</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

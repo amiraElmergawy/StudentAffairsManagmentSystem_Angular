@@ -1,0 +1,61 @@
+<div class="full_page">
+  <ng-form [formGroup]="divisionForm" class="form">
+    <div class="custom_form">
+      <div class="form_section division_search_section">
+        <div class="form_row">
+
+          <label class="form_element" for="searchValue">إسم الشعبة :</label>
+          <div class="form_element">
+            <input class="text_input" type="text" id="name" name="searchValue" formControlName="searchValue" required>
+            <span *ngIf="!divisionForm.get('searchValue').valid && divisionForm.get('searchValue').touched">
+              <span *ngIf="divisionForm.get('searchValue').errors['required']" class="requierd">هذا الحقل مطلوب</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="form_row">
+          <div class="form_element col_span_2" *ngIf="divisionForm.valid && divisionForm.touched">
+            <button class="btn btn_update" type="submit" (click)="search()">بحث</button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </ng-form>
+
+
+
+  <div class="form_row" *ngIf="searchingResult">
+    <table *ngIf="searchingResult.length > 0" class="custom_table" role="grid">
+
+      <thead class="tpart">
+        <tr class="trow thead_trow">
+          <td class="cell thead_cell">اسم الشعبة</td>
+          <td class="cell thead_cell">اسم القسم التابع له هذه الشعبة</td>
+          <td class="cell thead_cell flex_center_center"></td>
+        </tr>
+      </thead>
+
+      <tbody class="tpart">
+        <tr class="trow tbody_row" *ngFor="let division of searchingResult">
+          <td class="cell tbody_cell">{{ division.name }}</td>
+          <td class="cell tbody_cell" *ngIf="division.department">{{ division.department.arName }}</td>
+          <td class="cell tbody_cell flex_center_center"><a class="link_in_table"
+              [routerLink]="['/show-division/', division.id]"
+              *ngIf="authorizedList['divisions.show'] || authorizedList['divisions.destroy'] || authorizedList['divisions.update'] || authorizedList['division.unlink_department']">عرض
+              التفاصيل</a></td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <div *ngIf="searchingResult?.length == 0">
+      <div class="requierd">
+        هذه البيانات غير موجودة
+        يرجي التأكد من قيمة البحث
+      </div>
+    </div>
+
+  </div>
+</div>

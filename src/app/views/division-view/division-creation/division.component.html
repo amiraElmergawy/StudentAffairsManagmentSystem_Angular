@@ -1,0 +1,62 @@
+<div class="full_page">
+  <div class="form_container">
+    <ng-form [formGroup]="divisionForm">
+      <div class="custom_form">
+        <div class="form_header_container">
+          <h2 class="form_header">إضافة شعبة جديدة</h2>
+        </div>
+
+        <div class="form_section division_section">
+          <div class="form_row">
+
+            <label class="form_element" for="name">اسم الشعبة</label>
+            <div class="form_element">
+              <input class="text_input" type="text" id="name" name="name" formControlName="name" required minlength="4">
+              <span *ngIf="
+                !divisionForm.get('name').valid &&
+                divisionForm.get('name').touched">
+                <span *ngIf="divisionForm.get('name').errors['minlength']" class="warning">يجب كتابة 5 حروف علي
+                  الاقل</span>
+                <span *ngIf="divisionForm.get('name').errors['required']" class="requierd">هذا الحقل
+                  مطلوب</span>
+                <span *ngIf="divisionForm.get('name').errors['pattern']" class="warning">
+                  لا يسمح بادخال علامات</span>
+                <span *ngIf="divisionForm.get('name').errors['nameIsForbidden']" class="warning">
+                  لا يسمح بتكرار الاسم </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="departmentId">القسم التابع له هذه الشعبة</label>
+            <div class="form_element">
+              <select class="select_box" name="departmentId" id="departmentId " formControlName="departmentId" required
+                placeholder="اختر القسم...">
+                <option *ngFor="let dept of departments; let i = index" value="{{ dept.id }} ">{{ dept.arName }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <div class="form_element col_span_4">
+              <span *ngIf="!divisionForm.valid && divisionForm.touched" class="requierd">يجب ادخال جميع البيانات صحيحة
+              </span>
+            </div>
+          </div>
+          <div class="form_row">
+            <div class="form_element flex_center_center" *ngIf="divisionForm.valid && divisionForm.touched && authorizedList['divisions.store']">
+        <button class="btn btn_create" type="submit" (click)="create()">اضافة</button>
+      </div>
+          </div>
+        </div>
+
+      </div>
+      <div>
+        <div>
+
+        </div>
+      </div>
+
+    </ng-form>
+  </div>
+
+</div>

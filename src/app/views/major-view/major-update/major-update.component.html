@@ -1,0 +1,281 @@
+<div class="full_page">
+  <div class="form_container">
+
+    <div class="custom_form">
+      <div class="form_header_container">
+        <h2 class="form_header">إضافة تخصص جديد</h2>
+      </div>
+
+      <div class="form_section major_btn_section">
+        <div class="form_row">
+          <div class="form_element form_btn_group_evenly col_span_4">
+            <button class="btn btn_delete" (click)="delete()" *ngIf=" authorizedList['majors.destroy']">مسح
+              التخصص</button>
+            <button class="btn btn_delete" (click)="unLinkDivision()"
+              *ngIf="authorizedList['major.unlinkDivision']">الغاء
+              الربط مع
+              الشعبة التابع لها</button>
+            <button class="btn btn_delete" (click)="unLinkDepartment()"
+              *ngIf="authorizedList['major.unlinkDepartment']">الغاء الربط مع القسم التابع له</button>
+            <a class="btn" [routerLink]="[ '/link-program-with-major/', MajorId ]"
+              *ngIf="authorizedList['majors.update-programs']">ربط
+              التخصص ببرنامج
+            </a>
+          </div>
+        </div>
+      </div>
+      <ng-form [formGroup]="majorForm" *ngIf="authorizedList['majors.update']">
+
+
+        <div class="form_section major_section">
+
+
+
+          <div class="form_row">
+            <label class="form_element" for="type">نوع التخصص</label>
+            <div class="form_element">
+              <select class="select_box" name="type" id="type" formControlName="type">
+                <option value="null">اختر النوع...</option>
+                <option *ngFor="let type of majorTypes; let i = index" value="{{ i + 1 }}">{{ type }}</option>
+              </select>
+              <span *ngIf="!majorForm.get('type').valid && majorForm.get('type').touched">
+                <span *ngIf="majorForm.get('type').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+              </span>
+            </div>
+
+            <div class="form_row" *ngIf="departments != null">
+              <label class="form_element" for="departmentId"> القسم التابع له</label>
+              <div class="form_element">
+                <select class="select_box" name="departmentId" id="departmentId" formControlName="departmentId"
+                  required>
+                  <option value="null">اختر القسم...</option>
+                  <option *ngFor="let dept of departments" value="{{ dept.id }}">{{dept.arName}}</option>
+                </select>
+                <span *ngIf="!majorForm.get('departmentId').valid && majorForm.get('departmentId').touched">
+                  <span *ngIf="majorForm.get('departmentId').errors['required']" class="requierd">هذا الحقل مطلوب
+                  </span>
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="form_row">
+            <label class="form_element" for="arName">الإسم العربي</label>
+            <div class="form_element">
+              <input class="text_input" type="text" id="arName" name="arName" formControlName="arName" required />
+              <span *ngIf="!majorForm.get('arName').valid && majorForm.get('arName').touched">
+                <span *ngIf="majorForm.get('arName').errors['minlength']" class="warning">يجب كتابة 5 احرف علي الاقل
+
+                </span>
+                <span *ngIf="majorForm.get('arName').errors['required']" class="requierd">هذا الحقل مطلوب
+
+                </span>
+                <span *ngIf="majorForm.get('arName').errors['pattern']" class="warning">
+                  لا يسمح بادخال علامات او احرف غير الانجليزية
+
+                </span>
+                <span *ngIf="majorForm.get('arName').errors['nameIsForbidden']" class="warning">
+                  لا يسمح بتكرار الاسم
+
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="enName">الإسم الإنجليزي</label>
+            <div class="form_element">
+              <input class="text_input" type="text" id="enName" name="enName" formControlName="enName" required />
+              <span *ngIf="!majorForm.get('enName').valid && majorForm.get('enName').touched">
+                <span *ngIf="majorForm.get('enName').errors['minlength']" class="warning">يجب كتابة 5 احرف علي الاقل
+                </span>
+                <span *ngIf="majorForm.get('enName').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="majorForm.get('enName').errors['pattern']" class="warning">
+                  لا يسمح بادخال علامات او احرف غير العربية
+                </span>
+                <span *ngIf="majorForm.get('enName').errors['nameIsForbidden']" class="warning">
+                  لا يسمح بتكرار الاسم
+
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <div class="form_element_center col_span_4">
+              <label class="form_element_center" for="desc">وصف التخصص</label>
+              <input class="text_input english_direction" type="text" id="desc" name="desc" formControlName="desc">
+            </div>
+          </div>
+
+          <div class="form_row">
+            <label class="form_element" for="certArName">اسم الشهادة بالعربية</label>
+            <div class="form_element">
+              <input class="text_input" type="text" id="certArName" name="certArName" formControlName="certArName"
+                required />
+              <span *ngIf="
+              !majorForm.get('certArName').valid &&
+              majorForm.get('certArName').touched
+            ">
+                <span *ngIf="majorForm.get('certArName').errors['minlength']" class="warning">يجب كتابة 10 احرف علي
+                  الاقل
+
+                </span>
+                <span *ngIf="majorForm.get('certArName').errors['required']" class="requierd">هذا الحقل مطلوب
+
+                </span>
+                <span *ngIf="majorForm.get('certArName').errors['pattern']" class="warning">
+                  لا يسمح بادخال علامات او احرف غير العربية
+
+                </span>
+                <span *ngIf="majorForm.get('certArName').errors['nameIsForbidden']" class="warning">
+                  لا يسمح بتكرار الاسم
+
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="certEnName">اسم الشهادة بالانجليزية</label>
+            <div class="form_element">
+              <input class="text_input english_direction" type="text" id="certEnName" name="certEnName"
+                formControlName="certEnName" required>
+              <span *ngIf="
+              !majorForm.get('certEnName').valid &&
+              majorForm.get('certEnName').touched
+            ">
+                <span *ngIf="majorForm.get('certEnName').errors['minlength']" class="warning">يجب كتابة 10 احرف علي
+                  الاقل
+
+                </span>
+                <span *ngIf="majorForm.get('certEnName').errors['required']" class="requierd">هذا الحقل مطلوب
+
+                </span>
+                <span *ngIf="majorForm.get('certEnName').errors['pattern']" class="warning">
+                  لا يسمح بادخال علامات او احرف غير الانجليزية
+
+                </span>
+                <span *ngIf="majorForm.get('certEnName').errors['nameIsForbidden']" class="warning">
+                  لا يسمح بتكرار الاسم
+
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <label class="form_element" for="hoursToGraduate">عدد الساعات المطلوبة للتخرج</label>
+            <div class="form_element">
+              <input class="text_input" type="number" id="hoursToGraduate" name="hoursToGraduate"
+                formControlName="hoursToGraduate" required />
+              <span *ngIf="!majorForm.get('hoursToGraduate').valid && majorForm.get('hoursToGraduate').touched">
+                <span *ngIf="majorForm.get('hoursToGraduate').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="majorForm.get('hoursToGraduate').errors['pattern']" class="warning">
+                  لا يسمح بكتابة علامات او ارقام غير صحيحة
+                </span>
+                <span *ngIf="majorForm.get('hoursToGraduate').errors['min']" class="warning">لا يسمح بادخال قيمة اقل من
+                  1
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="failHoursAllowed">عدد الساعات المسموحة للرسوب دون التأثير علي المجموع
+              الكلي</label>
+            <div class="form_element">
+              <input class="text_input" type="number" id="failHoursAllowed" name="failHoursAllowed"
+                formControlName="failHoursAllowed" required /><br>
+              <span *ngIf="
+              !majorForm.get('failHoursAllowed').valid &&
+              majorForm.get('failHoursAllowed').touched
+            ">
+                <span *ngIf="majorForm.get('failHoursAllowed').errors['required']" class="requierd">هذا الحقل مطلوب
+
+                </span>
+                <span *ngIf="majorForm.get('failHoursAllowed').errors['pattern']" class="warning">لا يسمح بكتابة علامات
+                  او
+                  ارقام غير صحيحة
+
+                </span>
+              </span>
+            </div>
+
+          </div>
+
+          <div class="form_row">
+            <label class="form_element" for="failGpa">الحد الادني للنجاح:</label>
+            <div class="form_element">
+              <input class="text_input" type="text" id="failGpa" name="failGpa" formControlName="failGpa" required>
+              <span *ngIf="
+              !majorForm.get('failGpa').valid &&
+              majorForm.get('failGpa').touched
+            ">
+                <span *ngIf="majorForm.get('failGpa').errors['required']" class="requierd">هذا الحقل مطلوب
+
+                </span>
+                <span *ngIf="majorForm.get('failGpa').errors['pattern']" class="warning">لا يسمح بكتابة علامات
+                  وان تكون القيمة من 0.0 الي 4.0
+
+                </span>
+              </span>
+            </div>
+
+            <label class="form_element" for="hSDept">تخصص الثانوية العامة لقبول التسجيل :</label>
+            <div class="form_element">
+              <select class="select_box" name="hSDept" id="hSDept" formControlName="hSDept">
+                <option value="null">اختر التخصص...</option>
+                <option *ngFor="let major of hSDept; let i = index" value="{{ i + 1 }}">{{ major }}</option>
+              </select>
+              <span *ngIf="
+              !majorForm.get('hSDept').valid &&
+              majorForm.get('hSDept').touched
+            " class="help-block">
+                <span *ngIf="majorForm.get('hSDept').errors['required']" class="requierd">هذا الحقل مطلوب
+
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row">
+
+            <div class="form_row" *ngIf="divisions != null && divisions?.length != 0">
+              <label class="form_element" for="divisionId"> الشعبة التابع لها هذا التخصص :</label>
+              <div class="form_element">
+                <select class="select_box" name="divisionId" id="divisionId" formControlName="divisionId">
+                  <option value=null>اختر الشعبة...</option>
+                  <option *ngFor="let division of divisions" value="{{ division.id }}">{{ division.name }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <div class="form_element col_span_4">
+              <span *ngIf="!majorForm.valid && majorForm.touched" class="requierd">يجب ادخال جميع البيانات صحيحة
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <div class="form_element_center form_btn_group_evenly">
+
+              <div class="form_row" *ngIf="majorForm.valid && majorForm.touched">
+                <button class="btn btn_update" type="submit" (click)="update()">تحديث</button>
+              </div>
+
+              <div *ngIf="majorForm.touched">
+                <button class="btn" (click)="clear()">
+                  اعادة تعيين
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </ng-form>
+    </div>
+
+  </div>
+</div>

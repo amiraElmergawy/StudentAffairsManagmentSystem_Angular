@@ -1,0 +1,86 @@
+<div class="full_page">
+  <div class="form_container">
+
+    <ng-form [formGroup]="trainningForm">
+      <div class="custom_form">
+        <div class="form_header_container">
+          <h2 class="form_header">إضافة تدريب</h2>
+        </div>
+        <div class="form_section training_section">
+          <div class="form_row">
+            <label class="form_element" for="place">مكان التدريب</label>
+            <div class="form_element">
+              <input class="text_input" type="text" id="place" name="place" formControlName="place" required />
+              <span *ngIf="
+                  !trainningForm.get('place').valid &&
+                  trainningForm.get('place').touched
+                ">
+                <span
+                  *ngIf="trainningForm.get('place').errors['minlength'] || trainningForm.get('place').errors['maxlength']"
+                  class="warning">يجب ان يكون عدد الاحرف من 5 الي 100 حرف</span>
+                <span *ngIf="trainningForm.get('place').errors['required']" class="requierd">هذا الحقل مطلوب</span>
+                <span *ngIf="trainningForm.get('place').errors['pattern']" class="warning"> لا يسمح بادخال علامات</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <label class="form_element" for="topic">محتوي التدريب  </label>
+            <div class="form_element">
+              <input class="text_input" type="text" id="topic" name="topic" formControlName="topic" required />
+              <span *ngIf="
+                  !trainningForm.get('topic').valid &&
+                  trainningForm.get('topic').touched
+                ">
+                <span
+                  *ngIf="trainningForm.get('topic').errors['minlength'] || trainningForm.get('topic').errors['maxlength']"
+                  class="warning">يجب ان يكون عدد الاحرف من 5 الي 100 حرف</span>
+                <span *ngIf="trainningForm.get('topic').errors['required']" class="requierd">هذا الحقل مطلوب</span>
+                <span *ngIf="trainningForm.get('topic').errors['pattern']" class="warning"> لا يسمح بادخال علامات</span>
+              </span>
+            </div>
+          </div>
+          <div class="form_row">
+            <label class="form_element" for="durationInDays">عدد ايام التدريب  </label>
+            <div class="form_element">
+              <input class="text_input" type="text" id="durationInDays" name="durationInDays"
+                formControlName="durationInDays" required />
+              <span *ngIf="
+                  !trainningForm.get('durationInDays').valid &&
+                  trainningForm.get('durationInDays').touched
+                ">
+                <span *ngIf="trainningForm.get('durationInDays').errors['required']" class="requierd">هذا الحقل
+                  مطلوب</span>
+                <span *ngIf="trainningForm.get('durationInDays').errors['pattern']" class="warning">يجب كتابة ارقام فقط
+                </span>
+
+              </span>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <div class="form_element col_span_2">
+              <span *ngIf="!trainningForm.valid && trainningForm.touched" class="requierd">يجب ادخال جميع البيانات صحيحة
+              </span>
+            </div>
+          </div>
+          <div class="form_row">
+            <div class="form_element_center form_btn_group_evenly col_span_2">
+              <div class="form_row" *ngIf="trainningForm.valid && trainningForm.touched">
+                <button class="btn btn_create" type="submit" (click)="create()">
+                  اضافة
+                </button>
+              </div>
+              <div class="form_row" *ngIf="trainningForm.touched">
+                <button class="btn" type="submit" (click)="clear()">
+                  اعادة تعيين
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-form>
+
+  </div>
+</div>

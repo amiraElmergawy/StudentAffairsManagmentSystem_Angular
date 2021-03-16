@@ -1,0 +1,84 @@
+<div class="full_page">
+  <div class="form_container">
+    <ng-form #majorsearch class="form">
+      <div class="custom_form">
+
+        <div class="form_header_container">
+          <h2 class="form_header">بحث عن تخصص</h2>
+        </div>
+
+        <div class="form_section major_search_section">
+          <div class="form_row">
+
+            <label class="form_element" for="courseSearch">بحث بواسطة : </label>
+            <div class="form_element">
+              <select class="select_box" name="searchway" id="searchWay " [(ngModel)]="choiseIndex" required>
+                <option value=null>اختر طريقة البحث...</option>
+                <option *ngFor="let way of searchWays; let i=index" value="{{i}} ">{{ way }}</option>
+              </select>
+            </div>
+            <div class="form_element">
+              <input class="text_input" id="searchValue " name="searchValue " type="text" [(ngModel)]="searchValue"
+                required>
+            </div>
+          </div>
+
+          <div class="form_row">
+
+            <div class="form_element flex_center_center">
+              <button class="btn" type="submit" (click)="search()"
+                [disabled]="!searchValue || !choiseIndex || searchValue == 'null' || !authorizedList['department.search']">
+                بحث
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- </div> -->
+      </div>
+    </ng-form>
+  </div>
+  <div class="form_row" *ngIf="searchingResult">
+
+    <table *ngIf="searchingResult?.length > 0" class="custom_table" role="grid">
+
+      <thead class="tpart">
+        <tr class="trow thead_trow">
+          <th class="cell thead_cell">إسم التخصص</th>
+          <th class="cell thead_cell">الإسم الإنجليزي</th>
+          <th class="cell thead_cell flex_center_center">نوع التخصص</th>
+          <th class="cell thead_cell flex_center_center">القسم التابع له</th>
+          <th class="cell thead_cell flex_center_center"
+            *ngIf="authorizedList['majors.show'] || authorizedList['majors.destroy'] || authorizedList['majors.update'] || authorizedList['major.unlinkDepartment'] || authorizedList['major.unlinkDivision'] || authorizedList['majors.update-programs'] || authorizedList['majors.get-programs']">
+          </th>
+        </tr>
+      </thead>
+
+      <tbody class="tpart">
+        <tr class="trow tbody_row" *ngFor="let major of searchingResult">
+          <td class="cell tbody_cell">{{major.arName}}</td>
+          <td class="cell tbody_cell">{{major.enName}}</td>
+          <td class="cell tbody_cell flex_center_center">{{major.type | majorType}}</td>
+          <td class="cell tbody_cell flex_center_center">{{major.department.arName}}</td>
+          <td class="cell tbody_cell flex_center_center"
+            *ngIf="authorizedList['majors.show'] || authorizedList['majors.destroy'] || authorizedList['majors.update'] || authorizedList['major.unlinkDepartment'] || authorizedList['major.unlinkDivision'] || authorizedList['majors.update-programs'] || authorizedList['majors.get-programs']">
+            <a class="link_in_table" [routerLink]="[ '/show-major/', major.id ]">عرض التفاصيل</a>
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <div *ngIf="searchingResult?.length == 0">
+    <div class="requierd">
+      هذه البيانات غير موجودة
+      يرجي التأكد من قيمة البحث
+    </div>
+  </div>
+</div>

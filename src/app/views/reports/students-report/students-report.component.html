@@ -1,0 +1,52 @@
+<div class="container">
+    <div>
+        <h2>إحصائية الطلاب</h2>
+        <p class="text-center">
+            <strong>إجمالى عدد الطلاب : </strong> {{data?.under_grads}}<br>
+            <button id="print" type="button" class="btn btn-outline-success mt-2" (click)="print()">طباعة</button>
+        </p>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" colspan="6" class="text-center">إحصائية مستويات الطلاب</th>
+          </tr>
+          <tr>
+              <td>المستوى</td>
+              <td>عدد الطلاب</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let level of data?.by_level | keyvalue">
+            <th scope="row">{{getLevel(level?.key)}}</th>
+            <td colspan="5">{{level?.value}} طالب</td>
+          </tr>
+        </tbody>
+    </table>
+    <table class="table table-bordered" *ngFor="let department of data?.by_department | keyvalue">
+        <thead>
+            <tr>
+                <th scope="col" colspan="2" class="text-center">{{department?.key}}</th>
+            </tr>
+          <tr>
+            <th scope="col">البرنامج</th>
+            <th scope="col">عدد الطلبة</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let program of department?.value?.programs | keyvalue">
+                <td>
+                    <strong>{{program?.key}}</strong>
+                    <br>
+                    إجمالى عدد طلبة البرنامج: {{program?.value?.count}} طالب 
+                </td>
+                <td>
+                    <ul>
+                        <li *ngFor="let level of program?.value?.levels | keyvalue">{{getLevel(level?.key)}}{{level?.value}} طالب</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+</div>

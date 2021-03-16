@@ -1,0 +1,83 @@
+<div class="full_page">
+  <div class="form_container">
+    <ng-form>
+      <div class="custom_form">
+        <div class="form_header_container">
+          <h2 class="form_header">اضافة متطلبات للمقرر</h2>
+        </div>
+
+        <div class="form_section pre_create_section">
+
+          <div class="form_row">
+            <label class="form_element" for="courses">المقررات: </label>
+            <div class="form_element">
+              <div class="form_row" *ngIf="courses != null">
+                <ng-multiselect-dropdown [placeholder]="'اختر مقرر'" name="selectedCourses" [(ngModel)]="selectedCourses"
+                  [settings]="dropdownSettings" [data]="courses" (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll()" (onDeSelect)="onItemDeSelect($event)" required>
+                </ng-multiselect-dropdown>
+              </div>
+            </div>
+          </div>
+
+          <div class="form_row" *ngIf="coursesIds.length > 2">
+            <label class="form_element" for="coursesOperation ">اختيار العملية بين المقررات المتطلبة :</label>
+            <div class="form_element">
+              <div class="form_row">
+                <select class="select_box" name="coursesOperation " id="coursesOperation " [(ngModel)]="package.coursesOperation" required>
+                  <option value="null">اختر العملية...</option>
+                  <option *ngFor="let courseOp of coursesOperation; let i = index" value="{{ i + 1 }} ">{{ courseOp }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form_row" *ngIf="addAnotherFlag">
+            <label class="form_element" for="packagesOperation ">اختيار العملية بين مجموعة المتطلبات والمجموعة السابقة لها :</label>
+            <div class="form_element">
+              <div class="form_row">
+                <select class="select_box" name="packagesOperation " id="packagesOperation " [(ngModel)]="package.operationWithNext" required>
+                  <option value="null">اختر العملية...</option>
+                  <option *ngFor="let packageOp of packagesOperation; let i = index" value="{{ i + 1 }} ">{{ packageOp }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form_row">
+            <div class="form_element form_btn_group_evenly col_span_2">
+
+              <div class="form_row" *ngIf="
+                selectedCourses != '' &&
+                (package.coursesOperation || coursesIds.length == 2)">
+                <!--if form is valid and has data or their is one course selected appear add-button-->
+
+                <div class="form_row" *ngIf="
+                  (addAnotherFlag && package.operationWithNext) ||
+                  !(addAnotherFlag || package.operationWithNext)">
+                <button class="btn btn_create" type="submit " (click)="addPrerequisites()"
+                  *ngIf="authorizedList['program.insert-prerequisites']">اضافة</button>
+                <button class="btn" type="submit " (click)="addAnotherPackage()"
+                  *ngIf="authorizedList['program.insert-prerequisites']">
+                  اضافة مجوعة متطلبات اخري
+                </button>
+              </div>
+            </div>
+
+            <div *ngIf="selectedCourses != '' || package.coursesOperation">
+              <!--if any data exist-->
+              <button class="btn" type="reset" (click)="clear()">اعادة تعيين</button>
+            </div>
+
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+    </ng-form>
+  </div>
+</div>

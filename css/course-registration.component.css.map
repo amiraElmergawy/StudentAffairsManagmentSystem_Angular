@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../src/app/views/course-registration/course-registration.component.scss"
+    ],
+    "names": [],
+    "file": "course-registration.component.css"
+}

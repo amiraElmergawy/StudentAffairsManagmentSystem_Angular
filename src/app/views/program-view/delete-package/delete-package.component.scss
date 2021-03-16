@@ -1,0 +1,14 @@
+.custom_table {
+    grid-template-columns: 1fr 2fr 2fr 3fr 2fr;
+}
+
+.col_span {
+    grid-column: 1 / span 5;
+    justify-content: center;
+
+}
+
+td.btn_group_cell{
+  justify-content: space-evenly !important;
+  align-items: center !important;
+}

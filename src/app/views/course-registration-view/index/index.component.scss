@@ -1,0 +1,19 @@
+.reg_courses_container{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: stretch;
+  align-items: center;
+}
+.custom_table{
+  grid-template-columns: repeat(5, 1fr);
+}
+.span_head{
+  grid-column: span 5;
+}
+.second_part{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: stretch;
+  align-items: center;
+  width: 95%;
+}

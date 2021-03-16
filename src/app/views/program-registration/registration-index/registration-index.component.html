@@ -1,0 +1,55 @@
+<div *ngIf="data && data.length != 0" class="container">
+    <h2 class="h"> الطلاب المسجلين في البرنامج</h2>
+
+    <table class="custom_table" role="grid">
+
+        <thead class="tpart">
+
+            <tr>
+                <th class="cell thead_cell">الاسم بالعربية</th>
+                <th class="cell thead_cell">الاسم بالانجليزية</th>
+                <th class="cell thead_cell">المعدل التراكمي</th>
+                <th class="cell thead_cell">عدد الساعات المسجلة حتي الان</th>
+                <th class="cell thead_cell"
+                    *ngIf="authorizedList['program_registration.update'] || authorizedList['program_registration.delete']">
+                </th>
+            </tr>
+
+        </thead>
+
+        <tbody class="tpart">
+
+            <tr class="trow tbody_row" *ngFor="let student of data">
+                <td class="cell tbody_cell">
+                    {{student.ar_name}}
+                </td>
+                <td class="cell tbody_cell">
+                    {{student.en_name}}
+                </td>
+                <td class="cell tbody_cell">
+                    {{student.gpa}}
+                </td>
+                <td class="cell tbody_cell">
+                    {{student.total_hours_passed}}
+                </td>
+                <td class="cell tbody_cell">
+                    <a class="link_in_table"
+                        [routerLink]="[ 'update-registeration-to-program-of-student/', student.id] "
+                        *ngIf="authorizedList['program_registration.update']">
+                        تحديث
+                    </a>
+                    <button class="btn_in_table" (click)="delete(student.id)"
+                        *ngIf="authorizedList['program_registration.delete']">مسح</button>
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+<div class="link_home" *ngIf="backToHomeFlag">
+    <a routerLink="/home">
+        العودة للصفحة الرئيسية
+    </a>
+</div>

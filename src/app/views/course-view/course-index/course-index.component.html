@@ -1,0 +1,30 @@
+<div class="full_page" *ngIf="data">
+  <h2>عرض جميع المقررات الحالية</h2>
+  <table class="custom_table" role="grid">
+    <thead class="tpart">
+      <tr class="trow thead_trow">
+        <th class="cell thead_cell">اسم المادة</th>
+        <th class="cell thead_cell flex_center_center">الكود العربي</th>
+        <th class="cell thead_cell flex_center_center">الكود الإنجليزي</th>
+        <th class="cell thead_cell flex_center_center">عدد الساعات</th>
+        <th class="cell thead_cell flex_center_center">الدرجة</th>
+        <th class="cell thead_cell flex_center_center"
+          *ngIf="authorizedList['courses.show'] || authorizedList['courses.update'] || authorizedList['courses.destroy']">
+        </th>
+      </tr>
+    </thead>
+    <tbody class="tpart">
+      <tr class="trow tbody_row" *ngFor="let course of data">
+        <td class="cell tbody_cell">{{ course.arName }}</td>
+        <td class="cell tbody_cell flex_center_center">{{ course.arCode }}</td>
+        <td class="cell tbody_cell flex_center_center">{{ course.enCode }}</td>
+        <td class="cell tbody_cell flex_center_center">{{ course.hours }}</td>
+        <td class="cell tbody_cell flex_center_center">{{ course.degree }}</td>
+        <td class="cell tbody_cell flex_center_center"
+          *ngIf="authorizedList['courses.show'] || authorizedList['courses.update'] || authorizedList['courses.destroy']">
+          <a class="link_in_table" [routerLink]="['/show-course/', course.id]">عرض التفاصيل</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

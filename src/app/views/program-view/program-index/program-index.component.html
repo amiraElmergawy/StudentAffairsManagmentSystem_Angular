@@ -1,0 +1,62 @@
+<div class="full_page" *ngIf="data">
+  <h2>عرض جميع البرامج</h2>
+
+  <table class="custom_table" role="grid">
+
+    <thead class="tpart">
+      <tr class="trow thead_trow">
+        <th class="cell thead_cell">الاسم العربي</th>
+        <th class="cell thead_cell">الاسم الإنجليزي</th>
+        <th class="cell thead_cell flex_center_center" *ngIf="authorizedList['program.get-prerequisites'] ||
+    authorizedList['program.insert-prerequisites'] ||
+    authorizedList['programs.delete-prepackages'] ||
+    authorizedList['packages.index'] ||
+    authorizedList['packages.show'] ||
+    authorizedList['packages.store']||
+    authorizedList['packages.update']||
+      authorizedList['packages.destroy']||
+      authorizedList['program.students']||
+      authorizedList['program.packages']||
+      authorizedList['programs.store']||
+      authorizedList['programs.update']||
+      authorizedList['programs.show']||
+      authorizedList['programs.destroy']||
+      authorizedList['programs.unlinkParent']||
+      authorizedList['programs.linkParent']||
+      authorizedList['programs.linkCourses'] ||
+      authorizedList['programs.create-packages'] ||
+      authorizedList['programs.delete-packages']"></th>
+      </tr>
+    </thead>
+
+    <tbody class="tpart">
+      <tr class="trow tbody_row" *ngFor="let program of data ">
+        <td class="cell tbody_cell">{{program.arName}}</td>
+        <td class="cell tbody_cell">{{program.enName}}</td>
+        <td class="cell tbody_cell flex_center_center" *ngIf="authorizedList['program.get-prerequisites'] ||
+               authorizedList['program.insert-prerequisites'] ||
+               authorizedList['programs.delete-prepackages'] ||
+               authorizedList['packages.index'] ||
+               authorizedList['packages.show'] ||
+               authorizedList['packages.store']||
+               authorizedList['packages.update']||
+                 authorizedList['packages.destroy']||
+                 authorizedList['program.students']||
+                 authorizedList['program.packages']||
+                 authorizedList['programs.store']||
+                 authorizedList['programs.update']||
+                 authorizedList['programs.show']||
+                 authorizedList['programs.destroy']||
+                 authorizedList['programs.unlinkParent']||
+                 authorizedList['programs.linkParent']||
+                 authorizedList['programs.linkCourses'] ||
+                 authorizedList['programs.create-packages'] ||
+                 authorizedList['programs.delete-packages']">
+          <a class="link_in_table" [routerLink]="[ '/show-program/', program.Id ]">عرض التفاصيل</a>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+
+</div>

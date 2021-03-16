@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "student-update.component.scss"
+    ],
+    "names": [],
+    "file": "student-update.component.css"
+}

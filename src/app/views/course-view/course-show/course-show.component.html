@@ -1,0 +1,116 @@
+<h1>عرض تفاصيل المقرر</h1>
+<div *ngIf="courseData" class="container">
+
+    <div class="show_class">
+        <div class="show_cont">
+        <div class="one_block">
+            <div class="small_block">
+            اسم المادة بالعربية
+            <span class="inline">
+            {{courseData.arName}}
+        </span>
+        </div>
+           <div class="small_block">
+            اسم المادة بالانجليزية
+            <span class="inline english_direction">
+            {{courseData.enName}}
+            </span>
+           </div>
+        </div>
+        <div class="one_block">
+            <div class="small_block">
+            كود المادة بالعربية
+            <span class="inline">
+            {{courseData.arCode}}
+            </span>
+            </div>
+            <div class="small_block">
+            كود المادة بالانجليزية
+            <span class="inline english_direction">
+            {{courseData.enCode}}
+            </span>
+            </div>
+        </div>
+    </div>
+    <div class="show_cont">
+        <div class="one_block">
+            <div class="small_block">
+            عدد ساعات المادة
+            <span class="inline">
+            {{courseData.hours}}
+            </span>
+           </div>
+
+            <div class="small_block">
+             عدد ساعات النظري
+             <span class="inline">
+             {{courseData.weeklyHoursTemplate.theory}}
+             </span>
+            </div>
+            <div class="small_block">
+             عدد ساعات التمارين
+             <span class="inline">
+             {{courseData.weeklyHoursTemplate.exercise}}
+             </span>
+            </div>
+            <div class="small_block">
+             عدد ساعات العملي
+             <span class="inline">
+             {{courseData.weeklyHoursTemplate.practical}}
+             </span>
+            </div>
+            <div class="small_block">
+                الوصف
+                <span class="inline">
+                     {{courseData.description}}
+                 </span>
+                 </div>
+         </div>
+         <div class="one_block">
+            <div class="small_block">
+            الدرجة كاملة
+            <span class="inline">
+            {{courseData.degree}}
+            </span>
+            </div>
+            <div class="small_block">
+            درجة النظري
+            <span class="inline">
+            {{courseData.degreeTemplate.theory}}
+            </span>
+           </div>
+
+                <div class="small_block">
+            درجة النشاط
+            <span class="inline">
+            {{courseData.degreeTemplate.activity}}
+            </span>
+                </div>
+                <div class="small_block">
+            درجة الشفوي
+            <span class="inline">
+            {{courseData.degreeTemplate.oral}}
+        </span>
+                </div>
+
+            <div class="small_block">
+        درجة العملى
+        <span class="inline">
+            {{courseData.degreeTemplate.practical}}
+        </span>
+            </div>
+            <div class="small_block">
+        درجة التمارين
+        <span class="inline">
+            {{courseData.degreeTemplate.exercise}}
+    </span>
+            </div>
+       </div>
+    </div>
+        <a [routerLink]="['/update-course/', courseId]" class="btn" *ngIf="authorizedList['courses.update'] || authorizedList['courses.destroy']">تحديث
+        </a>
+        <br>
+        <a [routerLink]="['/course-students/',courseId]" class="btn" *ngIf="authorizedList['course.students']"> الطلاب المسجلين بالمقرر</a>
+    </div>
+
+</div>

@@ -1,0 +1,149 @@
+<div class="full_page">
+  <h2>إدارة رصيد الساعات المعتمدة</h2>
+  <div class="reg_courses_container" *ngIf="studentData" class="container" style="margin-bottom: 0px;">
+
+    <app-show-student-assential-data></app-show-student-assential-data>
+    <div class="second_part" *ngIf="allCourses" class="container" style="margin-top: 0px;">
+      <table class="table-h" style="border-radius: 0px 0px 15px 15px;">
+        <tr>
+          <td>
+            <div class="container" *ngIf="insideBalanceCourses?.length > 0">
+              <table class="table-h">
+                <thead>
+                  <td colspan="7">المقررات داخل رصيد الساعات</td>
+                </thead>
+                <tr>
+                  <td></td>
+                  <td>العام الدراسي</td>
+                  <td>الفصل الدراسي</td>
+                  <td>اسم المقرر</td>
+                  <td>كود المقرر</td>
+                  <td>التقدير</td>
+                  <td>الدرجة</td>
+                </tr>
+                <tr *ngFor="let course of insideBalanceCourses">
+                  <!-- | filter: filteredValue:filteringWay -->
+                  <td>
+                    <!-- <div *ngIf="course.available == 1"> -->
+                    <input class="form-check-input" (change)="onChange(course)" name="{{ course.course.arName }}"
+                      type="checkbox" id="{{ course.course.arName }}" />
+                    <!-- </div> -->
+                    <!-- it means that student can register this course if it availablefor him-->
+                  </td>
+                  <td>
+                    <label class="form-check-label" for="{{ course.course.arName }}">
+                      {{ course.academicYear }}
+                    </label>
+                  </td>
+                  <td>
+                    <label class="form-check-label" for="{{ course.course.arName }}">
+                      {{ course.semester }}
+                    </label>
+                  </td>
+                  <td>
+                    <label class="form-check-label" for="{{ course.course.arName }}">
+                      {{ course.course.arName }}
+                    </label>
+
+                    <!-- <ng-template #elseTemplate2>
+                                {{course.arName}}
+                              </ng-template> -->
+                  </td>
+                  <td>
+                    <label class="form-check-label" for="{{ course.course.arName }}">
+                      {{ course.course.enCode }}
+                    </label>
+                  </td>
+                  <!-- <td>{{ course.enCode }}</td> -->
+                  <td>
+                    <label class="form-check-label" for="{{ course.course.arName }}">
+                      {{ course.gradingCode }}
+                    </label>
+                  </td>
+                  <td>
+                    <label class="form-check-label" for="{{ course.course.arName }}">
+                      {{ course.degree }}
+                    </label>
+                  </td>
+                </tr>
+                <!-- <tr>
+                    <td>
+                      <button (click)="submit()">اضافة</button>
+                    </td>
+                </tr> -->
+              </table>
+            </div>
+          </td>
+          <td class="custom_td">
+            <div class="second_table" *ngIf="outsideBalanceCourses?.length > 0">
+              <table class="table-h">
+                <thead>
+                  <td colspan="7">المقررات خارج رصيد الساعات</td>
+                </thead>
+                <tr>
+                  <td></td>
+                  <td>العام الدراسي</td>
+                  <td>الفصل الدراسي</td>
+                  <td>اسم المقرر</td>
+                  <td>كود المقرر</td>
+                  <td>التقدير</td>
+                  <td>الدرجة</td>
+                </tr>
+                <tr *ngFor="let course of outsideBalanceCourses">
+                  <!-- | filter: filteredValue:filteringWay -->
+                  <td>
+                    <!-- <div *ngIf="course.available == 1"> -->
+                    <input class="form-check-input" (change)="onChange(course)" name="{{ course.course.arName }}"
+                      type="checkbox" id="{{ course.course.arName }}" />
+                    <!-- </div> -->
+                    <!-- it means that student can register this course if it availablefor him-->
+                  </td>
+                  <td>
+                    <label class="form-check-label" for="{{ course.course.arName }}">
+                      {{ course.academicYear }}
+                    </label>
+                  </td>
+                  <td>
+                    <label class="form-check-label" for="{{ course.course.arName }}">
+                      {{ course.semester }}
+                    </label>
+                  </td>
+                  <td>
+                    <label class="form-check-label" for="{{ course.course?.arName }}">
+                      {{ course.course?.arName }}
+                    </label>
+
+                    <!-- <ng-template #elseTemplate2>
+                                          {{course?.arName}}
+                                        </ng-template> -->
+                  </td>
+                  <td>
+                    <label class="form-check-label" for="{{ course.course?.arName }}">
+                      {{ course.course.enCode }}
+                    </label>
+                  </td>
+                  <!-- <td>{{ course.enCode }}</td> -->
+                  <td>
+                    <label class="form-check-label" for="{{ course.course?.arName }}">
+                      {{ course.gradingCode }}
+                    </label>
+                  </td>
+                  <td>
+                    <label class="form-check-label" for="{{ course.course.arName }}">
+                      {{ course.degree }}
+                    </label>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+      <div class="flex_center_center" *ngIf="insideHolder?.length > 1">
+        <button (click)="submit()" class="btn btn_add" *ngIf="authorizedList['student.manage-hours-balance'] && (hoursBalance <= 12)">اضافة</button>
+      </div>
+  </div>
+
+</div>

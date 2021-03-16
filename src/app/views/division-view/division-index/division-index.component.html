@@ -1,0 +1,28 @@
+<div class="full_page" *ngIf="data">
+    <h2>عرض جميع الشُعب الحالية</h2>
+
+    <table class="custom_table" role="grid">
+
+        <thead class="tpart">
+            <tr class="trow thead_trow">
+                <th class="cell thead_cell">اسم الشعبة</th>
+                <th class="cell thead_cell">القسم التابعة له</th>
+                <th class="cell thead_cell flex_center_center"
+                    *ngIf="authorizedList['divisions.show'] || authorizedList['divisions.destroy'] || authorizedList['divisions.update'] || authorizedList['division.unlink_department']">
+                </th>
+            </tr>
+        </thead>
+
+        <tbody class="tpart">
+            <tr class="trow tbody_row" *ngFor="let division of data">
+                <td class="cell tbody_cell">{{division.name}}</td>
+                <td class="cell tbody_cell">{{division.department.arName}}</td>
+                <td class="cell tbody_cell flex_center_center"
+                    *ngIf="authorizedList['divisions.show'] || authorizedList['divisions.destroy'] || authorizedList['divisions.update'] || authorizedList['division.unlink_department']">
+                    <a class="link_in_table" [routerLink]="[ '/show-division/', division.id ]">عرض التفاصيل</a></td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</div>

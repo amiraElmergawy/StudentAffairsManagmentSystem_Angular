@@ -1,0 +1,52 @@
+<div class="container" *ngIf="students?.length != 0 ;else elseTemplate">
+    <div class="text-center w-100" id="print">
+        <h2>مقرر {{course?.ar_name}}</h2>
+        <h2>كود المقرر: {{course?.en_code}}</h2>
+
+        <button type="button" class="btn btn-lg btn-outline-success mt-2" (click)="print()">طباعة</button>
+    </div>
+    <div class="text-center container-fluid mt-2">
+        <table class="table table-bordered pagebreak" *ngFor="let program of students | keyvalue">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="9">برنامج {{program?.key}}</th>
+                </tr>
+                <tr>
+                    <th scope="col" colspan="3">
+                        مقرر {{course?.ar_name}}
+                    </th>
+                    <th colspan="6">
+                        كود المقرر: {{course?.en_code}}
+                    </th>
+                </tr>
+              <tr>
+                <td>إسم الطالب</td>
+                <td *ngFor="let column of course?.degree_template | keyvalue">
+                    {{getArabicNames(column?.key)}}
+                    <br>
+                    <small>{{column?.value}}</small>
+                </td>
+                <td>
+                    المجموع
+                    <br>
+                    <small>{{course?.degree}}</small>
+                </td>
+
+                </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let student of program?.value">
+                <th scope="row">{{student?.full_ar_name}}</th>
+                <td *ngFor="let column of course?.degree_template | keyvalue"></td>
+                <td></td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<ng-template #elseTemplate>
+    <h2 style="text-align: center;">
+        لا يوجد طلاب مسجلين في هذا المقرر
+    </h2>
+</ng-template>

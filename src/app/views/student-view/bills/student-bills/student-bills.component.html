@@ -1,0 +1,37 @@
+<div *ngIf="bills" class="container">
+    <h2 style="text-align: center;">عرض بيانات ايصالات الطالب</h2>
+    <table class="custom_table" role="grid">
+      <thead class="tpart">
+        <tr class="trow thead_trow">
+             <th class="cell thead_cell">رقم الايصال</th>
+             <th class="cell thead_cell">قيمة الايصال</th>
+             <th class="cell thead_cell">بيانات الايصال</th>
+             <th class="cell thead_cell">العام الدراسي</th>
+             <th class="cell thead_cell">الفصل الدراسي</th>
+             <th class="cell thead_cell">نوع الايصال</th>
+             <th class="cell thead_cell">تاريخ ووقت تسجيل الايصال</th>
+             <th class="cell thead_cell" *ngIf="authorizedList['student.update_bill'] || authorizedList['student.delete_bill']"></th>
+			</tr>
+        </thead>
+        <tbody class="tpart">
+            <tr class="trow tbody_row" *ngFor="let bill of bills">
+                <td class="cell tbody_cell">{{bill.bill_number}}</td>
+                <td class="cell tbody_cell">{{bill.bill_total}}</td>
+                <td class="cell tbody_cell">{{bill.bill_data}}</td>
+                <td class="cell tbody_cell">{{bill.academic_year}}</td>
+                <td class="cell tbody_cell">{{bill.relative_semester | semesterPipe }}</td>
+                <td class="cell tbody_cell">{{bill.payment_type | billPaymentTypePipe}}</td>
+                <td class="cell tbody_cell">{{bill.created_at | date :'short'}}</td>
+                <td class="cell tbody_cell">
+                    <button class="btn_in_table" (click)="onUpdate(bill)" *ngIf="authorizedList['student.update_bill'] || authorizedList['student.delete_bill']">تحديث</button>
+                    <!-- <a [routerLink]="[ '/update-bill-for-student/', studentId,bill.id ]">تحديث</a> -->
+                </td>
+            </tr>
+            <tr  class="trow tbody_row">
+                <td class="cell tbody_cell col_span">
+                    <a class="link_in_table" [routerLink]="[ '/create-bill-for-student/', studentId ]" *ngIf="authorizedList['student.add_bill']">اضافة ايصال </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

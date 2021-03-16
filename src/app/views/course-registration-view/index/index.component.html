@@ -1,0 +1,103 @@
+<div class="full_page">
+  <h2>عرض جميع المقررات المسجلة</h2>
+  <div class="reg_courses_container" *ngIf="studentData">
+
+    <app-show-student-assential-data></app-show-student-assential-data>
+
+    <div class="second_part" *ngIf="registredCourses">
+      <table class="custom_table">
+        <thead class="tpart">
+          <tr class="trow thead_row">
+            <th class=" flex_center_center thead_cell span_head" colspan="6">المقررات المسجلة</th>
+          </tr>
+
+          <tr class="trow thead_row">
+            <th class="cell thead_cell">اسم المقرر</th>
+            <th class="cell thead_cell">كود المقرر</th>
+            <!-- <th class="cell thead_cell">متطلب سابق</th> -->
+            <th class="cell thead_cell"></th>
+            <th class="cell thead_cell"></th>
+            <th class="cell thead_cell"></th>
+          </tr>
+
+        </thead>
+        <tbody class="tpart">
+          <tr class="trow tbody_row" *ngFor="let item of registredCourses">
+            <td class="cell tbody_cell">
+              {{ item.course.arName }}
+            </td>
+            <td class="cell tbody_cell">{{ item.course.enCode }}</td>
+            <!-- <td class="cell tbody_cell">
+              <div *ngIf="item.course?.prePackages.length > 0; else elseTemplate">
+                (
+                <span *ngFor="let prePackage of item.course.prePackages; let p = index">
+                  <span *ngFor="let course of prePackage.courses; let i = index">
+                    <div *ngIf="
+                      prePackage.coursesOperation &&
+                        (i + 1) < prePackage.courses.length;
+                      else elseTemplate1
+                    ">
+                      {{ prePackage.courses[i].enCode }}<br />
+                      {{ prePackage.coursesOperation }}
+                    </div>
+                    <ng-template #elseTemplate1>
+                      {{ prePackage.courses[i].enCode }}
+                    </ng-template>
+                  </span>
+                  <span *ngIf="p < (item.course.prePackages.length - 1)">
+                    )
+                    {{ prePackage.operationWithNext }}
+                    (
+                  </span>
+                </span>
+                )
+              </div>
+              <ng-template #elseTemplate>
+                _
+              </ng-template>
+            </td> -->
+
+            <td class="cell tbody_cell" *ngIf="authorizedList['courses.show']">
+              <div class="box">
+                <a class="btn" (click)="showCourseDetails(item.course)" href={{popUpLink}}>؟</a>
+              </div>
+              <div *ngIf="popUpFlag">
+                <div class="overlay" id="popup1">
+                  <div class="popup">
+                    <button class="close" (click)="closePopUp()">&times;</button><br>
+                    <h2>تفاصيل المقرر</h2>
+                    <br>
+                    <div class="content">
+                      <app-course-details-pop-up></app-course-details-pop-up>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td class="cell tbody_cell" *ngIf="authorizedList['course-registrations.show']">
+              <div class="box">
+                <a class="link_in_table" (click)="showRegistrationDetails(item)" href={{popUpDetailsLink}}>تفاصيل التسجيل</a>
+              </div>
+              <div *ngIf="showingRegistrationFlag">
+                <div class="overlay" id="popup2">
+                  <div class="popup">
+                    <button class="close" (click)="closePopUp()">&times;</button><br>
+                    <h2>تفاصيل تسجيل المقرر</h2>
+                    <br>
+                    <div class="content">
+                      <app-delete></app-delete>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td class="cell tbody_cell">
+              <button class="btn btn_delete" (click)="delete(item.id)"
+                *ngIf="authorizedList['course-registrations.destroy']"> مسح</button>
+            </td>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

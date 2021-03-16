@@ -1,0 +1,135 @@
+<div class="full_page">
+  <div class="form_container">
+
+    <div class="custom_form">
+      <div class="form_header_container">
+        <h2 class="form_header">تحديث القسم</h2>
+      </div>
+      <div class="form_section department_section">
+        <div class="form_row">
+          <div class="form_element flex_start_center col_span_6">
+            <button (click)="delete()" class="btn btn_delete" *ngIf="authorizedList['departments.destroy']">مسح
+              القسم</button>
+          </div>
+        </div>
+
+    <ng-form [formGroup]="departmentForm" *ngIf="authorizedList['departments.update']">
+          <div class="form_row">
+
+            <label class="form_element" for="arName">اسم القسم بالعربية :</label>
+            <div class="form_element">
+              <input class="text_input" type="text" id="arName" name="arName" formControlName="arName" required
+                minlength="5" /><br />
+              <span *ngIf="
+                      !departmentForm.get('arName').valid &&
+                      departmentForm.get('arName').touched
+                    ">
+                <span *ngIf="departmentForm.get('arName').errors['minlength']" class="warning">يجب كتابة 5 حروف علي
+                  الاقل
+
+                </span>
+                <span *ngIf="departmentForm.get('arName').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="departmentForm.get('arName').errors['pattern']" class="warning"> لا يسمح بادخال علامات او
+                  حروف غير العربية
+                </span>
+                <span *ngIf="departmentForm.get('arName').errors['nameIsForbidden']" class="warning">
+                  لا يسمح بتكرار الاسم
+                </span>
+              </span>
+            </div>
+            <label class="form_element" for="enName">اسم القسم بالانجليزية:</label>
+            <div class="form_element">
+              <input class="text_input english_direction" type="text" id="enName" name="enName" formControlName="enName"
+                required minlength="5" />
+              <span *ngIf="
+                      !departmentForm.get('enName').valid &&
+                      departmentForm.get('enName').touched
+                    ">
+                <span *ngIf="departmentForm.get('enName').errors['minlength']" class="warning">يجب كتابة 5 حروف علي
+                  الاقل
+                </span>
+                <span *ngIf="departmentForm.get('enName').errors['required']" class="requierd">هذا الحقل مطلوب
+                </span>
+                <span *ngIf="departmentForm.get('enName').errors['pattern']" class="warning"> لا يسمح بادخال علامات او
+                  حروف غير الانجليزية
+
+                </span>
+                <span *ngIf="departmentForm.get('enName').errors['nameIsForbidden']" class="warning">
+                  لا يسمح بتكرار الاسم
+
+                </span>
+              </span>
+            </div>
+          </div>
+          <!-- <label for="isVirtual">وجود القسم :</label>
+                  <select name="isVirtual" id="isVirtual" formControlName="isVirtual">
+                    <option value="null">اختر حالة القسم...</option>
+                    <option
+                      *ngFor="let choise of vertuality; let i = index"
+                      value="{{ i }}"
+                      >{{ choise }}</option
+                    >
+                  </select>
+                  <br /> -->
+          <!-- <span
+                    *ngIf="
+                      !divisionForm.get('isVirtual').valid &&
+                      divisionForm.get('isVirtual').touched
+                    "
+                    class="help-block"
+                  >
+                    <span *ngIf="divisionForm.get('isVirtual').errors['required']"
+                      >هذا الحقل مطلوب</span
+                    >
+                  </span> -->
+
+          <div class="form_row">
+            <div class="form_element_center col_span_4">
+              <label class="form_element_center" for="hSDept">تخصص الثانوية العامة لقبول التسجيل في هذا القسم :</label>
+              <div class="form_element">
+                <select class="select_box" name="hSDept" id="hSDept" formControlName="hSDept"><br />
+                  <option value="null">اختر التخصص...</option>
+                  <option *ngFor="let major of hSDept; let i = index" value="{{ i + 1 }}">{{ major }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- <br>
+                  <span
+                    *ngIf="
+                      !divisionForm.get('hSDept').valid &&
+                      divisionForm.get('hSDept').touched
+                    "
+                    class="help-block"
+                  >
+                    <span *ngIf="divisionForm.get('hSDept').errors['required']"
+                      >هذا الحقل مطلوب</span
+                    >
+                  </span> -->
+
+          <div class="form_row">
+            <div class="form_element col_span_6">
+              <span *ngIf="!departmentForm.valid && departmentForm.touched" class="requierd">يجب ادخال جميع البيانات
+                صحيحة
+              </span>
+            </div>
+          </div>
+          <br>
+          <div class="form_row">
+            <div class="form_element_center form_btn_group_evenly col_span_6">
+              <div class="form_row" *ngIf="departmentForm.valid && departmentForm.touched">
+                <button type="submit" (click)="update()" class="btn btn_update">تحديث القسم</button>
+              </div>
+              <div class="form_row" *ngIf="departmentForm.touched">
+                <button (click)="clear()" class="btn">اعادة تعيين</button>
+              </div>
+            </div>
+          </div>
+
+        </ng-form>
+      </div>
+    </div>
+      
+    </div>
+</div>

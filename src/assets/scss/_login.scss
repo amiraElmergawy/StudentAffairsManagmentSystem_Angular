@@ -1,0 +1,77 @@
+.log {
+  font-size: 35px !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  width: 500px !important;
+  padding-top: 30px !important;
+  padding-bottom: 30px !important;
+  background-image: linear-gradient($first_color, $second_color) !important;
+  border-radius: 20px !important;
+  border-radius: 20px 20px 0px 0px !important;
+  font-weight: bold !important;
+  color: white !important;
+  display: block !important;
+}
+
+.login-form {
+
+  width: 500px !important;
+  background-color: #fff !important;
+  border-radius: 20px !important;
+  box-shadow: $box_shadow !important;
+}
+
+.form-cotainer {
+  @include flexCenter;
+  padding: $original_padding !important;
+  margin: $original_margin !important;
+
+  input {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    border: none !important;
+    font-size: 15px !important;
+    line-height: 1.2 !important;
+    width: 325px !important;
+    height: 45px !important;
+    background: $input_background !important;
+    border-radius: 27px !important;
+    display: block !important;
+    padding: $original_padding !important;
+
+    &:focus {
+      outline: none !important;
+      background-color: $input_background_hover !important;
+      
+      
+    }
+  }
+
+  .sign_in {
+    @include flexCenter;
+
+    button {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      padding: 0 20px !important;
+      width: 300 !important;
+      height: 50px !important;
+      border-radius: 25px !important;
+      border: solid 1px !important;
+      border-color: rgb(44, 184, 184) !important;
+      color: rgb(44, 184, 184) !important;
+      background: transparent !important;
+      font-size: 15px !important;
+
+      &:hover,
+      &:focus {
+        cursor: pointer !important;
+        color: white !important;
+        background-color: rgb(44, 184, 184) !important;
+        outline: none !important;
+      }
+    }
+  }
+}

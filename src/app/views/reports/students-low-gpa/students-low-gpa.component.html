@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="text-center">
+        <h2>الطلبة  ذوى المعدلات التراكمية اقل من2.0</h2>
+        <button id="print" type="button" class="btn btn-outline-success mt-2" (click)="print()">طباعة</button>
+    </div>
+    <div class="container-fluid mt-2" *ngFor="let program of data | keyvalue">
+        <h2>برنامج {{program?.key}}</h2>
+        <table class="table table-bordered" *ngFor="let level of program?.value | keyvalue">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="2">{{getLevel(level?.key)}}</th>
+                </tr>
+              <tr>
+                  <td>إسم الطالب</td>
+                  <td>المعدل التراكمى</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let student of level?.value">
+                <th scope="row">{{student?.full_ar_name}}</th>
+                <td colspan="5">{{(student?.current_total_qp / student?.current_total_hours)?.toFixed(4)}}</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+</div>

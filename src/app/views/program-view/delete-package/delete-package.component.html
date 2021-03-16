@@ -1,0 +1,49 @@
+<div *ngIf="data?.packages " class="full_page">
+    <!-- <br><flash-messages></flash-messages><br> -->
+    <table class="custom_table" role="grid">
+
+        <thead class="tpart">
+
+            <tr class="trow thead_trow">
+                <th class="cell thead_cell">النوع </th>
+                <th class="cell thead_cell"> عدد الساعات للتسجيل</th>
+                <th class="cell thead_cell">الفصل الدراسي</th>
+                <th class="cell thead_cell">المقررات </th>
+                <th class="cell thead_cell"></th>
+            </tr>
+
+        </thead>
+
+        <tbody class="tpart">
+
+            <tr class="trow tbody_row" *ngFor="let package of data.packages">
+                <td class="cell tbody_cell">{{package.kind | packageKindPipe }} </td>
+                <td class="cell tbody_cell">{{package.hoursToReg}} </td>
+                <td class="cell tbody_cell">{{package.semester}} </td>
+                <td class="cell tbody_cell">
+                    <span *ngFor="let course of package.courses">
+                        {{course.arName }}<br>
+                    </span>
+                </td>
+                <td class="cell tbody_cell btn_group_cell">
+                    <button class="btn btn_delete" (click)="delete(package.id)"
+                        *ngIf="authorizedList['packages.destroy']">مسح</button>
+                    <a class="link_in_table" [routerLink]="['/update-program-package/',programId,package.id]"
+                        *ngIf="authorizedList['packages.update']">
+                        تحديث
+                    </a>
+                </td>
+            </tr>
+
+            <tr class="trow tbody_row">
+                <td class="cell tbody_cell col_span">
+                    <button class="btn btn_delete" (click)="deleteAll()" *ngIf="authorizedList['packages.destroy']">مسح كل
+                        المجموعات</button>
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>

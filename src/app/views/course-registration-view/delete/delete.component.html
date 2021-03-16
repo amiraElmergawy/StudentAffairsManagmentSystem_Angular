@@ -1,0 +1,59 @@
+<div class="full_page">
+  <h2 style="text-align: center;">مسح المقررات المسجلة</h2>
+  <div *ngIf="registredCourse?.course" class="container">
+    <!-- <br /><flash-messages></flash-messages><br /> -->
+    <table class="custom_table">
+      <thead class="tpart">
+        <tr class="trow thead_row">
+          <th class="cell thead_cell">اسم المقرر</th>
+          <th class="cell thead_cell">كود المقرر</th>
+          <th class="cell thead_cell">الفصل الدراسي</th>
+          <th class="cell thead_cell">درجة المقرر</th>
+          <th class="cell thead_cell">يوجد عذر</th>
+        </tr>
+      </thead>
+      <tbody class="tpart">
+        <tr class="trow tbody_row">
+          <td class="cell tbody_cell">
+            {{ registredCourse.course.arName }}
+          </td>
+
+          <td class="cell tbody_cell">{{ registredCourse.course.enCode }}</td>
+
+          <td class="cell tbody_cell">
+            {{ registredCourse.semester | semesterPipe }}
+          </td>
+
+          <td class="cell tbody_cell">
+            <div *ngIf="registredCourse.degree!=null; else elseTemplate2">
+              {{ registredCourse.degree }} <br /><br />
+              <span *ngIf="registredCourse.isAccredited == 0; else elseTemplate3">
+                <a [routerLink]="[
+                  '/degree-registered-course/',
+                  registredCourse.id
+                ]" class="detail" *ngIf="authorizedList['course-registrations.degree']">تعديل</a>
+              </span>
+              <ng-template #elseTemplate3>
+                <b>
+                  معتمدة
+                </b>
+              </ng-template>
+            </div>
+            <ng-template #elseTemplate2>
+              لا يوجد درجة <br />
+              <a [routerLink]="['/degree-registered-course/', registredCourse.id]" class="detail"
+                *ngIf="authorizedList['course-registrations.degree']">اضافة درجة للمقرر</a>
+            </ng-template>
+          </td>
+
+          <td class="cell tbody_cell">
+            {{ registredCourse.hasExecuse | booleanPipe }}
+            <div *ngIf="registredCourse.execuse == false">
+              {{ registredCourse.execuse }}
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

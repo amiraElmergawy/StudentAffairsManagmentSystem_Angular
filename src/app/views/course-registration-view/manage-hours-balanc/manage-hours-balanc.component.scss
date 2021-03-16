@@ -1,0 +1,28 @@
+.reg_courses_container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: stretch;
+  align-items: center;
+}
+
+.second_part {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: stretch;
+  align-items: center;
+  width: 95%;
+}
+
+.second_table {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 1.4em;
+}
+
+.custom_td {
+  vertical-align: top;
+  padding: 1;
+  margin-top: 1;
+}
